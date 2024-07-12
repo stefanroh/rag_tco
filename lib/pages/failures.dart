@@ -5,6 +5,6 @@ class Failures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Text("Systemausfälle");
   }
 }

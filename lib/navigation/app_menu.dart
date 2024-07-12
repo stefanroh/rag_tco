@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/navigation/menu_entry.dart';
 import 'package:rag_tco/navigation/menu_title.dart';
 import 'package:rag_tco/pages/employee.dart';
 import 'package:rag_tco/pages/evaluation.dart';
 import 'package:rag_tco/pages/failures.dart';
-import 'package:rag_tco/navigation/menu_entry.dart';
 import 'package:rag_tco/pages/home.dart';
 import 'package:rag_tco/pages/implementation.dart';
 import 'package:rag_tco/pages/maintainance.dart';
@@ -14,88 +14,71 @@ import 'package:rag_tco/pages/strategic.dart';
 import 'package:rag_tco/pages/support.dart';
 import 'package:rag_tco/pages/training.dart';
 
-final _availablePageName = <int, String>{
-  0: "Strategische Entscheidung",
-  1: "Evaluation",
-  2: "Mitarbiter",
-  3: "Implementation",
-  4: "Rückabwicklung",
-  5: "Servicegebühren",
-  6: "Trainign",
-  7: "Wartung",
-  8: "Systemausfälle",
-  9: "Support"
+final pageNames = <int, String>{
+  0: "Home",
+  1: "Strategische Entscheidung",
+  2: "Evaluation",
+  3: "Mitarbeiter",
+  4: "Implementation",
+  5: "Rückabwicklung",
+  6: "Servicegebühren",
+  7: "Training",
+  8: "Wartung",
+  9: "Systemausfälle",
+  10: "Support"
 };
 
 // a map of ("page name", WidgetBuilder) pairs
-final _availablePrePages = <String, WidgetBuilder>{
-  'Strategische Entscheidungen': (_) => const Strategic(),
-  'Evaluation': (_) => const Evaluation(),
-  'Mitarbeiter': (_) => const Employee(),
+final prePages = <int, WidgetBuilder>{
+  1: (_) => const Strategic(),
+  2: (_) => const Evaluation(),
+  3: (_) => const Employee(),
 };
 
-final _availableMidPages = <String, WidgetBuilder>{
-  'Implementation': (_) => const Implementation(),
-  'Rückabwicklung': (_) => const Reversal(),
+final midPages = <int, WidgetBuilder>{
+  4: (_) => const Implementation(),
+  5: (_) => const Reversal(),
 };
 
-final _availablePostPages = <String, WidgetBuilder>{
-  'Servicegebühren': (_) => const Services(),
-  'Training': (_) => const Training(),
-  'Wartung': (_) => const Maintainance(),
-  'Systemausfälle': (_) => const Failures(),
-  'Support': (_) => const Support(),
+final postPages = <int, WidgetBuilder>{
+  6: (_) => const Services(),
+  7: (_) => const Training(),
+  8: (_) => const Maintainance(),
+  9: (_) => const Failures(),
+  10: (_) => const Support(),
 };
 
-final _shownPages = <String, bool>{
-  'Strategische Entscheidungen': true,
-  'Evaluation': true,
-  'Mitarbeiter': true,
-  'Implementation': true,
-  'Rückabwicklung': true,
-  'Servicegebühren': true,
-  'Training': true,
-  'Wartung': true,
-  'Systemausfälle': true,
-  'Support': true,
+final _shownPages = <int, bool>{
+  1: true,
+  2: true,
+  3: true,
+  4: true,
+  5: true,
+  6: true,
+  7: true,
+  8: true,
+  9: true,
+  10: true,
 };
 
-final selectedPageNameProvider = StateProvider<String>((ref) {
-  return 'Home';
+final selectedPageIndexProvider = StateProvider<int>((ref) {
+  return 0;
 });
 
-final selectedPageBuilderProvider = Provider<WidgetBuilder>((ref) {
-  // watch for state changes inside selectedPageNameProvider
-  final selectedPageKey = ref.watch(selectedPageNameProvider);
-
-  if (_availablePrePages[selectedPageKey] != null) {
-    return _availablePrePages[selectedPageKey]!;
-  }
-
-  if (_availableMidPages[selectedPageKey] != null) {
-    return _availableMidPages[selectedPageKey]!;
-  }
-
-  if (_availablePostPages[selectedPageKey] != null) {
-    return _availablePostPages[selectedPageKey]!;
-  }
-  return (_) => const Home();
-});
-
-final shownPagesProvider = StateProvider<Map<String, bool>>((ref) {
+final shownPagesProvider = StateProvider<Map<int, bool>>((ref) {
   return _shownPages;
 });
 
 class AppMenu extends ConsumerWidget {
   const AppMenu({super.key});
 
-  void _selectPage(BuildContext context, WidgetRef ref, String pageName) {
-    if (ref.read(selectedPageNameProvider) != pageName) {
-      ref.read(selectedPageNameProvider.notifier).state = pageName;
+  void _selectPage(BuildContext context, WidgetRef ref, int pageIndex) {
+    if (ref.read(selectedPageIndexProvider) != pageIndex) {
+      ref.read(selectedPageIndexProvider.notifier).state = pageIndex;
     }
   }
 
-  bool showTitle(Map<String, WidgetBuilder> map, Map<String, bool> visibility) {
+  bool showTitle(Map<int, WidgetBuilder> map, Map<int, bool> visibility) {
     for (var key in map.keys) {
       if (visibility[key] == true) {
         return true;
@@ -106,49 +89,49 @@ class AppMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedPageName = ref.watch(selectedPageNameProvider);
+    final selectedPageIndex = ref.watch(selectedPageIndexProvider);
     final shownPages = ref.watch(shownPagesProvider);
     return Scaffold(
       appBar: AppBar(title: const Text('RAG Cost Calculator')),
       body: ListView(
         children: <Widget>[
-          PageListTile(
-            pageName: 'Home',
-            selectedPageName: selectedPageName,
-            onPressed: () => _selectPage(context, ref, 'Home'),
+          MenuEntry(
+            pageIndex: 0,
+            selectedPageIndex: selectedPageIndex,
+            onPressed: () => _selectPage(context, ref, 0),
           ),
           Visibility(
-              visible: showTitle(_availablePrePages, shownPages),
+              visible: showTitle(prePages, _shownPages),
               child: const MenuTitle(textString: "Pretransaktionskosten")),
-          for (var pageName in _availablePrePages.keys)
+          for (var pageIndex in prePages.keys)
             Visibility(
-                visible: shownPages[pageName] ?? true,
-                child: PageListTile(
-                  selectedPageName: selectedPageName,
-                  pageName: pageName,
-                  onPressed: () => _selectPage(context, ref, pageName),
+                visible: shownPages[pageIndex] ?? true,
+                child: MenuEntry(
+                  selectedPageIndex: selectedPageIndex,
+                  pageIndex: pageIndex,
+                  onPressed: () => _selectPage(context, ref, pageIndex),
                 )),
           Visibility(
-              visible: showTitle(_availableMidPages, shownPages),
+              visible: showTitle(midPages, shownPages),
               child: const MenuTitle(textString: "Transaktionskosten")),
-          for (var pageName in _availableMidPages.keys)
+          for (var pageIndex in midPages.keys)
             Visibility(
-                visible: shownPages[pageName] ?? true,
-                child: PageListTile(
-                  selectedPageName: selectedPageName,
-                  pageName: pageName,
-                  onPressed: () => _selectPage(context, ref, pageName),
+                visible: shownPages[pageIndex] ?? true,
+                child: MenuEntry(
+                  selectedPageIndex: selectedPageIndex,
+                  pageIndex: pageIndex,
+                  onPressed: () => _selectPage(context, ref, pageIndex),
                 )),
           Visibility(
-              visible: showTitle(_availablePostPages, shownPages),
+              visible: showTitle(postPages, shownPages),
               child: const MenuTitle(textString: "Posttransaktionskosten")),
-          for (var pageName in _availablePostPages.keys)
+          for (var pageIndex in postPages.keys)
             Visibility(
-                visible: shownPages[pageName] ?? true,
-                child: PageListTile(
-                  selectedPageName: selectedPageName,
-                  pageName: pageName,
-                  onPressed: () => _selectPage(context, ref, pageName),
+                visible: shownPages[pageIndex] ?? true,
+                child: MenuEntry(
+                  selectedPageIndex: selectedPageIndex,
+                  pageIndex: pageIndex,
+                  onPressed: () => _selectPage(context, ref, pageIndex),
                 )),
         ],
       ),

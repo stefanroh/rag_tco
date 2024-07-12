@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:rag_tco/navigation/app_menu.dart';
 
-class PageListTile extends StatelessWidget {
-  const PageListTile({
+class MenuEntry extends StatelessWidget {
+  const MenuEntry({
     super.key,
-    this.selectedPageName,
-    required this.pageName,
+    this.selectedPageIndex,
+    required this.pageIndex,
     this.onPressed,
   });
-  final String? selectedPageName;
-  final String pageName;
+  final int? selectedPageIndex;
+  final int pageIndex;
   final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,11 @@ class PageListTile extends StatelessWidget {
         child: ListTile(
             contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-            title: Text(pageName),
+            title: Text(pageNames[pageIndex] ?? "N/A"),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             onTap: onPressed,
-            tileColor: selectedPageName == pageName
+            tileColor: selectedPageIndex == pageIndex
                 ? const Color.fromRGBO(220, 220, 220, 0.7)
                 : null));
   }

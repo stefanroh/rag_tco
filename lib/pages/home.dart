@@ -6,11 +6,11 @@ import 'package:rag_tco/navigation/app_menu.dart';
 class Home extends ConsumerWidget {
   const Home({super.key});
 
-  void _changeHiddenPage(String pageName, WidgetRef ref, bool newValue) {
+  void _changeHiddenPage(int pageIndex, WidgetRef ref, bool newValue) {
     //Generate new Map object, so state is updated
-    Map<String, bool> oldState = ref.read(shownPagesProvider);
-    Map<String, bool> newMap = Map.of(oldState);
-    newMap[pageName] = newValue;
+    Map<int, bool> oldState = ref.read(shownPagesProvider);
+    Map<int, bool> newMap = Map.of(oldState);
+    newMap[pageIndex] = newValue;
     ref.read(shownPagesProvider.notifier).state = newMap;
   }
 
@@ -33,19 +33,12 @@ class Home extends ConsumerWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  ToggleItem(
-                    itemText: "Strategische Entscheidungen",
-                    onPress: (newValue) => _changeHiddenPage(
-                        "Strategische Entscheidungen", ref, newValue),
-                  ),
-                  ToggleItem(
-                      itemText: "Evaluation",
+                  for (var pageIndex in prePages.keys)
+                    ToggleItem(
+                      itemText: pageNames[pageIndex] ?? "N/A",
                       onPress: (newValue) =>
-                          _changeHiddenPage("Evaluation", ref, newValue)),
-                  ToggleItem(
-                      itemText: "Mitarbeiter",
-                      onPress: (newValue) =>
-                          _changeHiddenPage("Mitarbeiter", ref, newValue)),
+                          _changeHiddenPage(pageIndex, ref, newValue),
+                    ),
                 ],
               ),
               const SizedBox(
@@ -59,14 +52,12 @@ class Home extends ConsumerWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                ToggleItem(
-                    itemText: "Implementation",
+                for (var pageIndex in midPages.keys)
+                  ToggleItem(
+                    itemText: pageNames[pageIndex] ?? "N/A",
                     onPress: (newValue) =>
-                        _changeHiddenPage("Implementation", ref, newValue)),
-                ToggleItem(
-                    itemText: "Rückabwicklung",
-                    onPress: (newValue) =>
-                        _changeHiddenPage("Rückabwicklung", ref, newValue)),
+                        _changeHiddenPage(pageIndex, ref, newValue),
+                  ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -84,26 +75,12 @@ class Home extends ConsumerWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  ToggleItem(
-                      itemText: "Servicegebühren",
+                  for (var pageIndex in postPages.keys)
+                    ToggleItem(
+                      itemText: pageNames[pageIndex] ?? "N/A",
                       onPress: (newValue) =>
-                          _changeHiddenPage("Servicegebühren", ref, newValue)),
-                  ToggleItem(
-                      itemText: "Training",
-                      onPress: (newValue) =>
-                          _changeHiddenPage("Training", ref, newValue)),
-                  ToggleItem(
-                      itemText: "Wartung",
-                      onPress: (newValue) =>
-                          _changeHiddenPage("Wartung", ref, newValue)),
-                  ToggleItem(
-                      itemText: "Systemausfälle",
-                      onPress: (newValue) =>
-                          _changeHiddenPage("Systemausfälle", ref, newValue)),
-                  ToggleItem(
-                      itemText: "Support",
-                      onPress: (newValue) =>
-                          _changeHiddenPage("Support", ref, newValue))
+                          _changeHiddenPage(pageIndex, ref, newValue),
+                    ),
                 ],
               ),
             ],
