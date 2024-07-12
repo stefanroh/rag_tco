@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 class SplitView extends StatelessWidget {
   const SplitView({
-    Key? key,
+    super.key,
     // menu and content are now configurable
     required this.menu,
     required this.content,
     // these values are now configurable with sensible default values
     this.breakpoint = 600,
     this.menuWidth = 240,
-  }) : super(key: key);
+  });
   final Widget menu;
   final Widget content;
   final double breakpoint;
