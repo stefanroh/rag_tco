@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/navigation/menu_entry.dart';
 import 'package:rag_tco/navigation/menu_title.dart';
+import 'package:rag_tco/misc/provider.dart';
 import 'package:rag_tco/pages/employee.dart';
 import 'package:rag_tco/pages/evaluation.dart';
 import 'package:rag_tco/pages/failures.dart';
-import 'package:rag_tco/pages/home.dart';
 import 'package:rag_tco/pages/implementation.dart';
 import 'package:rag_tco/pages/maintainance.dart';
 import 'package:rag_tco/pages/reversal.dart';
@@ -48,7 +48,7 @@ final postPages = <int, WidgetBuilder>{
   10: (_) => const Support(),
 };
 
-final _shownPages = <int, bool>{
+final shownPages = <int, bool>{
   1: true,
   2: true,
   3: true,
@@ -60,14 +60,6 @@ final _shownPages = <int, bool>{
   9: true,
   10: true,
 };
-
-final selectedPageIndexProvider = StateProvider<int>((ref) {
-  return 0;
-});
-
-final shownPagesProvider = StateProvider<Map<int, bool>>((ref) {
-  return _shownPages;
-});
 
 class AppMenu extends ConsumerWidget {
   const AppMenu({super.key});
@@ -101,7 +93,7 @@ class AppMenu extends ConsumerWidget {
             onPressed: () => _selectPage(context, ref, 0),
           ),
           Visibility(
-              visible: showTitle(prePages, _shownPages),
+              visible: showTitle(prePages, shownPages),
               child: const MenuTitle(textString: "Pretransaktionskosten")),
           for (var pageIndex in prePages.keys)
             Visibility(

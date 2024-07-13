@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/components/provider_selector.dart';
 import 'package:rag_tco/components/toggle_item.dart';
 import 'package:rag_tco/navigation/app_menu.dart';
+import 'package:rag_tco/misc/provider.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});
@@ -13,6 +15,7 @@ class Home extends ConsumerWidget {
     newMap[pageIndex] = newValue;
     ref.read(shownPagesProvider.notifier).state = newMap;
   }
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
