@@ -19,6 +19,6 @@ class DataStorageNotifier extends Notifier<DataStorage> {
 
   @override
   build() {
-    return DataStorage();
+    return const DataStorage();
   }
 }
