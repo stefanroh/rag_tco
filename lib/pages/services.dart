@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -125,6 +123,13 @@ class ServicesState extends ConsumerState<Services> {
               height: 50,
             ),
             const SizedBox(width: 500, child: ServiceEntryTable()),
+            switch (asyncProviderInformation) {
+              AsyncData(:final value) => Text(
+                  value.serviceComponentNames.toString() +
+                      value.serviceComponentPrices.toString()),
+              AsyncError(:final error) => Text("$error"),
+              _ => const Text("Loading")
+            }
           ]),
         ]);
   }
