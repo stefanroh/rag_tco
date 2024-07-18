@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rag_tco/data_model/cost_entry_service.dart';
 
 @immutable
 class DataStorage {
-  final List<int> serviceProviderReferences;
-  final List<double> serviceAmounts;
+  final List<CostEntryService> serviceEntries;
 
   const DataStorage(
-      {this.serviceProviderReferences = const [],
-      this.serviceAmounts = const []});
+      {this.serviceEntries = const []});
 
   DataStorage copyWith(
-      {List<int>? newServiceProviderReferences,
-      List<double>? newServiceAmounts}) {
+      {List<CostEntryService>? newServiceEntries}) {
     return DataStorage(
-        serviceProviderReferences:
-            newServiceProviderReferences ?? serviceProviderReferences,
-        serviceAmounts: newServiceAmounts ?? serviceAmounts);
+        serviceEntries: newServiceEntries ?? serviceEntries);
   }
 }

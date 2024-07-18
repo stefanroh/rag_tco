@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/provider_dialog.dart';
-import 'package:rag_tco/components/provider_selector.dart';
+import 'package:rag_tco/components/service_entry_add.dart';
 import 'package:rag_tco/components/service_entry_table.dart';
-import 'package:rag_tco/data_model/data_storage.dart';
-import 'package:rag_tco/data_model/provider_information.dart';
-import 'package:rag_tco/misc/provider.dart';
 
 class Services extends ConsumerStatefulWidget {
   const Services({super.key});
@@ -18,18 +14,6 @@ class Services extends ConsumerStatefulWidget {
 class ServicesState extends ConsumerState<Services> {
   @override
   Widget build(BuildContext context) {
-    AsyncValue<ProviderInformation> asyncProviderInformation =
-        ref.watch(providerInformationProvider);
-    DataStorage dataStorage = ref.watch(dataStorageProvider);
-
-    TextEditingController providerPriceController = TextEditingController();
-    TextEditingController providerNameController = TextEditingController();
-    TextEditingController entryAmountController = TextEditingController();
-
-    int selectedIndex = 0;
-
-    ProviderSelector providerSelector =
-        ProviderSelector(onSelect: (p0) => selectedIndex = p0);
 
     return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,30 +73,9 @@ class ServicesState extends ConsumerState<Services> {
             //   _ => const Center(child: CircularProgressIndicator()),
             // },
             Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              providerSelector,
-              const SizedBox(
-                width: 50,
-              ),
-              SizedBox(
-                width: 200,
-                child: TextField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(
-                        RegExp(r'^(\d+)?\.?\d{0,2}'))
-                  ],
-                  controller: entryAmountController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: "Add Amount"),
-                ),
-              ),
               TextButton(
-                onPressed: () {
-                  ref.read(dataStorageProvider.notifier).addService(
-                      selectedIndex, double.parse(entryAmountController.text));
-                },
-                child: const Text("Add Price"),
+                onPressed: () => _serviceEntryAddDialog(context),
+                child: const Text("Add Entry"),
               ),
               TextButton(
                 onPressed: () => _providerDialogBuilder(context),
@@ -123,13 +86,13 @@ class ServicesState extends ConsumerState<Services> {
               height: 50,
             ),
             const SizedBox(width: 500, child: ServiceEntryTable()),
-            switch (asyncProviderInformation) {
-              AsyncData(:final value) => Text(
-                  value.serviceComponentNames.toString() +
-                      value.serviceComponentPrices.toString()),
-              AsyncError(:final error) => Text("$error"),
-              _ => const Text("Loading")
-            }
+            // switch (asyncProviderInformation) {
+            //   AsyncData(:final value) => Text(
+            //       value.serviceComponentNames.toString() +
+            //           value.serviceComponentPrices.toString()),
+            //   AsyncError(:final error) => Text("$error"),
+            //   _ => const Text("Loading")
+            // }
           ]),
         ]);
   }
@@ -139,6 +102,14 @@ class ServicesState extends ConsumerState<Services> {
         context: context,
         builder: (BuildContext context) {
           return const ProviderDialog();
+        });
+  }
+
+  Future<void> _serviceEntryAddDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const ServiceEntryAdd();
         });
   }
 }

@@ -22,6 +22,7 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
     TextEditingController componentNameController = TextEditingController();
     TextEditingController componentPriceController = TextEditingController();
     TextEditingController componentUnitController = TextEditingController();
+    TextEditingController componentAmountController = TextEditingController();
 
     return AlertDialog(
         title: Row(
@@ -55,12 +56,17 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
                         TableCell(
                             child: Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Text("Price Components"),
+                          child: Text("Component Price"),
                         )),
                         TableCell(
                             child: Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Text("Price Unit"),
+                          child: Text("Reference Amount"),
+                        )),
+                        TableCell(
+                            child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Component Unit"),
                         )),
                         TableCell(
                             child: Padding(
@@ -91,17 +97,31 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
                           child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(value
-                            .serviceComponentUnits[widget.providerIndex][i]),
+                            .serviceComponentAmounts[widget.providerIndex][i]
+                            .toString()),
+                      )),
+                      TableCell(
+                          child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(ProviderInformation.getUnitTypeString(value
+                            .serviceComponentUnits[widget.providerIndex][i])),
                       )),
                       TableCell(
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextButton(
                                 child: const Text("Remove"),
-                                onPressed: () => ref
-                                    .read(providerInformationProvider.notifier)
-                                    .removeServiceComponent(
-                                        widget.providerIndex, i))),
+                                onPressed: () {
+                                  ref
+                                      .read(
+                                          providerInformationProvider.notifier)
+                                      .removeServiceComponent(
+                                          widget.providerIndex, i);
+                                  ref
+                                      .read(dataStorageProvider.notifier)
+                                      .removeServiceComponent(
+                                          widget.providerIndex, i);
+                                })),
                       ),
                     ])
                 ],
@@ -137,6 +157,20 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
               SizedBox(
                 width: 200,
                 child: TextField(
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?'))
+                  ],
+                  controller: componentAmountController,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Component Amount"),
+                ),
+              ),
+              SizedBox(
+                width: 200,
+                child: TextField(
                   controller: componentUnitController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: "Component Unit"),
@@ -150,7 +184,12 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
                           widget.providerIndex,
                           componentNameController.text,
                           double.parse(componentPriceController.text),
-                          componentUnitController.text);
+                          ProviderInformation.getUnitTypeEnum(
+                              componentUnitController.text),
+                          int.parse(componentAmountController.text));
+                  ref
+                      .read(dataStorageProvider.notifier)
+                      .addServiceComponent(widget.providerIndex);
                 },
                 child: const Text("Add Component"),
               ),
