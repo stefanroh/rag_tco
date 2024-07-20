@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/misc/provider.dart';
@@ -17,11 +20,13 @@ class ServiceEntryEdit extends ConsumerWidget {
     AsyncValue<ProviderInformation> asyncProviderInformation =
         ref.watch(providerInformationProvider);
 
+    log(serviceEntriesIndex.toString());
+
     return AlertDialog(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Service Cost Entry"),
+            const Text("Edit Service Cost Entry"),
             IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -32,6 +37,8 @@ class ServiceEntryEdit extends ConsumerWidget {
         ),
         content: switch (asyncProviderInformation) {
           AsyncData(:final value) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 for (int i = 0;
                     i <
@@ -41,35 +48,67 @@ class ServiceEntryEdit extends ConsumerWidget {
                                 .getProviderReference()]
                             .length;
                     i++)
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: addController(dataStorage
-                          .serviceEntries[serviceEntriesIndex]
-                          .getAmount(i)
-                          .toString()),
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.allow(
-                            RegExp(r'^(\d+)?\.?\d{0,2}'))
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 250,
+                          child: Text(
+                            value.serviceComponentNames[dataStorage
+                                .serviceEntries[serviceEntriesIndex]
+                                .getProviderReference()][i],
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 250,
+                          child: TextField(
+                            controller: addController(dataStorage
+                                .serviceEntries[serviceEntriesIndex]
+                                .getAmount(i)
+                                .toString()),
+                            keyboardType: const TextInputType.numberWithOptions(
+                                decimal: true),
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^(\d+)?\.?\d{0,2}'))
+                            ],
+                            decoration: InputDecoration(
+                                border: const OutlineInputBorder(),
+                                hintText: value.serviceComponentNames[
+                                    dataStorage
+                                        .serviceEntries[serviceEntriesIndex]
+                                        .getProviderReference()][i]),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            ProviderInformation.getUnitTypeString(
+                                value.serviceComponentUnits[dataStorage
+                                    .serviceEntries[serviceEntriesIndex]
+                                    .getProviderReference()][i]),
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                        ),
                       ],
-                      decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: value.serviceComponentNames[dataStorage
-                              .serviceEntries[serviceEntriesIndex]
-                              .getProviderReference()][i]),
                     ),
                   ),
-                TextButton(
+                Button(
                     onPressed: () {
-                      ref
-                          .read(dataStorageProvider.notifier)
-                          .updateServiceAmounts(
-                              serviceEntriesIndex, generateAmounts());
-                      Navigator.pop(context);
+                      if (!hasControllerListEmptyValues()) {
+                        ref
+                            .read(dataStorageProvider.notifier)
+                            .updateServiceAmounts(
+                                serviceEntriesIndex, generateAmounts());
+                        Navigator.pop(context);
+                      }
                     },
-                    child: const Text("Save"))
+                    text: "Save")
               ],
             ),
           AsyncError(:final error) => Text("$error"),
@@ -89,5 +128,12 @@ class ServiceEntryEdit extends ConsumerWidget {
       returnList.add(double.parse(controllerList[i].text));
     }
     return returnList;
+  }
+
+  bool hasControllerListEmptyValues() {
+    for (TextEditingController controller in controllerList) {
+      if (controller.text == "") return true;
+    }
+    return false;
   }
 }

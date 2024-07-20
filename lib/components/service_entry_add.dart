@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/provider_selector.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/misc/provider.dart';
@@ -33,7 +34,7 @@ class ServiceEntryAddState extends ConsumerState {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Provider"),
+            const Text("Add Service Cost Entry"),
             IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -42,60 +43,107 @@ class ServiceEntryAddState extends ConsumerState {
             ),
           ],
         ),
-        content: Column(children: [
-          ProviderSelector(onSelect: (val) {
-            setState(() {
-              log(val.toString());
-              if (selectedProviderIndex != val) {
-                controllerList = [];
-              }
-              selectedProviderIndex = val;
-            });
-          }),
-          switch (asyncProviderInformation) {
-            AsyncData(:final value) => Column(children: [
-                for (int i = 0;
-                    i <
-                        value.serviceComponentNames[selectedProviderIndex]
-                            .length;
-                    i++)
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: addController(),
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.allow(
-                            RegExp(r'^(\d+)?\.?\d{0,2}'))
-                      ],
-                      decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: value
-                              .serviceComponentNames[selectedProviderIndex][i]),
-                    ),
-                  )
-              ]),
-            AsyncError(:final error) => Text("$error"),
-            _ => const Text("Loading"),
-          },
-          TextButton(
-              onPressed: () {
-                ref
-                    .read(dataStorageProvider.notifier)
-                    .addServiceEntry(selectedProviderIndex, getAddedAmounts());
-                Navigator.pop(context);
+        content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                        width: 250,
+                        child: Text("Select Provider",
+                            style: TextStyle(fontSize: 15))),
+                    ProviderSelector(onSelect: (val) {
+                      setState(() {
+                        if (selectedProviderIndex != val) {
+                          controllerList = [];
+                        }
+                        selectedProviderIndex = val;
+                      });
+                    }),
+                  ],
+                ),
+              ),
+              switch (asyncProviderInformation) {
+                AsyncData(:final value) => Column(children: [
+                    for (int i = 0;
+                        i <
+                            value.serviceComponentNames[selectedProviderIndex]
+                                .length;
+                        i++)
+                      Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 250,
+                                child: Text(
+                                  value.serviceComponentNames[
+                                      selectedProviderIndex][i],
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 250,
+                                child: TextField(
+                                  controller: addController(),
+                                  keyboardType:
+                                      const TextInputType.numberWithOptions(
+                                          decimal: true),
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'^(\d+)?\.?\d{0,2}'))
+                                  ],
+                                  decoration: InputDecoration(
+                                      border: const OutlineInputBorder(),
+                                      hintText: value.serviceComponentNames[
+                                          selectedProviderIndex][i]),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  ProviderInformation.getUnitTypeString(
+                                      value.serviceComponentUnits[
+                                          selectedProviderIndex][i]),
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          )),
+                  ]),
+                AsyncError(:final error) => Text("$error"),
+                _ => const Text("Loading"),
               },
-              child: const Text("Add Entry"))
-        ]));
+              Button(
+                  onPressed: () {
+                    if (!hasControllerListEmptyValues()) {
+                      ref.read(dataStorageProvider.notifier).addServiceEntry(
+                          selectedProviderIndex, getAddedAmounts());
+                      Navigator.pop(context);
+                    }
+                  },
+                  text: "Add Entry")
+            ]));
   }
 
   List<double> getAddedAmounts() {
     List<double> returnList = [];
     for (int i = 0; i < controllerList.length; i++) {
-      log(controllerList[i].text);
       returnList.add(double.parse(controllerList[i].text));
     }
     return returnList;
+  }
+
+  bool hasControllerListEmptyValues() {
+    for (TextEditingController controller in controllerList) {
+      if (controller.text == "") return true;
+    }
+    return false;
   }
 }

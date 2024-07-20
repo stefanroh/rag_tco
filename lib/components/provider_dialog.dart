@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/provider_edit_dialog.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/unit_types.dart';
@@ -35,111 +36,138 @@ class ProviderDialogState extends ConsumerState<ProviderDialog> {
           ),
         ],
       ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(
-            width: 500,
-          ),
-          switch (asyncProviderInformation) {
-            AsyncData(:final value) => Table(
-                border: TableBorder.all(color: Colors.black),
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                children: [
-                  const TableRow(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                      ),
+      content: Container(
+          height: 700,
+          child: SingleChildScrollView(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                width: 750,
+              ),
+              switch (asyncProviderInformation) {
+                AsyncData(:final value) => Table(
+                      border: TableBorder.all(color: Colors.black),
+                      defaultVerticalAlignment:
+                          TableCellVerticalAlignment.middle,
                       children: [
-                        TableCell(
-                            child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Name"),
-                        )),
-                        TableCell(
-                            child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Price Components"),
-                        )),
-                        TableCell(
-                            child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Edit"),
-                        )),
-                        TableCell(
-                            child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Remove"),
-                        )),
-                      ]),
-                  for (var i = 0; i < value.serviceName.length; i++)
-                    TableRow(children: [
-                      TableCell(
-                          child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(value.serviceName[i]),
-                      )),
-                      TableCell(
-                          child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(componentStringBuilder(
-                            value.serviceComponentNames[i],
-                            value.serviceComponentPrices[i],
-                            value.serviceComponentAmounts[i],
-                            value.serviceComponentUnits[i])),
-                      )),
-                      TableCell(
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                                child: const Text("Edit"),
-                                onPressed: () =>
-                                    _providerEditDialog(context, i))),
-                      ),
-                      TableCell(
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextButton(
-                                child: const Text("Remove"),
+                        //
+                        //Header
+                        //
+                        const TableRow(
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                            ),
+                            children: [
+                              TableCell(
+                                  child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Name"),
+                              )),
+                              TableCell(
+                                  child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Price Components"),
+                              )),
+                              TableCell(
+                                  child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text("Edit"),
+                              )),
+                              TableCell(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Remove"),
+                                ),
+                              ),
+                            ]),
+                        //
+                        //Data Information
+                        //
+                        for (var i = 0; i < value.serviceName.length; i++)
+                          TableRow(children: [
+                            TableCell(
+                                child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(value.serviceName[i]),
+                            )),
+                            TableCell(
+                                child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(componentStringBuilder(
+                                  value.serviceComponentNames[i],
+                                  value.serviceComponentPrices[i],
+                                  value.serviceComponentAmounts[i],
+                                  value.serviceComponentUnits[i])),
+                            )),
+                            TableCell(
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Button(
+                                      text: "Edit",
+                                      onPressed: () =>
+                                          _providerEditDialog(context, i))),
+                            ),
+                            TableCell(
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Button(
+                                      text: "Remove",
+                                      onPressed: () {
+                                        ref
+                                            .read(dataStorageProvider.notifier)
+                                            .removeServiceEntryByProvider(i);
+                                        ref
+                                            .read(providerInformationProvider
+                                                .notifier)
+                                            .removeServiceProvider(i);
+                                      })),
+                            ),
+                          ]),
+                        //
+                        //Add Entry
+                        //
+                        TableRow(children: [
+                          TableCell(
+                              child: Container(
+                            margin: const EdgeInsets.all(10),
+                            child: SizedBox(
+                              width: 200,
+                              child: TextField(
+                                controller: providerNameController,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: "Name"),
+                              ),
+                            ),
+                          )),
+                          const TableCell(child: Text("")),
+                          const TableCell(child: Text("")),
+                          TableCell(
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              child: Button(
                                 onPressed: () {
-                                  ref
-                                      .read(dataStorageProvider.notifier)
-                                      .removeServiceEntryByProvider(i);
-                                  ref
-                                      .read(
-                                          providerInformationProvider.notifier)
-                                      .removeServiceProvider(i);
-                                })),
-                      ),
-                    ])
-                ],
-              ),
-            AsyncError(:final error) => Text("$error"),
-            _ => const Center(child: CircularProgressIndicator()),
-          },
-          const SizedBox(
-            height: 50,
-          ),
-          Row(children: [
-            SizedBox(
-              width: 200,
-              child: TextField(
-                controller: providerNameController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), hintText: "Add Name"),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                ref
-                    .read(providerInformationProvider.notifier)
-                    .addServiceProvider(providerNameController.text);
+                                  if (providerNameController.text != "") {
+                                    ref
+                                        .read(providerInformationProvider
+                                            .notifier)
+                                        .addServiceProvider(
+                                            providerNameController.text);
+                                  }
+                                },
+                                text: "Add",
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ]),
+                AsyncError(:final error) => Text("$error"),
+                _ => const Center(child: CircularProgressIndicator()),
               },
-              child: const Text("Add Provider"),
-            ),
-          ]),
-        ],
-      ),
+            ],
+          ))),
     );
   }
 

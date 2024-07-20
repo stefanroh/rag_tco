@@ -15,13 +15,16 @@ class ProviderSelector extends ConsumerWidget {
         ref.watch(providerInformationProvider);
 
     return switch (asyncProviderInformation) {
-      AsyncData(:final value) => DropdownMenu(
-            initialSelection: 0,
-            onSelected: (value) => onSelect(value ?? 0),
-            dropdownMenuEntries: [
-              for (var i = 0; i < value.serviceName.length; i++)
-                DropdownMenuEntry(value: i, label: value.serviceName[i])
-            ]),
+      AsyncData(:final value) => SizedBox(
+          child: DropdownMenu(
+              width: 250,
+              initialSelection: 0,
+              onSelected: (value) => onSelect(value ?? 0),
+              dropdownMenuEntries: [
+                for (var i = 0; i < value.serviceName.length; i++)
+                  DropdownMenuEntry(value: i, label: value.serviceName[i])
+              ]),
+        ),
       AsyncError(:final error) => Text('Error: $error'),
       _ => const Center(child: CircularProgressIndicator()),
     };

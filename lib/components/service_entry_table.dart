@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service_entry_edit.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
@@ -72,18 +73,18 @@ class ServiceEntryTable extends ConsumerWidget {
                 TableCell(
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TextButton(
+                        child: Button(
                             onPressed: () =>
                                 _serviceEntryEditDialog(context, i),
-                            child: const Text("Edit")))),
+                            text: "Edit"))),
                 TableCell(
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TextButton(
+                        child: Button(
                             onPressed: () => ref
                                 .read(dataStorageProvider.notifier)
                                 .removeServiceEntry(i),
-                            child: const Text("Remove")))),
+                            text: "Remove"))),
               ])
           ],
         ),

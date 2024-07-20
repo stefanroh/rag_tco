@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/provider_dialog.dart';
 import 'package:rag_tco/components/service_entry_add.dart';
 import 'package:rag_tco/components/service_entry_table.dart';
@@ -14,7 +15,6 @@ class Services extends ConsumerStatefulWidget {
 class ServicesState extends ConsumerState<Services> {
   @override
   Widget build(BuildContext context) {
-
     return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -73,13 +73,13 @@ class ServicesState extends ConsumerState<Services> {
             //   _ => const Center(child: CircularProgressIndicator()),
             // },
             Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-              TextButton(
+              Button(
                 onPressed: () => _serviceEntryAddDialog(context),
-                child: const Text("Add Entry"),
+                text: "Add Entry",
               ),
-              TextButton(
+              Button(
                 onPressed: () => _providerDialogBuilder(context),
-                child: const Text("Edit Service Provider"),
+                text: "Edit Service Provider",
               ),
             ]),
             const SizedBox(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:excel/excel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -27,10 +29,17 @@ class ProviderInformation {
       for (var columnIndex = 1;
           columnIndex + 3 < row.length;
           columnIndex = columnIndex + 4) {
+        if (row.elementAt(columnIndex) == null ||
+            row.elementAt(columnIndex + 1) == null ||
+            row.elementAt(columnIndex + 2) == null ||
+            row.elementAt(columnIndex + 3) == null) {
+          break;
+        }
         Data nameCell = row.elementAt(columnIndex)!;
         Data priceCell = row.elementAt(columnIndex + 1)!;
         Data amountCell = row.elementAt(columnIndex + 2)!;
         Data unitCell = row.elementAt(columnIndex + 3)!;
+
         serviceComponentNames[rowIndex].add(nameCell.value.toString());
         serviceComponentPrices[rowIndex]
             .add(double.parse(priceCell.value.toString()));
@@ -80,18 +89,60 @@ class ProviderInformation {
   }
 
   static UnitTypes getUnitTypeEnum(String unitString) {
-    switch (unitString) {
-      case "Token" || "Tokens" || "token" || "tokens":
+    String formattedUnitString = formatDataType(unitString);
+    switch (formattedUnitString) {
+      case "token":
         return UnitTypes.token;
+      case "picture":
+        return UnitTypes.picture;
+      case "character":
+        return UnitTypes.character;
+      case "second":
+        return UnitTypes.second;
+      case "minute":
+        return UnitTypes.minute;
+      case "hour":
+        return UnitTypes.hour;
+      case "day":
+        return UnitTypes.day;
+      case "month":
+        return UnitTypes.month;
+      case "year":
+        return UnitTypes.year;
       default:
         return UnitTypes.unknown;
     }
+  }
+
+  static String formatDataType(String untrimmed) {
+    String returnString;
+    returnString = untrimmed.toLowerCase();
+    if (returnString.endsWith("s")) {
+      returnString = returnString.substring(0, returnString.length - 1);
+    }
+    return returnString;
   }
 
   static String getUnitTypeString(UnitTypes unit) {
     switch (unit) {
       case UnitTypes.token:
         return "Tokens";
+      case UnitTypes.picture:
+        return "Pictures";
+      case UnitTypes.character:
+        return "Characters";
+      case UnitTypes.second:
+        return "Seconds";
+      case UnitTypes.minute:
+        return "Minutes";
+      case UnitTypes.hour:
+        return "Hours";
+      case UnitTypes.day:
+        return "Days";
+      case UnitTypes.month:
+        return "Months";
+      case UnitTypes.year:
+        return "Years";
       default:
         return "Unknown";
     }
