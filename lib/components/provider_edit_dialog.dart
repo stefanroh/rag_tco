@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
+import 'package:rag_tco/components/unit_selector.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
+import 'package:rag_tco/data_model/unit_types.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class ProviderEditDialog extends ConsumerStatefulWidget {
@@ -15,15 +17,15 @@ class ProviderEditDialog extends ConsumerStatefulWidget {
 }
 
 class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
+  UnitTypes selectedUnitType = UnitTypes.unknown;
+  TextEditingController componentNameController = TextEditingController();
+  TextEditingController componentPriceController = TextEditingController();
+  TextEditingController componentAmountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     AsyncValue<ProviderInformation> asyncProviderInformation =
         ref.watch(providerInformationProvider);
-
-    TextEditingController componentNameController = TextEditingController();
-    TextEditingController componentPriceController = TextEditingController();
-    TextEditingController componentUnitController = TextEditingController();
-    TextEditingController componentAmountController = TextEditingController();
 
     return AlertDialog(
         title: Row(
@@ -207,11 +209,11 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
                             margin: const EdgeInsets.all(10),
                             child: SizedBox(
                               width: 200,
-                              child: TextField(
-                                controller: componentUnitController,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    hintText: "Unit"),
+                              child: UnitTypeSelector(
+                                width: 130,
+                                onSelect: (value) => setState(() {
+                                  selectedUnitType = value;
+                                }),
                               ),
                             ),
                           )),
@@ -222,8 +224,7 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
                                   onPressed: () {
                                     if (componentNameController.text != "" &&
                                         componentPriceController.text != "" &&
-                                        componentAmountController.text != "" &&
-                                        componentUnitController.text != "") {
+                                        componentAmountController.text != "") {
                                       ref
                                           .read(providerInformationProvider
                                               .notifier)
@@ -233,10 +234,7 @@ class _ProviderEditDialogState extends ConsumerState<ProviderEditDialog> {
                                               double.parse(
                                                   componentPriceController
                                                       .text),
-                                              ProviderInformation
-                                                  .getUnitTypeEnum(
-                                                      componentUnitController
-                                                          .text),
+                                              selectedUnitType,
                                               int.parse(
                                                   componentAmountController
                                                       .text));

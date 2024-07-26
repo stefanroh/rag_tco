@@ -53,8 +53,7 @@ class ServiceEntryTable extends ConsumerWidget {
                 TableCell(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(value.serviceName[
-                      dataStorage.serviceEntries[i].getProviderReference()]),
+                  child: Text(dataStorage.serviceEntries[i].entryName),
                 )),
                 TableCell(
                     child: Padding(

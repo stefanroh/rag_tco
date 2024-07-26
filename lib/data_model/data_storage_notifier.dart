@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/cost_entry_service.dart';
@@ -7,14 +5,15 @@ import 'package:rag_tco/data_model/cost_entry_service.dart';
 class DataStorageNotifier extends Notifier<DataStorage> {
   DataStorageNotifier() : super();
 
-  void addServiceEntry(
-      int addedServiceProviderReference, List<double> addedAmounts) {
+  void addServiceEntry(int addedServiceProviderReference,
+      List<double> addedAmounts, String entryName) {
     List<CostEntryService> serviceEntries =
         List<CostEntryService>.from(state.serviceEntries);
 
     serviceEntries.add(CostEntryService(
         providerReference: addedServiceProviderReference,
-        amounts: addedAmounts));
+        amounts: addedAmounts,
+        entryName: entryName));
 
     state = state.copyWith(newServiceEntries: serviceEntries);
   }
@@ -40,7 +39,6 @@ class DataStorageNotifier extends Notifier<DataStorage> {
             .setProviderReference(serviceEntries[i].getProviderReference() - 1);
       }
     }
-    log(serviceEntries.toString());
     state = state.copyWith(newServiceEntries: serviceEntries);
   }
 
@@ -66,10 +64,12 @@ class DataStorageNotifier extends Notifier<DataStorage> {
     state = state.copyWith(newServiceEntries: serviceEntries);
   }
 
-  void updateServiceAmounts(int serviceEntryIndex, List<double> newAmounts) {
+  void updateServiceEntry(
+      int serviceEntryIndex, List<double> newAmounts, String entryName) {
     List<CostEntryService> serviceEntries =
         List<CostEntryService>.from(state.serviceEntries);
     serviceEntries[serviceEntryIndex].setAmounts(newAmounts);
+    serviceEntries[serviceEntryIndex].entryName = entryName;
     state = state.copyWith(newServiceEntries: serviceEntries);
   }
 

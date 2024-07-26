@@ -104,6 +104,6 @@ class ProviderInformationNotifier extends AsyncNotifier<ProviderInformation> {
 
   @override
   FutureOr<ProviderInformation> build() {
-    return ProviderInformation.fromExcel("assets/provider_information.xlsx");
+    return ProviderInformation.fromExcel("assets/data.xlsx");
   }
 }

@@ -14,7 +14,6 @@ class ProviderDialog extends ConsumerStatefulWidget {
 }
 
 class ProviderDialogState extends ConsumerState<ProviderDialog> {
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class ProviderDialogState extends ConsumerState<ProviderDialog> {
           ),
         ],
       ),
-      content: Container(
+      content: SizedBox(
           height: 700,
           child: SingleChildScrollView(
               child: Column(

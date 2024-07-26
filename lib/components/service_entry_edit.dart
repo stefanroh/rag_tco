@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,8 +17,8 @@ class ServiceEntryEdit extends ConsumerWidget {
     DataStorage dataStorage = ref.watch(dataStorageProvider);
     AsyncValue<ProviderInformation> asyncProviderInformation =
         ref.watch(providerInformationProvider);
-
-    log(serviceEntriesIndex.toString());
+    TextEditingController entryNameController = TextEditingController(
+        text: dataStorage.serviceEntries[serviceEntriesIndex].entryName);
 
     return AlertDialog(
         title: Row(
@@ -40,6 +38,29 @@ class ServiceEntryEdit extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 250,
+                        child: Text(
+                          "Cost Entry Name",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
+                      SizedBox(
+                          width: 250,
+                          child: TextField(
+                            controller: entryNameController,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Name",
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
                 for (int i = 0;
                     i <
                         value
@@ -103,8 +124,8 @@ class ServiceEntryEdit extends ConsumerWidget {
                       if (!hasControllerListEmptyValues()) {
                         ref
                             .read(dataStorageProvider.notifier)
-                            .updateServiceAmounts(
-                                serviceEntriesIndex, generateAmounts());
+                            .updateServiceEntry(serviceEntriesIndex,
+                                generateAmounts(), entryNameController.text);
                         Navigator.pop(context);
                       }
                     },

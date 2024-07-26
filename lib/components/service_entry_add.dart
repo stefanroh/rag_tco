@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +16,7 @@ class ServiceEntryAdd extends ConsumerStatefulWidget {
 class ServiceEntryAddState extends ConsumerState {
   List<TextEditingController> controllerList = [];
   int selectedProviderIndex = 0;
+  TextEditingController entryNameController = TextEditingController();
 
   TextEditingController addController() {
     TextEditingController addedController = TextEditingController();
@@ -68,6 +67,30 @@ class ServiceEntryAddState extends ConsumerState {
               ),
               switch (asyncProviderInformation) {
                 AsyncData(:final value) => Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 250,
+                            child: Text(
+                              "Cost Entry Name",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: TextField(
+                              controller: entryNameController,
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: "Name"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
                     for (int i = 0;
                         i <
                             value.serviceComponentNames[selectedProviderIndex]
@@ -124,7 +147,9 @@ class ServiceEntryAddState extends ConsumerState {
                   onPressed: () {
                     if (!hasControllerListEmptyValues()) {
                       ref.read(dataStorageProvider.notifier).addServiceEntry(
-                          selectedProviderIndex, getAddedAmounts());
+                          selectedProviderIndex,
+                          getAddedAmounts(),
+                          entryNameController.text);
                       Navigator.pop(context);
                     }
                   },

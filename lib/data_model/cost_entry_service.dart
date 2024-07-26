@@ -1,8 +1,9 @@
 class CostEntryService {
+  String entryName;
   int _providerReference;
   List<double> _amounts;
 
-  CostEntryService({required providerReference, required List<double> amounts})
+  CostEntryService({required providerReference, required List<double> amounts, required this.entryName})
       : _providerReference = providerReference,
         _amounts = amounts;
 
