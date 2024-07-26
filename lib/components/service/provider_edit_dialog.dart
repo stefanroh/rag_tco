@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/unit_selector.dart';
+import 'package:rag_tco/components/service/unit_selector.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/unit_types.dart';
 import 'package:rag_tco/misc/provider.dart';

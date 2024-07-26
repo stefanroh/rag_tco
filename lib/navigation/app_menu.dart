@@ -25,7 +25,8 @@ final pageNames = <int, String>{
   7: "Training",
   8: "Wartung",
   9: "Systemausfälle",
-  10: "Support"
+  10: "Support",
+  11: "Report"
 };
 
 // a map of ("page name", WidgetBuilder) pairs
@@ -125,6 +126,14 @@ class AppMenu extends ConsumerWidget {
                   pageIndex: pageIndex,
                   onPressed: () => _selectPage(context, ref, pageIndex),
                 )),
+          Container(
+            margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+            child: const Divider(),
+          ),
+          MenuEntry(
+              pageIndex: 11,
+              selectedPageIndex: selectedPageIndex,
+              onPressed: () => _selectPage(context, ref, 11))
         ],
       ),
     );

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/provider_dialog.dart';
-import 'package:rag_tco/components/service_entry_add.dart';
-import 'package:rag_tco/components/service_entry_table.dart';
-import 'package:rag_tco/components/service_template_dialog.dart';
+import 'package:rag_tco/components/service/provider_dialog.dart';
+import 'package:rag_tco/components/service/service_entry_add.dart';
+import 'package:rag_tco/components/service/service_entry_table.dart';
+import 'package:rag_tco/components/service/service_template_dialog.dart';
 
 class Services extends ConsumerStatefulWidget {
   const Services({super.key});

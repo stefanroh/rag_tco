@@ -1,11 +1,16 @@
-class CostEntryService {
-  String entryName;
+import 'package:rag_tco/data_model/cost_entry.dart';
+
+class CostEntryService extends CostEntry {
   int _providerReference;
   List<double> _amounts;
 
-  CostEntryService({required providerReference, required List<double> amounts, required this.entryName})
+  CostEntryService(
+      {required providerReference,
+      required List<double> amounts,
+      required String entryName})
       : _providerReference = providerReference,
-        _amounts = amounts;
+        _amounts = amounts,
+        super(entryName);
 
   void removeComponent(int componentIndex) {
     _amounts.removeAt(componentIndex);

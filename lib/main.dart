@@ -4,6 +4,7 @@ import 'package:rag_tco/navigation/app_menu.dart';
 import 'package:rag_tco/misc/provider.dart';
 import 'package:rag_tco/navigation/split_view.dart';
 import 'package:rag_tco/pages/home.dart';
+import 'package:rag_tco/pages/report.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -33,7 +34,8 @@ class MyApp extends ConsumerWidget {
                     const Home(),
                     for (var page in prePages.values) page(context),
                     for (var page in midPages.values) page(context),
-                    for (var page in postPages.values) page(context)
+                    for (var page in postPages.values) page(context),
+                    const Report()
                   ],
                 ))));
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/service_entry_edit.dart';
+import 'package:rag_tco/components/service/service_entry_edit.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/cost_entry_service.dart';

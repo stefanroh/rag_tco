@@ -3,6 +3,8 @@ import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/data_storage_notifier.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/provider_information_notifier.dart';
+import 'package:rag_tco/data_model/report_storage.dart';
+import 'package:rag_tco/data_model/report_storage_notifier.dart';
 import 'package:rag_tco/navigation/app_menu.dart';
 
 final selectedPageIndexProvider = StateProvider<int>((ref) {
@@ -21,4 +23,9 @@ final providerInformationProvider =
 final dataStorageProvider =
     NotifierProvider<DataStorageNotifier, DataStorage>(() {
   return DataStorageNotifier();
+});
+
+final reportStorageProvider =
+    NotifierProvider<ReportStorageNotifier, ReportStorage>(() {
+  return ReportStorageNotifier();
 });
