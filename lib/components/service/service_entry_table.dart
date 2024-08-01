@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service/service_entry_edit.dart';
+import 'package:rag_tco/data_model/cost_entry_types.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/cost_entry_service.dart';
@@ -80,9 +81,15 @@ class ServiceEntryTable extends ConsumerWidget {
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Button(
-                            onPressed: () => ref
-                                .read(dataStorageProvider.notifier)
-                                .removeServiceEntry(i),
+                            onPressed: () {
+                              ref
+                                  .read(dataStorageProvider.notifier)
+                                  .removeServiceEntry(i);
+                              ref
+                                  .read(reportStorageProvider.notifier)
+                                  .removeServiceProvider(
+                                      CostEntryTypes.service, i);
+                            },
                             text: "Remove"))),
               ])
           ],

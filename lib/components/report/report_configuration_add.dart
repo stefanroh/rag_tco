@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/report/cost_entry_selector.dart';
 import 'package:rag_tco/data_model/cost_entry.dart';
+import 'package:rag_tco/data_model/cost_entry_types.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/report_configuration.dart';
 import 'package:rag_tco/misc/provider.dart';
@@ -65,8 +68,8 @@ class _ReportConfigurationAddState
                 ],
               ),
             ),
-            configurationElement(
-                "Servicegebühren", dataStorage.serviceEntries, selectedService),
+            configurationElement("Servicegebühren", dataStorage.serviceEntries,
+                CostEntryTypes.service),
             Button(
                 text: "Add Report Configuraiton",
                 onPressed: () => ref
@@ -88,7 +91,7 @@ class _ReportConfigurationAddState
   }
 
   Widget configurationElement(
-      String text, List<CostEntry> costEntryList, int selectedIndex) {
+      String text, List<CostEntry> costEntryList, CostEntryTypes type) {
     return Visibility(
         visible: costEntryList.isNotEmpty,
         child: Row(
@@ -99,10 +102,35 @@ class _ReportConfigurationAddState
             ),
             CostEntrySelector(
               initialSelection: -1,
-              onSelect: (val) => selectedIndex = val,
+              onSelect: (val) => _setChoice(type, val),
               costEntryList: costEntryList,
             ),
           ],
         ));
+  }
+
+  void _setChoice(CostEntryTypes type, int selection) {
+    switch (type) {
+      case CostEntryTypes.strategic:
+        selectedStrategic = selection;
+      case CostEntryTypes.evaluation:
+        selectedEvaluation = selection;
+      case CostEntryTypes.employee:
+        selectedEmployee = selection;
+      case CostEntryTypes.implementation:
+        selectedImplementation = selection;
+      case CostEntryTypes.revearsal:
+        selectedReversal = selection;
+      case CostEntryTypes.service:
+        selectedService = selection;
+      case CostEntryTypes.training:
+        selectedTraining = selection;
+      case CostEntryTypes.maintainance:
+        selectedMaintainance = selection;
+      case CostEntryTypes.failure:
+        selectedFailure = selection;
+      case CostEntryTypes.support:
+        selectedSupport = selection;
+    }
   }
 }
