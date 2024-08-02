@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
+import 'package:rag_tco/components/service/timeframe_selector.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class ServiceEntryEdit extends ConsumerWidget {
@@ -19,6 +21,11 @@ class ServiceEntryEdit extends ConsumerWidget {
         ref.watch(providerInformationProvider);
     TextEditingController entryNameController = TextEditingController(
         text: dataStorage.serviceEntries[serviceEntriesIndex].entryName);
+    TimeframeType selectedTimeframe =
+        dataStorage.serviceEntries[serviceEntriesIndex].referenceTimeframe;
+    TextEditingController frequencyController = TextEditingController(
+        text: dataStorage.serviceEntries[serviceEntriesIndex].frequency
+            .toString());
 
     return AlertDialog(
         title: Row(
@@ -119,13 +126,68 @@ class ServiceEntryEdit extends ConsumerWidget {
                       ],
                     ),
                   ),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 250,
+                        child: Text(
+                          "Reference timeframe",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 250,
+                        child: TimeframeSelector(
+                          initialTimeframe: selectedTimeframe,
+                          onSelect: (val) => selectedTimeframe = val,
+                          width: 250,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 250,
+                        child: Text(
+                          "Frequency in timeframe",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 250,
+                        child: TextField(
+                            controller: frequencyController,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Frequency"),
+                            keyboardType: const TextInputType.numberWithOptions(
+                                decimal: false),
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^(\d+)?'))
+                            ]),
+                      ),
+                    ],
+                  ),
+                ),
                 Button(
                     onPressed: () {
                       if (!hasControllerListEmptyValues()) {
                         ref
                             .read(dataStorageProvider.notifier)
-                            .updateServiceEntry(serviceEntriesIndex,
-                                generateAmounts(), entryNameController.text);
+                            .updateServiceEntry(
+                                serviceEntriesIndex,
+                                generateAmounts(),
+                                entryNameController.text,
+                                selectedTimeframe,
+                                int.parse(frequencyController.text));
                         Navigator.pop(context);
                       }
                     },

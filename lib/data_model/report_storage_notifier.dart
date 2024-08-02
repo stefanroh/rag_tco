@@ -25,53 +25,53 @@ class ReportStorageNotifier extends Notifier<ReportStorage> {
       int serviceProviderIndex, ReportConfiguration configuration) {
     switch (type) {
       case CostEntryTypes.strategic:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedStrategic = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedStrategic.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.evaluation:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedEvaluation = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedEvaluation.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.employee:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedEmployee = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedEmployee.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.implementation:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedImplementation = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedImplementation.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.revearsal:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedReversal = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedReversal.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.service:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedService = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedService.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.training:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedTraining = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedTraining.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.maintainance:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedMaintainance = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedMaintainance.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.failure:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedFailure = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedFailure.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
       case CostEntryTypes.support:
-        if (configuration.selectedService == serviceProviderIndex) {
-          configuration.selectedSupport = -1;
+        if (configuration.selectedService.contains(serviceProviderIndex)) {
+          configuration.selectedSupport.removeWhere((item) => item == serviceProviderIndex);
         }
         return configuration;
     }

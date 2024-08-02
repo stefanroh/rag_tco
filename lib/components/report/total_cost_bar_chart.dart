@@ -1,17 +1,20 @@
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/report/report_utils.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
-import 'package:rag_tco/data_model/provider_information_notifier.dart';
 import 'package:rag_tco/data_model/report_configuration.dart';
 import 'package:rag_tco/data_model/report_storage.dart';
-import 'package:rag_tco/data_model/report_storage_notifier.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 import 'package:rag_tco/misc/provider.dart';
+import 'dart:math' as math;
 
 class TotalCostBarChart extends ConsumerStatefulWidget {
-  const TotalCostBarChart({super.key});
+  const TotalCostBarChart({required this.timeframe, super.key});
+
+  final TimeframeType timeframe;
 
   @override
   ConsumerState<TotalCostBarChart> createState() => _TotalCostBarChartState();
@@ -99,12 +102,20 @@ class _TotalCostBarChartState extends ConsumerState<TotalCostBarChart> {
 
     switch (asyncProviderInformation) {
       case (AsyncData(:final value)):
-        if (configuration.selectedService >= 0) {
-          returnList.add(BarChartRodStackItem(
-              0,
-              ReportUtils.getAllServiceCost(value,
-                  dataStorage.serviceEntries[configuration.selectedService]),
-              Colors.blue));
+        if (configuration.selectedService.isNotEmpty) {
+          double agg = 0;
+          for (int entry in configuration.selectedService) {
+            double entryCost = ReportUtils.getServiceElementCost(
+                value, dataStorage.serviceEntries[entry], widget.timeframe);
+
+            returnList.add(BarChartRodStackItem(
+                agg,
+                agg + entryCost,
+                Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                    .withOpacity(1.0)));
+
+            agg += entryCost;
+          }
         }
         break;
       default:

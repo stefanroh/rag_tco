@@ -1,13 +1,18 @@
 import 'package:rag_tco/data_model/cost_entry.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 
 class CostEntryService extends CostEntry {
   int _providerReference;
   List<double> _amounts;
+  TimeframeType referenceTimeframe;
+  int frequency;
 
   CostEntryService(
       {required providerReference,
       required List<double> amounts,
-      required String entryName})
+      required String entryName,
+      required this.referenceTimeframe,
+      required this.frequency})
       : _providerReference = providerReference,
         _amounts = amounts,
         super(entryName);

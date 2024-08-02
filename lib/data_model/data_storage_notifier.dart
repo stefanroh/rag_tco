@@ -1,19 +1,26 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/cost_entry_service.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 
 class DataStorageNotifier extends Notifier<DataStorage> {
   DataStorageNotifier() : super();
 
-  void addServiceEntry(int addedServiceProviderReference,
-      List<double> addedAmounts, String entryName) {
+  void addServiceEntry(
+      int addedServiceProviderReference,
+      List<double> addedAmounts,
+      String entryName,
+      TimeframeType timeframeType,
+      int frequency) {
     List<CostEntryService> serviceEntries =
         List<CostEntryService>.from(state.serviceEntries);
 
     serviceEntries.add(CostEntryService(
         providerReference: addedServiceProviderReference,
         amounts: addedAmounts,
-        entryName: entryName));
+        entryName: entryName,
+        referenceTimeframe: timeframeType,
+        frequency: frequency));
 
     state = state.copyWith(newServiceEntries: serviceEntries);
   }
@@ -64,13 +71,17 @@ class DataStorageNotifier extends Notifier<DataStorage> {
     state = state.copyWith(newServiceEntries: serviceEntries);
   }
 
-  void updateServiceEntry(
-      int serviceEntryIndex, List<double> newAmounts, String entryName) {
+  void updateServiceEntry(int serviceEntryIndex, List<double> newAmounts,
+      String entryName, TimeframeType timeframeType, int frequency) {
     List<CostEntryService> serviceEntries =
         List<CostEntryService>.from(state.serviceEntries);
     serviceEntries[serviceEntryIndex].setAmounts(newAmounts);
     serviceEntries[serviceEntryIndex].entryName = entryName;
-    state = state.copyWith(newServiceEntries: serviceEntries);
+    serviceEntries[serviceEntryIndex].referenceTimeframe = timeframeType;
+    serviceEntries[serviceEntryIndex].frequency = frequency;
+    state = state.copyWith(
+      newServiceEntries: serviceEntries,
+    );
   }
 
   @override

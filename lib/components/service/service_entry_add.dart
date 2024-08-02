@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service/provider_selector.dart';
+import 'package:rag_tco/components/service/timeframe_selector.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class ServiceEntryAdd extends ConsumerStatefulWidget {
@@ -16,7 +18,9 @@ class ServiceEntryAdd extends ConsumerStatefulWidget {
 class ServiceEntryAddState extends ConsumerState {
   List<TextEditingController> controllerList = [];
   int selectedProviderIndex = 0;
+  TimeframeType selectedTimeframe = TimeframeType.day;
   TextEditingController entryNameController = TextEditingController();
+  TextEditingController frequencyController = TextEditingController();
 
   TextEditingController addController() {
     TextEditingController addedController = TextEditingController();
@@ -139,6 +143,69 @@ class ServiceEntryAddState extends ConsumerState {
                               ),
                             ],
                           )),
+                    const Divider(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 250,
+                            child: Text(
+                              "Frequency in timeframe",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: TextField(
+                                controller: frequencyController,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: "Frequency"),
+                                keyboardType:
+                                    const TextInputType.numberWithOptions(
+                                        decimal: false),
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'^(\d+)?'))
+                                ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 250,
+                          ),
+                          SizedBox(width: 250, child: Text("per")),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 250,
+                            child: Text(
+                              "Reference timeframe",
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 250,
+                            child: TimeframeSelector(
+                              initialTimeframe: selectedTimeframe,
+                              onSelect: (val) => selectedTimeframe = val,
+                              width: 250,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ]),
                 AsyncError(:final error) => Text("$error"),
                 _ => const Text("Loading"),
@@ -149,7 +216,9 @@ class ServiceEntryAddState extends ConsumerState {
                       ref.read(dataStorageProvider.notifier).addServiceEntry(
                           selectedProviderIndex,
                           getAddedAmounts(),
-                          entryNameController.text);
+                          entryNameController.text,
+                          selectedTimeframe,
+                          int.parse(frequencyController.text));
                       Navigator.pop(context);
                     }
                   },

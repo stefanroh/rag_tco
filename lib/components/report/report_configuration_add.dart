@@ -1,9 +1,9 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:multi_dropdown/multiselect_dropdown.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/report/cost_entry_selector.dart';
+import 'package:rag_tco/components/report/cost_entry_multiple_selector.dart';
 import 'package:rag_tco/data_model/cost_entry.dart';
 import 'package:rag_tco/data_model/cost_entry_types.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
@@ -20,16 +20,16 @@ class ReportConfigurationAdd extends ConsumerStatefulWidget {
 
 class _ReportConfigurationAddState
     extends ConsumerState<ReportConfigurationAdd> {
-  int selectedStrategic = -1;
-  int selectedEvaluation = -1;
-  int selectedEmployee = -1;
-  int selectedImplementation = -1;
-  int selectedReversal = -1;
-  int selectedService = -1;
-  int selectedTraining = -1;
-  int selectedMaintainance = -1;
-  int selectedFailure = -1;
-  int selectedSupport = -1;
+  List<int> selectedStrategic = [];
+  List<int> selectedEvaluation = [];
+  List<int> selectedEmployee = [];
+  List<int> selectedImplementation = [];
+  List<int> selectedReversal = [];
+  List<int> selectedService = [];
+  List<int> selectedTraining = [];
+  List<int> selectedMaintainance = [];
+  List<int> selectedFailure = [];
+  List<int> selectedSupport = [];
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +100,8 @@ class _ReportConfigurationAddState
               width: 250,
               child: Text(text),
             ),
-            CostEntrySelector(
-              initialSelection: -1,
+            CostEntryMultipleSelector(
+              // initialSelection: -1,
               onSelect: (val) => _setChoice(type, val),
               costEntryList: costEntryList,
             ),
@@ -109,28 +109,29 @@ class _ReportConfigurationAddState
         ));
   }
 
-  void _setChoice(CostEntryTypes type, int selection) {
+  void _setChoice(CostEntryTypes type, List<ValueItem<int>> selections) {
+    List<int> selectionIntList = selections.map((item) => item.value!).toList();
     switch (type) {
       case CostEntryTypes.strategic:
-        selectedStrategic = selection;
+        selectedStrategic = selectionIntList;
       case CostEntryTypes.evaluation:
-        selectedEvaluation = selection;
+        selectedEvaluation = selectionIntList;
       case CostEntryTypes.employee:
-        selectedEmployee = selection;
+        selectedEmployee = selectionIntList;
       case CostEntryTypes.implementation:
-        selectedImplementation = selection;
+        selectedImplementation = selectionIntList;
       case CostEntryTypes.revearsal:
-        selectedReversal = selection;
+        selectedReversal = selectionIntList;
       case CostEntryTypes.service:
-        selectedService = selection;
+        selectedService = selectionIntList;
       case CostEntryTypes.training:
-        selectedTraining = selection;
+        selectedTraining = selectionIntList;
       case CostEntryTypes.maintainance:
-        selectedMaintainance = selection;
+        selectedMaintainance = selectionIntList;
       case CostEntryTypes.failure:
-        selectedFailure = selection;
+        selectedFailure = selectionIntList;
       case CostEntryTypes.support:
-        selectedSupport = selection;
+        selectedSupport = selectionIntList;
     }
   }
 }

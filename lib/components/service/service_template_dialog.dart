@@ -6,6 +6,7 @@ import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service/provider_selector.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/service_template.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 import 'package:rag_tco/data_model/unit_types.dart';
 import 'package:rag_tco/misc/provider.dart';
 
@@ -207,7 +208,9 @@ class _ServiceTemplateDialogState extends ConsumerState<ServiceTemplateDialog> {
       ref.read(dataStorageProvider.notifier).addServiceEntry(
           selectedProvider,
           amounts,
-          "${serviceTemplates[templateIndex].templateName} provided by ${providerInformation.serviceName[selectedProvider]}");
+          "${serviceTemplates[templateIndex].templateName} provided by ${providerInformation.serviceName[selectedProvider]}",
+          TimeframeType.day,
+          1);
     }
   }
 }

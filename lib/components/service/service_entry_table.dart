@@ -6,6 +6,7 @@ import 'package:rag_tco/data_model/cost_entry_types.dart';
 import 'package:rag_tco/data_model/data_storage.dart';
 import 'package:rag_tco/data_model/provider_information.dart';
 import 'package:rag_tco/data_model/cost_entry_service.dart';
+import 'package:rag_tco/data_model/timeframe_type.dart';
 import 'package:rag_tco/data_model/unit_types.dart';
 import 'package:rag_tco/misc/provider.dart';
 
@@ -41,6 +42,11 @@ class ServiceEntryTable extends ConsumerWidget {
                   TableCell(
                       child: Padding(
                     padding: EdgeInsets.all(8.0),
+                    child: Text("Frequency"),
+                  )),
+                  TableCell(
+                      child: Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Edit"),
                   )),
                   TableCell(
@@ -69,6 +75,13 @@ class ServiceEntryTable extends ConsumerWidget {
                           dataStorage.serviceEntries[i].getProviderReference()],
                       value.serviceComponentUnits[dataStorage.serviceEntries[i]
                           .getProviderReference()])),
+                )),
+                TableCell(
+                    child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(calculateFrequencyString(
+                      dataStorage.serviceEntries[i].referenceTimeframe,
+                      dataStorage.serviceEntries[i].frequency)),
                 )),
                 TableCell(
                     child: Padding(
@@ -114,6 +127,10 @@ class ServiceEntryTable extends ConsumerWidget {
       if (i != amounts.length - 1) returnString += "\n";
     }
     return returnString;
+  }
+
+  String calculateFrequencyString(TimeframeType timeframeType, int frequency) {
+    return "${frequency}x / ${timeframeType.parseToString()}";
   }
 
   Future<void> _serviceEntryEditDialog(
