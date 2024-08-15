@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:multi_dropdown/multiselect_dropdown.dart';
+import 'package:multi_dropdown/models/value_item.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/report/report_configuration_element.dart';
 import 'package:rag_tco/data_model/old/cost_entry_types.dart';
 import 'package:rag_tco/data_model/old/data_storage.dart';
 import 'package:rag_tco/data_model/old/report_configuration.dart';
+import 'package:rag_tco/data_model/old/report_storage.dart';
 import 'package:rag_tco/misc/provider.dart';
 
-class ReportConfigurationAdd extends ConsumerStatefulWidget {
-  const ReportConfigurationAdd({super.key});
+class ReportConfigurationEdit extends ConsumerStatefulWidget {
+  const ReportConfigurationEdit({super.key, required this.selectedReportIndex});
+
+  final int selectedReportIndex;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ReportConfigurationAddState();
+  ConsumerState<ReportConfigurationEdit> createState() =>
+      _ReportConfigurationEditState();
 }
 
-class _ReportConfigurationAddState
-    extends ConsumerState<ReportConfigurationAdd> {
+class _ReportConfigurationEditState
+    extends ConsumerState<ReportConfigurationEdit> {
   List<int> selectedStrategic = [];
   List<int> selectedEvaluation = [];
   List<int> selectedEmployee = [];
@@ -31,15 +34,41 @@ class _ReportConfigurationAddState
 
   @override
   Widget build(BuildContext context) {
+    ReportStorage reportStorage = ref.watch(reportStorageProvider);
     DataStorage dataStorage = ref.watch(dataStorageProvider);
-    TextEditingController configurationNameController = TextEditingController();
+
+    selectedStrategic = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedStrategic;
+    selectedEvaluation = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedEvaluation;
+    selectedEmployee = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedEmployee;
+    selectedImplementation = reportStorage
+        .reportConfigurations[widget.selectedReportIndex]
+        .selectedImplementation;
+    selectedReversal = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedReversal;
+    selectedService = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedService;
+    selectedTraining = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedTraining;
+    selectedMaintainance = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedMaintainance;
+    selectedFailure = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedFailure;
+    selectedSupport = reportStorage
+        .reportConfigurations[widget.selectedReportIndex].selectedFailure;
+
+    TextEditingController configurationNameController = TextEditingController(
+        text: reportStorage.reportConfigurations[widget.selectedReportIndex]
+            .configurationName);
 
     return AlertDialog(
         title: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Add Reportconfiguration"),
+            const Text("Edit Reportconfiguration"),
             IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -72,25 +101,29 @@ class _ReportConfigurationAddState
               costEntryList: dataStorage.serviceEntries,
               type: CostEntryTypes.service,
               onPress: (type, val) => _setChoice(type, val),
+              selectedOptions: selectedService,
             ),
             Button(
-                text: "Add Report Configuration",
+                text: "Update Report Configuration",
                 onPressed: () {
                   if (configurationNameController.text != "") {
                     ref
                         .read(reportStorageProvider.notifier)
-                        .addReportConfiguration(ReportConfiguration(
-                            configurationName: configurationNameController.text,
-                            selectedStrategic: selectedStrategic,
-                            selectedEvaluation: selectedEvaluation,
-                            selectedEmployee: selectedEmployee,
-                            selectedImplementation: selectedImplementation,
-                            selectedReversal: selectedReversal,
-                            selectedService: selectedService,
-                            selectedTraining: selectedTraining,
-                            selectedMaintainance: selectedMaintainance,
-                            selectedFailure: selectedFailure,
-                            selectedSupport: selectedSupport));
+                        .updateReportConfiguration(
+                            ReportConfiguration(
+                                configurationName:
+                                    configurationNameController.text,
+                                selectedStrategic: selectedStrategic,
+                                selectedEvaluation: selectedEvaluation,
+                                selectedEmployee: selectedEmployee,
+                                selectedImplementation: selectedImplementation,
+                                selectedReversal: selectedReversal,
+                                selectedService: selectedService,
+                                selectedTraining: selectedTraining,
+                                selectedMaintainance: selectedMaintainance,
+                                selectedFailure: selectedFailure,
+                                selectedSupport: selectedSupport),
+                            widget.selectedReportIndex);
                     Navigator.pop(context);
                   }
                 })

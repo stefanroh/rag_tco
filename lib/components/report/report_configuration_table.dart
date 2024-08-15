@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rag_tco/data_model/report_configuration.dart';
-import 'package:rag_tco/data_model/report_storage.dart';
+import 'package:rag_tco/data_model/old/report_configuration.dart';
+import 'package:rag_tco/data_model/old/report_storage.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class ReportConfigurationTable extends ConsumerWidget {

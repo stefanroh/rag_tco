@@ -1,22 +1,25 @@
-
-import 'package:rag_tco/data_model/cost_entry_service.dart';
-import 'package:rag_tco/data_model/provider_information.dart';
-import 'package:rag_tco/data_model/timeframe_type.dart';
+import 'package:rag_tco/data_model/old/cost_entry_service.dart';
+import 'package:rag_tco/data_model/old/provider_information.dart';
+import 'package:rag_tco/data_model/old/timeframe_type.dart';
 
 class ReportUtils {
   static double getServiceElementCost(ProviderInformation provider,
-      CostEntryService entry, TimeframeType timeframe) {
-    double addedAmounts = 0;
+      CostEntryService entry, TimeframeType? timeframe, bool withFrequency) {
+    double totalAmount = 0;
+    double tempAmount = 0;
     for (int i = 0; i < entry.getAmounts().length; i++) {
-      addedAmounts +=
-          (provider.serviceComponentPrices[entry.getProviderReference()][i] *
-                  entry.getAmount(i) /
-                  provider.serviceComponentAmounts[entry.getProviderReference()]
-                      [i]) *
-              entry.frequency *
-              getConversionFactor(entry.referenceTimeframe, timeframe);
+      tempAmount = 0;
+      tempAmount += (provider
+              .serviceComponentPrices[entry.getProviderReference()][i] *
+          entry.getAmount(i) /
+          provider.serviceComponentAmounts[entry.getProviderReference()][i]);
+      if (withFrequency) tempAmount *= entry.frequency;
+      if (timeframe != null) {
+        tempAmount *= getConversionFactor(entry.referenceTimeframe, timeframe);
+      }
+      totalAmount += tempAmount;
     }
-    return addedAmounts;
+    return totalAmount;
   }
 
   static double getConversionFactor(TimeframeType from, TimeframeType to) {

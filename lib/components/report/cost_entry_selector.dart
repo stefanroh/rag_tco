@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rag_tco/data_model/cost_entry.dart';
+import 'package:rag_tco/data_model/old/cost_entry.dart';
 
 class CostEntrySelector extends StatelessWidget {
   const CostEntrySelector(
