@@ -15,18 +15,18 @@ class RerankerEdit extends ConsumerStatefulWidget {
 
 class _RerankerEditState extends ConsumerState<RerankerEdit> {
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController compactionController = TextEditingController();
+  final TextEditingController compressionController = TextEditingController();
   final TextEditingController rerankedDocumentsController =
       TextEditingController();
 
-  late bool isCompactionModel;
+  late bool iscompressionModel;
 
   @override
   void initState() {
     super.initState();
-    isCompactionModel = widget.model.useCompactionModel;
+    iscompressionModel = widget.model.usecompressionModel;
     nameController.text = widget.model.name;
-    compactionController.text = widget.model.compactionRate.toString();
+    compressionController.text = widget.model.compressionRate.toString();
     rerankedDocumentsController.text =
         widget.model.rerankedDocuments.toString();
   }
@@ -85,28 +85,28 @@ class _RerankerEditState extends ConsumerState<RerankerEdit> {
                   child: DropdownMenu<bool>(
                     dropdownMenuEntries: const [
                       DropdownMenuEntry<bool>(
-                          value: true, label: "Compaction Model"),
+                          value: true, label: "compression Model"),
                       DropdownMenuEntry<bool>(
                           value: false, label: "Fix Documents Model")
                     ],
                     onSelected: (value) => setState(() {
-                      isCompactionModel = value!;
+                      iscompressionModel = value!;
                     }),
-                    initialSelection: isCompactionModel,
+                    initialSelection: iscompressionModel,
                     width: 250,
                   ),
                 ),
               ],
             ),
             Visibility(
-              visible: isCompactionModel,
+              visible: iscompressionModel,
               child: Row(
                 children: [
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 3),
                     child: SizedBox(
                       width: 250,
-                      child: Text("Compaction Rate"),
+                      child: Text("compression Rate"),
                     ),
                   ),
                   Padding(
@@ -114,7 +114,7 @@ class _RerankerEditState extends ConsumerState<RerankerEdit> {
                     child: SizedBox(
                       width: 250,
                       child: TextField(
-                        controller: compactionController,
+                        controller: compressionController,
                         keyboardType: const TextInputType.numberWithOptions(
                             decimal: true),
                         inputFormatters: <TextInputFormatter>[
@@ -123,7 +123,7 @@ class _RerankerEditState extends ConsumerState<RerankerEdit> {
                         ],
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: "Compaction Rate"),
+                            hintText: "compression Rate"),
                       ),
                     ),
                   ),
@@ -131,7 +131,7 @@ class _RerankerEditState extends ConsumerState<RerankerEdit> {
               ),
             ),
             Visibility(
-              visible: !isCompactionModel,
+              visible: !iscompressionModel,
               child: Row(
                 children: [
                   const Padding(
@@ -155,7 +155,7 @@ class _RerankerEditState extends ConsumerState<RerankerEdit> {
                         ],
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: "Compaction Rate"),
+                            hintText: "compression Rate"),
                       ),
                     ),
                   ),
@@ -165,28 +165,28 @@ class _RerankerEditState extends ConsumerState<RerankerEdit> {
             Button(
                 text: "Save",
                 onPressed: () {
-                  if (isCompactionModel &&
+                  if (iscompressionModel &&
                       nameController.text != "" &&
-                      compactionController.text != "") {
+                      compressionController.text != "") {
                     ref.read(ragComponentsProvider.notifier).updateReranker(
                         widget.model,
                         newName: nameController.text,
-                        newCompactionRate:
-                            double.parse(compactionController.text),
+                        newcompressionRate:
+                            double.parse(compressionController.text),
                         newRerankedDocuments: 0,
-                        newUseCompactionModel: isCompactionModel);
+                        newUsecompressionModel: iscompressionModel);
                     Navigator.pop(context);
                   }
-                  if (!isCompactionModel &&
+                  if (!iscompressionModel &&
                       nameController.text != "" &&
                       rerankedDocumentsController.text != "") {
                     ref.read(ragComponentsProvider.notifier).updateReranker(
                         widget.model,
                         newName: nameController.text,
-                        newCompactionRate: 1,
+                        newcompressionRate: 1,
                         newRerankedDocuments:
                             int.parse(rerankedDocumentsController.text),
-                        newUseCompactionModel: isCompactionModel);
+                        newUsecompressionModel: iscompressionModel);
                     Navigator.pop(context);
                   }
                 })

@@ -26,7 +26,7 @@ class RagComponentLanguageModel {
   }
 
   double calculateCost(
-      bool isInput, LanguageModelPriceComponentTypes type, double amount) {
+      bool isInput, LanguageModelPriceComponentTypes type, int amount) {
     PriceComponent? calculateComponent;
     for (PriceComponent component in priceComponents) {
       if (component.isInput == isInput && component.type == type) {

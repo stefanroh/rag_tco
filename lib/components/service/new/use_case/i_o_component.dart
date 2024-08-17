@@ -4,5 +4,5 @@ class IOComponent{
   IOComponent({required this.type, required this.amount});
 
   LanguageModelPriceComponentTypes type;
-  double amount;
+  int amount;
 }

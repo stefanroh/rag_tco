@@ -1,12 +1,16 @@
-import 'package:rag_tco/components/service/new/IO/i_o_component.dart';
+import 'package:rag_tco/components/service/new/use_case/i_o_component.dart';
 import 'package:rag_tco/misc/language_model_price_component_types.dart';
 
-class IOStorage {
+class UseCaseStorage {
   List<IOComponent> inputComponents = [];
   List<IOComponent> outputComponents = [];
+  int frequency = 1;
+  int storageAmount = 0;
+  int vectorDBUpdate = 0;
+  int preprocessorOperation = 0;
 
   void setComponent(
-      LanguageModelPriceComponentTypes type, bool isInput, double amount) {
+      LanguageModelPriceComponentTypes type, bool isInput, int amount) {
     List<IOComponent> componentList =
         isInput ? inputComponents : outputComponents;
     for (int i = 0; i < componentList.length; i++) {
@@ -24,7 +28,7 @@ class IOStorage {
     componentList.removeWhere((element) => element.type == type);
   }
 
-  double getAmountByType(LanguageModelPriceComponentTypes type, bool isInput) {
+  int getAmountByType(LanguageModelPriceComponentTypes type, bool isInput) {
     List<IOComponent> componentList =
         isInput ? inputComponents : outputComponents;
     for (int i = 0; i < componentList.length; i++) {

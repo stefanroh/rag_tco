@@ -5,8 +5,11 @@ import 'package:rag_tco/data_model/new/rag_components.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class RetrieverSelector extends ConsumerWidget {
-  const RetrieverSelector( 
-      {super.key, required this.onSelected, required this.width, required this.initialSelection});
+  const RetrieverSelector(
+      {super.key,
+      required this.onSelected,
+      required this.width,
+      required this.initialSelection});
   final Function(RagComponentRetriever?) onSelected;
   final double width;
   final RagComponentRetriever? initialSelection;
@@ -17,12 +20,8 @@ class RetrieverSelector extends ConsumerWidget {
 
     switch (asyncComponent) {
       case AsyncData(:final value):
-        List<DropdownMenuEntry<RagComponentRetriever>> entries = value.retriever
-            .map((element) =>
-                DropdownMenuEntry(value: element, label: element.name))
-            .toList();
-        return DropdownMenu<RagComponentRetriever>(
-          dropdownMenuEntries: entries,
+        return DropdownMenu<RagComponentRetriever?>(
+          dropdownMenuEntries: getEntires(value),
           initialSelection: initialSelection,
           width: width,
           onSelected: (val) => onSelected(val),
@@ -32,5 +31,17 @@ class RetrieverSelector extends ConsumerWidget {
       default:
         return const Text("Loading");
     }
+  }
+
+  List<DropdownMenuEntry<RagComponentRetriever?>> getEntires(
+      RagComponents ragComponents) {
+    List<DropdownMenuEntry<RagComponentRetriever?>> returnList = ragComponents
+        .retriever
+        .map((element) => DropdownMenuEntry<RagComponentRetriever?>(
+            value: element, label: element.name))
+        .toList();
+    returnList.add(const DropdownMenuEntry<RagComponentRetriever?>(
+        value: null, label: "-- None --"));
+    return returnList;
   }
 }

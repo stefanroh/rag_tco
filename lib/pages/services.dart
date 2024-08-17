@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/calculation/calculate_service.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/service/new/IO/i_o_dialog.dart';
-import 'package:rag_tco/components/service/new/IO/i_o_storage.dart';
+import 'package:rag_tco/components/service/new/preprocessor/preprocessor_dialog.dart';
+import 'package:rag_tco/components/service/new/preprocessor/preprocessor_selector.dart';
+import 'package:rag_tco/components/service/new/storage/storage_dialog.dart';
+import 'package:rag_tco/components/service/new/storage/storage_selector.dart';
+import 'package:rag_tco/components/service/new/use_case/use_case_dialog.dart';
+import 'package:rag_tco/components/service/new/use_case/use_case_storage.dart';
 import 'package:rag_tco/components/service/new/language_model/language_model_dialog.dart';
 import 'package:rag_tco/components/service/new/language_model/language_model_selector.dart';
 import 'package:rag_tco/components/service/new/reranker/reranker_dialog.dart';
 import 'package:rag_tco/components/service/new/reranker/reranker_selector.dart';
 import 'package:rag_tco/components/service/new/retriever/retriever_dialog.dart';
 import 'package:rag_tco/components/service/new/retriever/retriever_selector.dart';
+import 'package:rag_tco/components/service/new/vectorDB/vectordb_dialog.dart';
+import 'package:rag_tco/components/service/new/vectorDB/vectordb_selector.dart';
 import 'package:rag_tco/data_model/new/rag_component_language_model.dart';
+import 'package:rag_tco/data_model/new/rag_component_preprocessor.dart';
 import 'package:rag_tco/data_model/new/rag_component_reranker.dart';
 import 'package:rag_tco/data_model/new/rag_component_retriever.dart';
+import 'package:rag_tco/data_model/new/rag_component_storage.dart';
+import 'package:rag_tco/data_model/new/rag_component_vectordb.dart';
 
 class Services extends ConsumerStatefulWidget {
   const Services({super.key});
@@ -22,15 +32,20 @@ class Services extends ConsumerStatefulWidget {
 }
 
 class ServicesState extends ConsumerState<Services> {
-  IOStorage ioStorage = IOStorage();
+  UseCaseStorage useCaseStorage = UseCaseStorage();
   CalculateService serviceCostCalculation = CalculateService();
   RagComponentLanguageModel? selectedLanguageModel;
   RagComponentReranker? selectedReranker;
   RagComponentRetriever? selectedRetriever;
+  RagComponentStorage? selectedStorage;
+  RagComponentVectordb? selectedVectorDB;
+  RagComponentPreprocessor? selectedPreprocessor;
+
+  TextEditingController frequencyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    serviceCostCalculation.ioStorage = ioStorage;
+    serviceCostCalculation.useCaseStorage = useCaseStorage;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -102,25 +117,91 @@ class ServicesState extends ConsumerState<Services> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
+                    const SizedBox(width: 200, child: Text("Select Storage")),
+                    StorageSelector(
+                        width: 200,
+                        initialSelection: selectedStorage,
+                        onSelected: (val) =>
+                            (serviceCostCalculation.storage = val)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Button(
+                          text: "View Storage",
+                          onPressed: () => _storageDialog(context)),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 200, child: Text("Select Vector DB")),
+                    VectordbSelector(
+                        width: 200,
+                        initialSelection: selectedVectorDB,
+                        onSelected: (val) =>
+                            (serviceCostCalculation.vectorDB = val)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Button(
+                          text: "View Vector DBs",
+                          onPressed: () => _vectorDBDialog(context)),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
                     const SizedBox(
-                        width: 200, child: Text("Set Input/Output Amounts")),
+                        width: 200, child: Text("Select Preprocessor")),
+                    PreprocessorSelector(
+                        width: 200,
+                        initialSelection: selectedPreprocessor,
+                        onSelected: (val) =>
+                            (serviceCostCalculation.preprocessor = val)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Button(
+                          text: "View Preprocessors",
+                          onPressed: () => _preprocessorDialog(context)),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const SizedBox(
+                        width: 200, child: Text("Set Use Case Settings")),
                     Button(
-                        text: "Input / Output Amounts",
-                        onPressed: () => _ioDialog(context)),
+                        text: "Settings",
+                        onPressed: () => _useCaseDialog(context)),
                   ],
                 ),
               ),
               Button(
                   text: "Calculate Cost",
                   onPressed: () {
-                    setState(() {
-                      serviceCostCalculation.calculateCost();
-                    });
+                    serviceCostCalculation.calculateCost();
+                    setState(() {});
                   }),
-              Text(serviceCostCalculation.getTotalCostString()),
               Text(serviceCostCalculation.getInputCostString()),
               Text(serviceCostCalculation.getOutputCostString()),
               Text(serviceCostCalculation.getContextCostString()),
+              SizedBox(
+                height: 10,
+              ),
+              Text(serviceCostCalculation.getSingleVariableCostString()),
+              Text(serviceCostCalculation.getTotalVariableCostString()),
+              Text(serviceCostCalculation.getTotalFixCostString()),
+              SizedBox(
+                height: 10,
+              ),
+              Text(serviceCostCalculation.getUseCaseCostString())
             ]),
       ],
     );
@@ -150,12 +231,36 @@ class ServicesState extends ConsumerState<Services> {
         });
   }
 
-  Future<void> _ioDialog(BuildContext context) {
+  Future<void> _storageDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return IODialog(
-            storage: ioStorage,
+          return const StorageDialog();
+        });
+  }
+
+  Future<void> _vectorDBDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const VectordbDialog();
+        });
+  }
+
+  Future<void> _preprocessorDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const PreprocessorDialog();
+        });
+  }
+
+  Future<void> _useCaseDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return UseCaseDialog(
+            storage: useCaseStorage,
           );
         });
   }

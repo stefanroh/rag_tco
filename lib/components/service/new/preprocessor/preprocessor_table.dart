@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/service/new/reranker/reranker_edit.dart';
-import 'package:rag_tco/data_model/new/rag_component_reranker.dart';
+import 'package:rag_tco/components/service/new/preprocessor/preprocessor_edit.dart';
+import 'package:rag_tco/data_model/new/rag_component_preprocessor.dart';
 import 'package:rag_tco/data_model/new/rag_components.dart';
 import 'package:rag_tco/misc/provider.dart';
 
-class RerankerTable extends ConsumerWidget {
-  const RerankerTable({super.key});
+class PreprocessorTable extends ConsumerWidget {
+  const PreprocessorTable({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,7 +47,7 @@ class RerankerTable extends ConsumerWidget {
                     child: Text("Remove"),
                   ))
                 ]),
-            for (RagComponentReranker model in value.reranker)
+            for (RagComponentPreprocessor model in value.preprocessors)
               TableRow(children: [
                 TableCell(
                     child: Padding(
@@ -57,14 +57,15 @@ class RerankerTable extends ConsumerWidget {
                 TableCell(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(getConfigurationString(model)),
+                  child: Text(
+                      "Cost per Operation: ${model.costPerOperation}"),
                 )),
                 TableCell(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Button(
                       text: "Edit",
-                      onPressed: () => _rerankerEditDialog(context, model)),
+                      onPressed: () => _preprocessorEditDialog(context, model)),
                 )),
                 TableCell(
                     child: Padding(
@@ -73,7 +74,7 @@ class RerankerTable extends ConsumerWidget {
                       text: "Remove",
                       onPressed: () => (ref
                           .read(ragComponentsProvider.notifier)
-                          .removeReranker(model))),
+                          .removePreprocessor(model))),
                 ))
               ]),
             TableRow(children: [
@@ -90,21 +91,18 @@ class RerankerTable extends ConsumerWidget {
               const TableCell(child: Text("")),
               TableCell(
                   child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Button(
-                  text: "Add",
-                  onPressed: () {
+                    padding: const EdgeInsets.all(8.0),
+                    child: Button(
+                                    text: "Add",
+                                    onPressed: () {
                     if (nameController.text != "") {
-                      ref.read(ragComponentsProvider.notifier).addReranker(
-                          RagComponentReranker(
-                              name: nameController.text,
-                              compressionRate: 1,
-                              usecompressionModel: true,
-                              rerankedDocuments: 0));
+                      ref.read(ragComponentsProvider.notifier).addPreprocessor(
+                          RagComponentPreprocessor(
+                              name: nameController.text, costPerOperation: 0));
                     }
-                  },
-                ),
-              ))
+                                    },
+                                  ),
+                  ))
             ])
           ],
         );
@@ -115,20 +113,12 @@ class RerankerTable extends ConsumerWidget {
     }
   }
 
-  Future<void> _rerankerEditDialog(
-      BuildContext context, RagComponentReranker model) {
+  Future<void> _preprocessorEditDialog(
+      BuildContext context, RagComponentPreprocessor model) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return RerankerEdit(model);
+          return PreprocessorEdit(model);
         });
-  }
-
-  String getConfigurationString(RagComponentReranker reranker) {
-    if (reranker.usecompressionModel) {
-      return "Compression Model\nCompression Rate: ${reranker.compressionRate}";
-    } else {
-      return "Fix Documents Model\nReturned Documents: ${reranker.rerankedDocuments}";
-    }
   }
 }

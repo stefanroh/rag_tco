@@ -5,8 +5,11 @@ import 'package:rag_tco/data_model/new/rag_components.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class RerankerSelector extends ConsumerWidget {
-  const RerankerSelector( 
-      {super.key, required this.onSelected, required this.width, required this.initialSelection});
+  const RerankerSelector(
+      {super.key,
+      required this.onSelected,
+      required this.width,
+      required this.initialSelection});
   final Function(RagComponentReranker?) onSelected;
   final double width;
   final RagComponentReranker? initialSelection;
@@ -17,13 +20,9 @@ class RerankerSelector extends ConsumerWidget {
 
     switch (asyncComponent) {
       case AsyncData(:final value):
-        List<DropdownMenuEntry<RagComponentReranker>> entries = value.reranker
-            .map((element) =>
-                DropdownMenuEntry(value: element, label: element.name))
-            .toList();
-        return DropdownMenu<RagComponentReranker>(
-          dropdownMenuEntries: entries,
-          initialSelection: initialSelection,
+        return DropdownMenu<RagComponentReranker?>(
+          dropdownMenuEntries: getEntries(value),
+          //initialSelection: initialSelection,
           width: width,
           onSelected: (val) => onSelected(val),
         );
@@ -32,5 +31,17 @@ class RerankerSelector extends ConsumerWidget {
       default:
         return const Text("Loading");
     }
+  }
+
+  List<DropdownMenuEntry<RagComponentReranker?>> getEntries(
+      RagComponents ragComponents) {
+    List<DropdownMenuEntry<RagComponentReranker?>> returnList = ragComponents
+        .reranker
+        .map((element) => DropdownMenuEntry<RagComponentReranker?>(
+            value: element, label: element.name))
+        .toList();
+    returnList.add(const DropdownMenuEntry<RagComponentReranker?>(
+        value: null, label: "-- None --"));
+    return returnList;
   }
 }

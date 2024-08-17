@@ -2,19 +2,19 @@ import 'dart:math';
 
 class RagComponentReranker {
   RagComponentReranker(
-      {required this.compactionRate,
+      {required this.compressionRate,
       required this.name,
-      required this.useCompactionModel,
+      required this.usecompressionModel,
       required this.rerankedDocuments});
 
   String name;
-  bool useCompactionModel;
-  double compactionRate;
+  bool usecompressionModel;
+  double compressionRate;
   int rerankedDocuments;
 
   int getRerankedTokens(int inputDocuments, int chunkSize) {
-    if (useCompactionModel) {
-      return (inputDocuments * chunkSize * compactionRate).round();
+    if (usecompressionModel) {
+      return (inputDocuments * chunkSize * compressionRate).round();
     } else {
       return min<int>(inputDocuments, rerankedDocuments) * chunkSize;
     }

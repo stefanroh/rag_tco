@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/service/new/reranker/reranker_edit.dart';
-import 'package:rag_tco/data_model/new/rag_component_reranker.dart';
+import 'package:rag_tco/components/service/new/vectorDB/vectordb_edit.dart';
+import 'package:rag_tco/data_model/new/rag_component_vectordb.dart';
 import 'package:rag_tco/data_model/new/rag_components.dart';
 import 'package:rag_tco/misc/provider.dart';
 
-class RerankerTable extends ConsumerWidget {
-  const RerankerTable({super.key});
+class VectordbTable extends ConsumerWidget {
+  const VectordbTable({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,7 +47,7 @@ class RerankerTable extends ConsumerWidget {
                     child: Text("Remove"),
                   ))
                 ]),
-            for (RagComponentReranker model in value.reranker)
+            for (RagComponentVectordb model in value.vectorDBs)
               TableRow(children: [
                 TableCell(
                     child: Padding(
@@ -57,14 +57,15 @@ class RerankerTable extends ConsumerWidget {
                 TableCell(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(getConfigurationString(model)),
+                  child: Text(
+                      "Cost per Update: ${model.costPerUpdate}"),
                 )),
                 TableCell(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Button(
                       text: "Edit",
-                      onPressed: () => _rerankerEditDialog(context, model)),
+                      onPressed: () => _vectordbEditDialog(context, model)),
                 )),
                 TableCell(
                     child: Padding(
@@ -73,7 +74,7 @@ class RerankerTable extends ConsumerWidget {
                       text: "Remove",
                       onPressed: () => (ref
                           .read(ragComponentsProvider.notifier)
-                          .removeReranker(model))),
+                          .removeVectorDB(model))),
                 ))
               ]),
             TableRow(children: [
@@ -90,21 +91,18 @@ class RerankerTable extends ConsumerWidget {
               const TableCell(child: Text("")),
               TableCell(
                   child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Button(
-                  text: "Add",
-                  onPressed: () {
+                    padding: const EdgeInsets.all(8.0),
+                    child: Button(
+                                    text: "Add",
+                                    onPressed: () {
                     if (nameController.text != "") {
-                      ref.read(ragComponentsProvider.notifier).addReranker(
-                          RagComponentReranker(
-                              name: nameController.text,
-                              compressionRate: 1,
-                              usecompressionModel: true,
-                              rerankedDocuments: 0));
+                      ref.read(ragComponentsProvider.notifier).addVectorDB(
+                          RagComponentVectordb(
+                              name: nameController.text, costPerUpdate: 0));
                     }
-                  },
-                ),
-              ))
+                                    },
+                                  ),
+                  ))
             ])
           ],
         );
@@ -115,20 +113,12 @@ class RerankerTable extends ConsumerWidget {
     }
   }
 
-  Future<void> _rerankerEditDialog(
-      BuildContext context, RagComponentReranker model) {
+  Future<void> _vectordbEditDialog(
+      BuildContext context, RagComponentVectordb model) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return RerankerEdit(model);
+          return VectordbEdit(model);
         });
-  }
-
-  String getConfigurationString(RagComponentReranker reranker) {
-    if (reranker.usecompressionModel) {
-      return "Compression Model\nCompression Rate: ${reranker.compressionRate}";
-    } else {
-      return "Fix Documents Model\nReturned Documents: ${reranker.rerankedDocuments}";
-    }
   }
 }
