@@ -1,8 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rag_tco/data_model/new/architecture_components_notifier.dart';
+import 'package:rag_tco/data_model/new/architecture_components_storage.dart';
 import 'package:rag_tco/data_model/old/data_storage.dart';
 import 'package:rag_tco/data_model/old/data_storage_notifier.dart';
-import 'package:rag_tco/data_model/new/rag_components.dart';
-import 'package:rag_tco/data_model/new/rag_components_notifier.dart';
+import 'package:rag_tco/data_model/old/rag_components.dart';
+import 'package:rag_tco/data_model/old/rag_components_notifier.dart';
 import 'package:rag_tco/data_model/old/provider_information.dart';
 import 'package:rag_tco/data_model/old/provider_information_notifier.dart';
 import 'package:rag_tco/data_model/old/report_storage.dart';
@@ -35,4 +37,9 @@ final dataStorageProvider =
 final reportStorageProvider =
     NotifierProvider<ReportStorageNotifier, ReportStorage>(() {
   return ReportStorageNotifier();
+});
+
+final architectureCompnentProvider = AsyncNotifierProvider<
+    ArchitectureComponentsNotifier, ArchitectureComponentsStorage>(() {
+  return ArchitectureComponentsNotifier();
 });

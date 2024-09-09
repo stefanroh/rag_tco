@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/calculation/calculate_service.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/service/new/preprocessor/preprocessor_dialog.dart';
-import 'package:rag_tco/components/service/new/preprocessor/preprocessor_selector.dart';
-import 'package:rag_tco/components/service/new/storage/storage_dialog.dart';
-import 'package:rag_tco/components/service/new/storage/storage_selector.dart';
+import 'package:rag_tco/components/service/new/architecture_component/architecture_dialog.dart';
+import 'package:rag_tco/components/service/old/preprocessor/preprocessor_dialog.dart';
+import 'package:rag_tco/components/service/old/preprocessor/preprocessor_selector.dart';
+import 'package:rag_tco/components/service/old/storage/storage_dialog.dart';
+import 'package:rag_tco/components/service/old/storage/storage_selector.dart';
 import 'package:rag_tco/components/service/new/use_case/use_case_dialog.dart';
 import 'package:rag_tco/components/service/new/use_case/use_case_storage.dart';
-import 'package:rag_tco/components/service/new/language_model/language_model_dialog.dart';
-import 'package:rag_tco/components/service/new/language_model/language_model_selector.dart';
-import 'package:rag_tco/components/service/new/reranker/reranker_dialog.dart';
-import 'package:rag_tco/components/service/new/reranker/reranker_selector.dart';
-import 'package:rag_tco/components/service/new/retriever/retriever_dialog.dart';
-import 'package:rag_tco/components/service/new/retriever/retriever_selector.dart';
-import 'package:rag_tco/components/service/new/vectorDB/vectordb_dialog.dart';
-import 'package:rag_tco/components/service/new/vectorDB/vectordb_selector.dart';
-import 'package:rag_tco/data_model/new/rag_component_language_model.dart';
-import 'package:rag_tco/data_model/new/rag_component_preprocessor.dart';
-import 'package:rag_tco/data_model/new/rag_component_reranker.dart';
-import 'package:rag_tco/data_model/new/rag_component_retriever.dart';
-import 'package:rag_tco/data_model/new/rag_component_storage.dart';
-import 'package:rag_tco/data_model/new/rag_component_vectordb.dart';
+import 'package:rag_tco/components/service/old/language_model/language_model_dialog.dart';
+import 'package:rag_tco/components/service/old/language_model/language_model_selector.dart';
+import 'package:rag_tco/components/service/old/reranker/reranker_dialog.dart';
+import 'package:rag_tco/components/service/old/reranker/reranker_selector.dart';
+import 'package:rag_tco/components/service/old/retriever/retriever_dialog.dart';
+import 'package:rag_tco/components/service/old/retriever/retriever_selector.dart';
+import 'package:rag_tco/components/service/old/vectorDB/vectordb_dialog.dart';
+import 'package:rag_tco/components/service/old/vectorDB/vectordb_selector.dart';
+import 'package:rag_tco/data_model/old/rag_component_language_model.dart';
+import 'package:rag_tco/data_model/old/rag_component_preprocessor.dart';
+import 'package:rag_tco/data_model/old/rag_component_reranker.dart';
+import 'package:rag_tco/data_model/old/rag_component_retriever.dart';
+import 'package:rag_tco/data_model/old/rag_component_storage.dart';
+import 'package:rag_tco/data_model/old/rag_component_vectordb.dart';
 
 class Services extends ConsumerStatefulWidget {
   const Services({super.key});
@@ -184,6 +184,10 @@ class ServicesState extends ConsumerState<Services> {
                 ),
               ),
               Button(
+                text: "Architecture Components",
+                onPressed: () => _architectureComponentDialog(context),
+              ),
+              Button(
                   text: "Calculate Cost",
                   onPressed: () {
                     serviceCostCalculation.calculateCost();
@@ -192,13 +196,13 @@ class ServicesState extends ConsumerState<Services> {
               Text(serviceCostCalculation.getInputCostString()),
               Text(serviceCostCalculation.getOutputCostString()),
               Text(serviceCostCalculation.getContextCostString()),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(serviceCostCalculation.getSingleVariableCostString()),
               Text(serviceCostCalculation.getTotalVariableCostString()),
               Text(serviceCostCalculation.getTotalFixCostString()),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(serviceCostCalculation.getUseCaseCostString())
@@ -262,6 +266,14 @@ class ServicesState extends ConsumerState<Services> {
           return UseCaseDialog(
             storage: useCaseStorage,
           );
+        });
+  }
+
+  Future<void> _architectureComponentDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const ArchitectureDialog();
         });
   }
 }

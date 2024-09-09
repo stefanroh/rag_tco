@@ -1,11 +1,11 @@
 import 'package:rag_tco/components/service/new/use_case/i_o_component.dart';
 import 'package:rag_tco/components/service/new/use_case/use_case_storage.dart';
-import 'package:rag_tco/data_model/new/rag_component_language_model.dart';
-import 'package:rag_tco/data_model/new/rag_component_preprocessor.dart';
-import 'package:rag_tco/data_model/new/rag_component_reranker.dart';
-import 'package:rag_tco/data_model/new/rag_component_retriever.dart';
-import 'package:rag_tco/data_model/new/rag_component_storage.dart';
-import 'package:rag_tco/data_model/new/rag_component_vectordb.dart';
+import 'package:rag_tco/data_model/old/rag_component_language_model.dart';
+import 'package:rag_tco/data_model/old/rag_component_preprocessor.dart';
+import 'package:rag_tco/data_model/old/rag_component_reranker.dart';
+import 'package:rag_tco/data_model/old/rag_component_retriever.dart';
+import 'package:rag_tco/data_model/old/rag_component_storage.dart';
+import 'package:rag_tco/data_model/old/rag_component_vectordb.dart';
 import 'package:rag_tco/misc/language_model_price_component_types.dart';
 
 class CalculateService {
