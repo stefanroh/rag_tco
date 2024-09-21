@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rag_tco/components/report/report_configuration_edit.dart';
+import 'package:rag_tco/components/report/old/report_configuration_edit.dart';
 
 class ReportConfigurationListEntry extends StatelessWidget {
   const ReportConfigurationListEntry(

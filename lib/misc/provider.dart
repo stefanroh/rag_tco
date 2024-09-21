@@ -39,7 +39,7 @@ final reportStorageProvider =
   return ReportStorageNotifier();
 });
 
-final architectureCompnentProvider = AsyncNotifierProvider<
+final architectureComponentProvider = AsyncNotifierProvider<
     ArchitectureComponentsNotifier, ArchitectureComponentsStorage>(() {
   return ArchitectureComponentsNotifier();
 });

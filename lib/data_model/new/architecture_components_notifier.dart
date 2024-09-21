@@ -9,7 +9,7 @@ class ArchitectureComponentsNotifier
     extends AsyncNotifier<ArchitectureComponentsStorage> {
   @override
   FutureOr<ArchitectureComponentsStorage> build() {
-    return ArchitectureComponentsStorage([]);
+    return ArchitectureComponentsStorage.loadData();
   }
 
   void addArchitectureComponent(ArchitectureComponent component) {
@@ -76,8 +76,8 @@ class ArchitectureComponentsNotifier
     priceComponent.inclusiveAmount =
         newInclusiveAmount ?? priceComponent.inclusiveAmount;
     priceComponent.minAmount = newMinAmount ?? priceComponent.minAmount;
-    priceComponent.onlyFullAmounts =
-        newOnlyFullUnit ?? priceComponent.onlyFullAmounts;
+    priceComponent.onlyFullUnits =
+        newOnlyFullUnit ?? priceComponent.onlyFullUnits;
     priceComponent.quantityFormular =
         newFormular ?? priceComponent.quantityFormular;
 

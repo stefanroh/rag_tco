@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_dropdown/models/value_item.dart';
-import 'package:rag_tco/components/report/cost_entry_multiple_selector.dart';
+import 'package:rag_tco/components/report/old/cost_entry_multiple_selector.dart';
 import 'package:rag_tco/data_model/old/cost_entry.dart';
 import 'package:rag_tco/data_model/old/cost_entry_types.dart';
 

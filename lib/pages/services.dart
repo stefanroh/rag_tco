@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rag_tco/calculation/calculate_service.dart';
+import 'package:rag_tco/calculation/calculate_service_old.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service/new/architecture_component/architecture_dialog.dart';
-import 'package:rag_tco/components/service/old/preprocessor/preprocessor_dialog.dart';
-import 'package:rag_tco/components/service/old/preprocessor/preprocessor_selector.dart';
-import 'package:rag_tco/components/service/old/storage/storage_dialog.dart';
-import 'package:rag_tco/components/service/old/storage/storage_selector.dart';
-import 'package:rag_tco/components/service/new/use_case/use_case_dialog.dart';
-import 'package:rag_tco/components/service/new/use_case/use_case_storage.dart';
-import 'package:rag_tco/components/service/old/language_model/language_model_dialog.dart';
-import 'package:rag_tco/components/service/old/language_model/language_model_selector.dart';
-import 'package:rag_tco/components/service/old/reranker/reranker_dialog.dart';
-import 'package:rag_tco/components/service/old/reranker/reranker_selector.dart';
-import 'package:rag_tco/components/service/old/retriever/retriever_dialog.dart';
-import 'package:rag_tco/components/service/old/retriever/retriever_selector.dart';
-import 'package:rag_tco/components/service/old/vectorDB/vectordb_dialog.dart';
-import 'package:rag_tco/components/service/old/vectorDB/vectordb_selector.dart';
+import 'package:rag_tco/components/service/new/use_case/use_case_components.dart';
+import 'package:rag_tco/components/service/new/variable_dialog.dart';
+import 'package:rag_tco/data_model/new/use_case_storage.dart';
 import 'package:rag_tco/data_model/old/rag_component_language_model.dart';
 import 'package:rag_tco/data_model/old/rag_component_preprocessor.dart';
 import 'package:rag_tco/data_model/old/rag_component_reranker.dart';
@@ -33,7 +23,7 @@ class Services extends ConsumerStatefulWidget {
 
 class ServicesState extends ConsumerState<Services> {
   UseCaseStorage useCaseStorage = UseCaseStorage();
-  CalculateService serviceCostCalculation = CalculateService();
+  CalculateServiceOld serviceCostCalculation = CalculateServiceOld();
   RagComponentLanguageModel? selectedLanguageModel;
   RagComponentReranker? selectedReranker;
   RagComponentRetriever? selectedRetriever;
@@ -43,230 +33,116 @@ class ServicesState extends ConsumerState<Services> {
 
   TextEditingController frequencyController = TextEditingController();
 
+  Map<String, dynamic> variables = <String, dynamic>{};
+  late CalculateService calculation;
+
+  @override
+  void initState() {
+    super.initState();
+    fillVariables();
+    calculation = CalculateService(useCaseStorage, variables);
+  }
+
   @override
   Widget build(BuildContext context) {
-    serviceCostCalculation.useCaseStorage = useCaseStorage;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("RAG Configuration"),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
                   const SizedBox(
-                      width: 200, child: Text("Select Language Model")),
-                  LanguageModelSelector(
-                      width: 200,
-                      initialSelection: selectedLanguageModel,
-                      onSelected: (val) =>
-                          (serviceCostCalculation.languageModel = val)),
+                    height: 25,
+                  ),
+                  const Text(
+                    "RAG Configuration",
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Button(
-                        text: "View Language Model",
-                        onPressed: () => _langueModelDialog(context)),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                            width: 150, child: Text("Set Variables")),
+                        Button(
+                            text: "Variables",
+                            onPressed: () =>
+                                _variableDialog(context, variables)),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                            width: 150, child: Text("View Components")),
+                        Button(
+                          text: "Architecture Components",
+                          onPressed: () =>
+                              _architectureComponentDialog(context),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 150, child: Text("Calcuation")),
+                        Button(
+                            text: "Calculate Cost",
+                            onPressed: () {
+                              calculation.calculateCost();
+                              // serviceCostCalculation.calculateCost();
+                              setState(() {});
+                            }),
+                      ],
+                    ),
                   ),
                 ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 200, child: Text("Select Retriever")),
-                    RetrieverSelector(
-                        width: 200,
-                        initialSelection: selectedRetriever,
-                        onSelected: (val) =>
-                            (serviceCostCalculation.retriever = val)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Button(
-                          text: "View Retriever",
-                          onPressed: () => _retrieverDialog(context)),
-                    ),
-                  ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 25,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 200, child: Text("Select Reranker")),
-                    RerankerSelector(
-                        width: 200,
-                        initialSelection: selectedReranker,
-                        onSelected: (val) =>
-                            (serviceCostCalculation.reranker = val)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Button(
-                          text: "View Reranker",
-                          onPressed: () => _rerankerDialog(context)),
-                    ),
-                  ],
+                const Text(
+                  "Architecture Setup",
+                  style: TextStyle(fontSize: 24),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 200, child: Text("Select Storage")),
-                    StorageSelector(
-                        width: 200,
-                        initialSelection: selectedStorage,
-                        onSelected: (val) =>
-                            (serviceCostCalculation.storage = val)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Button(
-                          text: "View Storage",
-                          onPressed: () => _storageDialog(context)),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 25,
                 ),
+                UseCaseComponents(storage: useCaseStorage),
+              ],
+            )
+          ],
+        ),
+        const Divider(),
+        Row(
+          children: [
+            SizedBox(
+              width: 750,
+              height: 500,
+              child: SingleChildScrollView(
+                child: calculation.getCostTable(),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 200, child: Text("Select Vector DB")),
-                    VectordbSelector(
-                        width: 200,
-                        initialSelection: selectedVectorDB,
-                        onSelected: (val) =>
-                            (serviceCostCalculation.vectorDB = val)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Button(
-                          text: "View Vector DBs",
-                          onPressed: () => _vectorDBDialog(context)),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                        width: 200, child: Text("Select Preprocessor")),
-                    PreprocessorSelector(
-                        width: 200,
-                        initialSelection: selectedPreprocessor,
-                        onSelected: (val) =>
-                            (serviceCostCalculation.preprocessor = val)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Button(
-                          text: "View Preprocessors",
-                          onPressed: () => _preprocessorDialog(context)),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                        width: 200, child: Text("Set Use Case Settings")),
-                    Button(
-                        text: "Settings",
-                        onPressed: () => _useCaseDialog(context)),
-                  ],
-                ),
-              ),
-              Button(
-                text: "Architecture Components",
-                onPressed: () => _architectureComponentDialog(context),
-              ),
-              Button(
-                  text: "Calculate Cost",
-                  onPressed: () {
-                    serviceCostCalculation.calculateCost();
-                    setState(() {});
-                  }),
-              Text(serviceCostCalculation.getInputCostString()),
-              Text(serviceCostCalculation.getOutputCostString()),
-              Text(serviceCostCalculation.getContextCostString()),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(serviceCostCalculation.getSingleVariableCostString()),
-              Text(serviceCostCalculation.getTotalVariableCostString()),
-              Text(serviceCostCalculation.getTotalFixCostString()),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(serviceCostCalculation.getUseCaseCostString())
-            ]),
+            ),
+            calculation.getCostChart()
+          ],
+        )
       ],
     );
-  }
-
-  Future<void> _langueModelDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const LanguageModelDialog();
-        });
-  }
-
-  Future<void> _retrieverDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const RetrieverDialog();
-        });
-  }
-
-  Future<void> _rerankerDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const RerankerDialog();
-        });
-  }
-
-  Future<void> _storageDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const StorageDialog();
-        });
-  }
-
-  Future<void> _vectorDBDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const VectordbDialog();
-        });
-  }
-
-  Future<void> _preprocessorDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const PreprocessorDialog();
-        });
-  }
-
-  Future<void> _useCaseDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return UseCaseDialog(
-            storage: useCaseStorage,
-          );
-        });
   }
 
   Future<void> _architectureComponentDialog(BuildContext context) {
@@ -275,5 +151,32 @@ class ServicesState extends ConsumerState<Services> {
         builder: (BuildContext context) {
           return const ArchitectureDialog();
         });
+  }
+
+  Future<void> _variableDialog(
+      BuildContext context, Map<String, dynamic> variableStorage) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return VariableDialog(
+            context,
+            variableStorage: variableStorage,
+          );
+        });
+  }
+
+  void fillVariables() {
+    variables["#pic"] = "1000";
+    variables["#vid"] = "1000";
+    variables["#doc"] = "1000";
+    variables["#aud"] = "1000";
+    variables["#trainingDoc"] = "1000";
+    variables["#outputDoc"] = "1000";
+    variables["docLength"] = "10000";
+    variables["audLength"] = "60";
+    variables["vidLength"] = "60";
+    variables["outputLength"] = "1000";
+    variables["finetuningHour"] = "24";
+    variables["characterPerToken"] = "4";
   }
 }

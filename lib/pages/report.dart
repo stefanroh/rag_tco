@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rag_tco/components/button.dart';
-import 'package:rag_tco/components/report/report_configuration_add.dart';
-import 'package:rag_tco/components/report/report_configuration_list.dart';
-import 'package:rag_tco/components/report/service_cost_bar_chart.dart';
+import 'package:rag_tco/components/report/old/report_configuration_add.dart';
+import 'package:rag_tco/components/report/old/report_configuration_list.dart';
+import 'package:rag_tco/components/report/old/service_cost_bar_chart.dart';
 import 'package:rag_tco/components/service/old/timeframe_selector.dart';
 import 'package:rag_tco/data_model/old/timeframe_type.dart';
 

@@ -14,7 +14,7 @@ class ArchitectureTable extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<ArchitectureComponentsStorage> asyncComponentStorage =
-        ref.watch(architectureCompnentProvider);
+        ref.watch(architectureComponentProvider);
 
     TextEditingController nameController = TextEditingController();
     switch (asyncComponentStorage) {
@@ -75,7 +75,7 @@ class ArchitectureTable extends ConsumerWidget {
                   child: Button(
                       text: "Remove",
                       onPressed: () => (ref
-                          .read(architectureCompnentProvider.notifier)
+                          .read(architectureComponentProvider.notifier)
                           .removeArchitectureComponent(component))),
                 ))
               ]),
@@ -99,9 +99,9 @@ class ArchitectureTable extends ConsumerWidget {
                   onPressed: () {
                     if (nameController.text != "") {
                       ref
-                          .read(architectureCompnentProvider.notifier)
-                          .addArchitectureComponent(
-                              ArchitectureComponent(nameController.text, 0));
+                          .read(architectureComponentProvider.notifier)
+                          .addArchitectureComponent(ArchitectureComponent(
+                              nameController.text, 0, "€"));
                     }
                   },
                 ),
@@ -131,7 +131,7 @@ class ArchitectureTable extends ConsumerWidget {
     for (VariablePriceComponent priceComponent
         in component.variablePriceComponents) {
       returnString +=
-          "${priceComponent.name}: ${priceComponent.price.toString()}€ / ${priceComponent.referenceAmount.toString()}\n";
+          "${priceComponent.name}: ${priceComponent.price.toString()}${component.currency} / ${priceComponent.referenceAmount.toString()}\n";
     }
     return returnString.substring(0, returnString.length - 1);
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rag_tco/components/report/service_cost_calculation_table.dart';
+import 'package:rag_tco/components/report/old/service_cost_calculation_table.dart';
 import 'package:rag_tco/data_model/old/timeframe_type.dart';
 
 class ServiceCostCalculationDialog extends StatelessWidget {

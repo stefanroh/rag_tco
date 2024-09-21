@@ -1,4 +1,4 @@
-import 'package:rag_tco/components/service/new/use_case/i_o_component.dart';
+import 'package:rag_tco/components/service/old/use_case/i_o_component.dart';
 import 'package:rag_tco/misc/language_model_price_component_types.dart';
 
 class UseCaseStorage {

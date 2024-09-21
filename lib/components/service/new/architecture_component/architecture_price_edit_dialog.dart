@@ -22,7 +22,7 @@ class _ArchitecturePriceEditDialogState
 
   @override
   void initState() {
-    onlyFullUnits = widget.priceComponent.onlyFullAmounts;
+    onlyFullUnits = widget.priceComponent.onlyFullUnits;
     super.initState();
   }
 
@@ -239,7 +239,7 @@ class _ArchitecturePriceEditDialogState
                 onPressed: () {
                   if (nameController.text != "") {
                     ref
-                        .read(architectureCompnentProvider.notifier)
+                        .read(architectureComponentProvider.notifier)
                         .updateVariablePriceComponent(widget.priceComponent,
                             newName: nameController.text,
                             newPrice: priceController.text.isNotEmpty

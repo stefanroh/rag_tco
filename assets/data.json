@@ -1,0 +1,2042 @@
+{
+  "Google Cloud - Gemini 1.5 Flash(=< 128k Context)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Picture [picture]",
+           "price":0.00002,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#pic"
+        },
+        {
+           "name":"Input Video [seconds]",
+           "price":0.00002,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#vid*vidLength"
+        },
+        {
+           "name":"Input Text [character]",
+           "price":0.00001875,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#doc*docLength"
+        },
+        {
+           "name":"Input Audio [second]",
+           "price":0.000002,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#aud*audLength"
+        },
+        {
+           "name":"Output Text [character]",
+           "price":0.000075,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#outputDoc*outputLength"
+        }
+     ]
+  },
+  "Google Cloud - Gemini 1.5 Flash(> 128k Context)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Picture [picture]",
+           "price":0.00004,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#pic"
+        },
+        {
+           "name":"Input Video [seconds]",
+           "price":0.00004,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#vid*vidLength"
+        },
+        {
+           "name":"Input Text [character]",
+           "price":0.0000375,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#doc*docLength"
+        },
+        {
+           "name":"Input Audio [second]",
+           "price":0.000004,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#aud*audLength"
+        },
+        {
+           "name":"Output Text [character]",
+           "price":0.00015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#outputDoc*outputLength"
+        }
+     ]
+  },
+  "Google Cloud - Gemini 1.5 Pro(=< 128k Context)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Picture [picture]",
+           "price":0.001315,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#pic"
+        },
+        {
+           "name":"Input Video [seconds]",
+           "price":0.001315,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#vid*vidLength"
+        },
+        {
+           "name":"Input Text [character]",
+           "price":0.00125,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#doc*docLength"
+        },
+        {
+           "name":"Input Audio [second]",
+           "price":0.000125,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#aud*audLength"
+        },
+        {
+           "name":"Output Text [character]",
+           "price":0.00375,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#outputDoc*outputLength"
+        }
+     ]
+  },
+  "Google Cloud - Gemini 1.5 Pro(> 128k Context)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Picture [picture]",
+           "price":0.00263,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#pic"
+        },
+        {
+           "name":"Input Video [seconds]",
+           "price":0.00263,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#vid*vidLength"
+        },
+        {
+           "name":"Input Text [character]",
+           "price":0.0025,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#doc*docLength"
+        },
+        {
+           "name":"Input Audio [second]",
+           "price":0.00025,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#aud*audLength"
+        },
+        {
+           "name":"Output Text [character]",
+           "price":0.0075,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#outputDoc*outputLength"
+        }
+     ]
+  },
+  "Google Cloud - Gemini 1.0 Pro":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Picture [picture]",
+           "price":0.0025,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#pic"
+        },
+        {
+           "name":"Input Video [seconds]",
+           "price":0.002,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#vid*vidLength"
+        },
+        {
+           "name":"Input Text [character]",
+           "price":0.000125,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#doc*docLength"
+        },
+        {
+           "name":"Output Text [character]",
+           "price":0.000375,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"#outputDoc*outputLength"
+        }
+     ]
+  },
+  "Google Cloud - Claude 3.5 Sonnet":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":15,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - Claude 3 Opus":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":15,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":75,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - Haiku":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.25,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":1.25,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - 3 Sonnet":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":15,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - Mistal Large (2407)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - Mistal Nemo":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - Codestral":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":1,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":3,
+           "referenceAmount":1000000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Google Cloud - Llama (Deployed, g2-standard-12, 1x NVIDIA_L4, lowa (us-central1)":{
+     "fixCost":1292,
+     "currency":"$",
+     "variableCosts":[
+        
+     ]
+  },
+  "AWS Bedrock - Amazon Titan Text Express":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.000863,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude 3.5 Sonnet On Demand(USA Ost, Nord-Virginia)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude 3 Opus On Demand(USA Ost, Nord-Virginia)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.075,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude 3 Haiku On Demand(EU, London)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00025,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00125,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude 3 Sonnet On Demand(EU, London)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude 2.1 On Demand(USA Ost, Nord-Virginia)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.008,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.024,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude 2.0 On Demand(USA Ost, Nord-Virginia)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.008,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.024,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude Instant On Demand(USA Ost, Nord-Virginia)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0008,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0024,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Claude Instant Deployed(USA Ost, Nord-Virginia, 1 Monat Laufzeit)":{
+     "fixCost":28512,
+     "currency":"$",
+     "variableCosts":[
+        
+     ]
+  },
+  "AWS Bedrock - Claude Claude 2.0/2.1 Deployed(USA Ost, Nord-Virginia, 1 Monat Laufzeit)":{
+     "fixCost":45360,
+     "currency":"$",
+     "variableCosts":[
+        
+     ]
+  },
+  "AWS Bedrock - Coher Command On Demand":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.002,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Coher Command-Light On Demand":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0006,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Coher Command R+ On Demand":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Coher Command R On Demand":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0005,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Coher Command Fine Tuned (1 Monat Laufzeit)":{
+     "fixCost":28512,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Training Text [token]",
+           "price":0.004,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Coher Command-Light Fine Tuned ":{
+     "fixCost":4932,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Training Text [token]",
+           "price":0.001,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 3.1 Instruct (8B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00022,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00022,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 3.1 Instruct (70B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00099,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00099,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 3.1 Instruct (405B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00532,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.016,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 3 Instruct (8B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0006,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 3 Instruct (70B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00265,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0035,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 2 Chat (13B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00075,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.001,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 2 Chat (70B) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00195,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00256,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 2 Pretrained (13B) On Demand":{
+     "fixCost":16920,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Training Text [token]",
+           "price":0.00149,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Llama 2 Pretrained (70B) On Demand":{
+     "fixCost":16920,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Training Text [token]",
+           "price":0.00799,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Mistral 7B On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0002,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Mistral 8*7B On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00045,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0007,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Mistral Large (24.02) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.004,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.012,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS Bedrock - Mistral Large 2 (24.02) On Demand (USA West , Oregon)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.009,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 70B":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00154,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00177,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 70B Finetuned":{
+     "fixCost":4392,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00154,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00177,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Finetuning Job [hour]",
+           "price":34.56,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"finetuningHour"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3.1 8B Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00061,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3.1 8B Instruct Finetuned":{
+     "fixCost":532,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00061,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Finetuning Job [hour]",
+           "price":34.57,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"finetuningHour"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 7B":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00061,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 7B Finetuned":{
+     "fixCost":2224,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00067,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Finetuning Job [hour]",
+           "price":34.57,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"finetuningHour"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3 70B Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00268,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00354,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3.1 405B Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00533,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.016,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3 8B Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00061,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3.1 70B Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00268,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00354,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 3.1 70B Instruct Finetuned":{
+     "fixCost":885,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00268,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00354,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Finetuning Job [hour]",
+           "price":34.57,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"finetuningHour"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 70B Chat":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00154,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00177,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 7B Chat":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00067,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 13B Chat":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00081,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00094,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 13B":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00081,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00094,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Meta Llama 2 13B Finetuned":{
+     "fixCost":2224,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00081,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00094,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Finetuning Job [hour]",
+           "price":34.57,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"finetuningHour"
+        }
+     ]
+  },
+  "Azure - Phi 3 Mini 4K Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00013,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Mini 128K Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00013,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3.5 Mini Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00013,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Small 8K Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0006,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Small 128K Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00015,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0006,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Medium 4K Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00017,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00068,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Medium 128K Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00017,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00068,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3.5 Vision Instruct":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00013,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Mini 4K Instruct Finetuned":{
+     "fixCost":576,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00013,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Training Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Mini 128K Instruct Finetuned":{
+     "fixCost":576,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00013,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00052,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Training Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Medium 4K Instruct Finetuned":{
+     "fixCost":576,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00017,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00068,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Training Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Phi 3 Medium 128K Instruct Finetuned":{
+     "fixCost":576,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.00017,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.00068,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        },
+        {
+           "name":"Training Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#trainingDoc,docLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Mistral Large":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.004,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.012,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Mistral Nemo":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.0003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Mistral Small":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.001,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "Azure - Mistral Large 2407":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Input Text [token]",
+           "price":0.003,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+        },
+        {
+           "name":"Ouput Text [token]",
+           "price":0.009,
+           "referenceAmount":1000,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+        }
+     ]
+  },
+  "AWS - Kendra":{
+     "fixCost":1008,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Search Queries [Queries/day]",
+           "price":504,
+           "referenceAmount":8000,
+           "onlyFullUnits":true,
+           "inclusiveAmount":1,
+           "minAmount":1,
+           "defaultFormular":""
+        },
+        {
+           "name":"Document Storage [documents]",
+           "price":504,
+           "referenceAmount":100000,
+           "onlyFullUnits":true,
+           "inclusiveAmount":1,
+           "minAmount":1,
+           "defaultFormular":""
+        }
+     ]
+  },
+  "AWS - OpenSearch Vector Search [t3.small.search]":{
+     "fixCost":30,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"EBS Speicher [GB]",
+           "price":0.1452,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":""
+        },
+        {
+           "name":"EBS IO per second",
+           "price":0.0096,
+           "referenceAmount":1,
+           "onlyFullUnits":true,
+           "inclusiveAmount":3000,
+           "minAmount":3000,
+           "defaultFormular":""
+        },
+        {
+         "name":"EBS IO Durchsatz [MiB/s]",
+         "price":0.0762,
+         "referenceAmount":1,
+         "onlyFullUnits":true,
+         "inclusiveAmount":125,
+         "minAmount":125,
+         "defaultFormular":""
+      }
+     ]
+  },
+  "AWS - OpenSearch Vector Search":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"OCU Indizierung [h]",
+           "price":0.339,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":2,
+           "defaultFormular":""
+        },
+        {
+           "name":"OCU Search [h]",
+           "price":0.0096,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":2,
+           "defaultFormular":""
+        },
+        {
+         "name":"Speicher [GB/h]",
+         "price":0.026,
+         "referenceAmount":1,
+         "onlyFullUnits":false,
+         "inclusiveAmount":0,
+         "minAmount":0,
+         "defaultFormular":""
+      }
+     ]
+  },
+  "Azure KI Search (Standard S1)":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Scale Unit",
+           "price":220,
+           "referenceAmount":1,
+           "onlyFullUnits":false,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":""
+        },
+        {
+         "name":"Semantic Ranker [Request]",
+         "price":0.9,
+         "referenceAmount":1000,
+         "onlyFullUnits":false,
+         "inclusiveAmount":1000,
+         "minAmount":0,
+         "defaultFormular":""
+      }
+     ]
+  },
+  "Google Cloud Vertex AI Ranking":{
+     "fixCost":0,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Queries (containing 100 documents)",
+           "price":1,
+           "referenceAmount":1000,
+           "onlyFullUnits":true,
+           "inclusiveAmount":0,
+           "minAmount":0,
+           "defaultFormular":""
+        }
+     ]
+  },
+  "AWS - Krendra Intelligent Ranking":{
+     "fixCost":100,
+     "currency":"$",
+     "variableCosts":[
+        {
+           "name":"Queries per day",
+           "price":0.0035,
+           "referenceAmount":1000,
+           "onlyFullUnits":true,
+           "inclusiveAmount":1000,
+           "minAmount":0,
+           "defaultFormular":""
+        }
+     ]
+  }
+}

@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rag_tco/data_model/old/rag_component_reranker.dart';
-import 'package:rag_tco/data_model/old/rag_components.dart';
+import 'package:rag_tco/data_model/new/architecture_component.dart';
+import 'package:rag_tco/data_model/new/architecture_components_storage.dart';
 import 'package:rag_tco/misc/provider.dart';
 
-class RerankerSelector extends ConsumerWidget {
-  const RerankerSelector(
+class ArchitectureSelector extends ConsumerWidget {
+  const ArchitectureSelector(
       {super.key,
       required this.onSelected,
       required this.width,
       required this.initialSelection});
-  final Function(RagComponentReranker?) onSelected;
+  final Function(ArchitectureComponent?) onSelected;
   final double width;
-  final RagComponentReranker? initialSelection;
+  final ArchitectureComponent? initialSelection;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<RagComponents> asyncComponent = ref.watch(ragComponentsProvider);
+    AsyncValue<ArchitectureComponentsStorage> asyncStorage =
+        ref.watch(architectureComponentProvider);
 
-    switch (asyncComponent) {
+    switch (asyncStorage) {
       case AsyncData(:final value):
-        return DropdownMenu<RagComponentReranker?>(
-          dropdownMenuEntries: getEntries(value),
-          //initialSelection: initialSelection,
+        return DropdownMenu<ArchitectureComponent?>(
+          dropdownMenuEntries: getEntries(value.componentList),
+          initialSelection: initialSelection,
           width: width,
           onSelected: (val) => onSelected(val),
         );
@@ -33,15 +34,15 @@ class RerankerSelector extends ConsumerWidget {
     }
   }
 
-  List<DropdownMenuEntry<RagComponentReranker?>> getEntries(
-      RagComponents ragComponents) {
-    List<DropdownMenuEntry<RagComponentReranker?>> returnList = ragComponents
-        .reranker
-        .map((element) => DropdownMenuEntry<RagComponentReranker?>(
-            value: element, label: element.name))
-        .toList();
-    returnList.add(const DropdownMenuEntry<RagComponentReranker?>(
-        value: null, label: "-- None --"));
+  List<DropdownMenuEntry<ArchitectureComponent?>> getEntries(
+      List<ArchitectureComponent> architectureComponents) {
+    List<DropdownMenuEntry<ArchitectureComponent?>> returnList =
+        architectureComponents
+            .map((element) => DropdownMenuEntry<ArchitectureComponent?>(
+                value: element, label: element.componentName))
+            .toList();
+    // returnList.add(const DropdownMenuEntry<ArchitectureComponent?>(
+    //     value: null, label: "Chose Component"));
     return returnList;
   }
 }

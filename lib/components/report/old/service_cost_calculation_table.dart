@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rag_tco/components/report/report_utils.dart';
+import 'package:rag_tco/components/report/old/report_utils.dart';
 import 'package:rag_tco/data_model/old/data_storage.dart';
 import 'package:rag_tco/data_model/old/provider_information.dart';
 import 'package:rag_tco/data_model/old/report_configuration.dart';

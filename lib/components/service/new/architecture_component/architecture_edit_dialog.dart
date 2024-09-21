@@ -91,7 +91,7 @@ class ArchitectureEditDialog extends ConsumerWidget {
                   onPressed: () {
                     if (nameController.text.isNotEmpty) {
                       ref
-                          .read(architectureCompnentProvider.notifier)
+                          .read(architectureComponentProvider.notifier)
                           .updateArchitectureComponent(
                               component,
                               nameController.text,
