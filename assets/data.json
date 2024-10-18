@@ -1,6 +1,8 @@
 {
   "Google Cloud - Gemini 1.5 Flash(=< 128k Context)":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -52,6 +54,8 @@
   },
   "Google Cloud - Gemini 1.5 Flash(> 128k Context)":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -103,6 +107,8 @@
   },
   "Google Cloud - Gemini 1.5 Pro(=< 128k Context)":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -154,6 +160,8 @@
   },
   "Google Cloud - Gemini 1.5 Pro(> 128k Context)":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -205,6 +213,8 @@
   },
   "Google Cloud - Gemini 1.0 Pro":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -247,6 +257,8 @@
   },
   "Google Cloud - Claude 3.5 Sonnet":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -271,6 +283,8 @@
   },
   "Google Cloud - Claude 3 Opus":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -295,6 +309,8 @@
   },
   "Google Cloud - Haiku":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -319,6 +335,8 @@
   },
   "Google Cloud - 3 Sonnet":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -343,6 +361,8 @@
   },
   "Google Cloud - Mistal Large (2407)":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -367,6 +387,8 @@
   },
   "Google Cloud - Mistal Nemo":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -391,6 +413,8 @@
   },
   "Google Cloud - Codestral":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -415,6 +439,8 @@
   },
   "Google Cloud - Llama (Deployed, g2-standard-12, 1x NVIDIA_L4, lowa (us-central1)":{
      "fixCost":1292,
+     "provider": "Google Cloud",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         
@@ -422,6 +448,8 @@
   },
   "AWS Bedrock - Amazon Titan Text Express":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -446,6 +474,8 @@
   },
   "AWS Bedrock - Claude 3.5 Sonnet On Demand(USA Ost, Nord-Virginia)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -470,6 +500,8 @@
   },
   "AWS Bedrock - Claude 3 Opus On Demand(USA Ost, Nord-Virginia)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -494,6 +526,8 @@
   },
   "AWS Bedrock - Claude 3 Haiku On Demand(EU, London)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -518,6 +552,8 @@
   },
   "AWS Bedrock - Claude 3 Sonnet On Demand(EU, London)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -542,6 +578,8 @@
   },
   "AWS Bedrock - Claude 2.1 On Demand(USA Ost, Nord-Virginia)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -566,6 +604,8 @@
   },
   "AWS Bedrock - Claude 2.0 On Demand(USA Ost, Nord-Virginia)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -590,6 +630,8 @@
   },
   "AWS Bedrock - Claude Instant On Demand(USA Ost, Nord-Virginia)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -614,6 +656,8 @@
   },
   "AWS Bedrock - Claude Instant Deployed(USA Ost, Nord-Virginia, 1 Monat Laufzeit)":{
      "fixCost":28512,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         
@@ -621,6 +665,8 @@
   },
   "AWS Bedrock - Claude Claude 2.0/2.1 Deployed(USA Ost, Nord-Virginia, 1 Monat Laufzeit)":{
      "fixCost":45360,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         
@@ -628,6 +674,8 @@
   },
   "AWS Bedrock - Coher Command On Demand":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -652,6 +700,8 @@
   },
   "AWS Bedrock - Coher Command-Light On Demand":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -676,6 +726,8 @@
   },
   "AWS Bedrock - Coher Command R+ On Demand":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -700,6 +752,8 @@
   },
   "AWS Bedrock - Coher Command R On Demand":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -724,6 +778,8 @@
   },
   "AWS Bedrock - Coher Command Fine Tuned (1 Monat Laufzeit)":{
      "fixCost":28512,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -739,6 +795,8 @@
   },
   "AWS Bedrock - Coher Command-Light Fine Tuned ":{
      "fixCost":4932,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -754,6 +812,8 @@
   },
   "AWS Bedrock - Llama 3.1 Instruct (8B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -778,6 +838,8 @@
   },
   "AWS Bedrock - Llama 3.1 Instruct (70B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -802,6 +864,8 @@
   },
   "AWS Bedrock - Llama 3.1 Instruct (405B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -826,6 +890,8 @@
   },
   "AWS Bedrock - Llama 3 Instruct (8B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -850,6 +916,8 @@
   },
   "AWS Bedrock - Llama 3 Instruct (70B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -874,6 +942,8 @@
   },
   "AWS Bedrock - Llama 2 Chat (13B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -898,6 +968,8 @@
   },
   "AWS Bedrock - Llama 2 Chat (70B) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -922,6 +994,8 @@
   },
   "AWS Bedrock - Llama 2 Pretrained (13B) On Demand":{
      "fixCost":16920,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -937,6 +1011,8 @@
   },
   "AWS Bedrock - Llama 2 Pretrained (70B) On Demand":{
      "fixCost":16920,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -952,6 +1028,8 @@
   },
   "AWS Bedrock - Mistral 7B On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -976,6 +1054,8 @@
   },
   "AWS Bedrock - Mistral 8*7B On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1000,6 +1080,8 @@
   },
   "AWS Bedrock - Mistral Large (24.02) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1024,6 +1106,8 @@
   },
   "AWS Bedrock - Mistral Large 2 (24.02) On Demand (USA West , Oregon)":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1048,6 +1132,8 @@
   },
   "Azure - Meta Llama 2 70B":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1072,6 +1158,8 @@
   },
   "Azure - Meta Llama 2 70B Finetuned":{
      "fixCost":4392,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1105,6 +1193,8 @@
   },
   "Azure - Meta Llama 3.1 8B Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1129,6 +1219,8 @@
   },
   "Azure - Meta Llama 3.1 8B Instruct Finetuned":{
      "fixCost":532,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1162,6 +1254,8 @@
   },
   "Azure - Meta Llama 2 7B":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1175,7 +1269,7 @@
         },
         {
            "name":"Ouput Text [token]",
-           "price":0.00061,
+           "price":0.00067,
            "referenceAmount":1000,
            "onlyFullUnits":false,
            "inclusiveAmount":0,
@@ -1186,6 +1280,8 @@
   },
   "Azure - Meta Llama 2 7B Finetuned":{
      "fixCost":2224,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1219,6 +1315,8 @@
   },
   "Azure - Meta Llama 3 70B Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1243,6 +1341,8 @@
   },
   "Azure - Meta Llama 3.1 405B Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1267,6 +1367,8 @@
   },
   "Azure - Meta Llama 3 8B Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1291,6 +1393,8 @@
   },
   "Azure - Meta Llama 3.1 70B Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1315,6 +1419,8 @@
   },
   "Azure - Meta Llama 3.1 70B Instruct Finetuned":{
      "fixCost":885,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1348,6 +1454,8 @@
   },
   "Azure - Meta Llama 2 70B Chat":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1372,6 +1480,8 @@
   },
   "Azure - Meta Llama 2 7B Chat":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1396,6 +1506,8 @@
   },
   "Azure - Meta Llama 2 13B Chat":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1420,6 +1532,8 @@
   },
   "Azure - Meta Llama 2 13B":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1444,6 +1558,8 @@
   },
   "Azure - Meta Llama 2 13B Finetuned":{
      "fixCost":2224,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1477,6 +1593,8 @@
   },
   "Azure - Phi 3 Mini 4K Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1501,6 +1619,8 @@
   },
   "Azure - Phi 3 Mini 128K Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1525,6 +1645,8 @@
   },
   "Azure - Phi 3.5 Mini Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1549,6 +1671,8 @@
   },
   "Azure - Phi 3 Small 8K Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1573,6 +1697,8 @@
   },
   "Azure - Phi 3 Small 128K Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1597,6 +1723,8 @@
   },
   "Azure - Phi 3 Medium 4K Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1621,6 +1749,8 @@
   },
   "Azure - Phi 3 Medium 128K Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1645,6 +1775,8 @@
   },
   "Azure - Phi 3.5 Vision Instruct":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1669,6 +1801,8 @@
   },
   "Azure - Phi 3 Mini 4K Instruct Finetuned":{
      "fixCost":576,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1702,6 +1836,8 @@
   },
   "Azure - Phi 3 Mini 128K Instruct Finetuned":{
      "fixCost":576,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1735,6 +1871,8 @@
   },
   "Azure - Phi 3 Medium 4K Instruct Finetuned":{
      "fixCost":576,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1768,6 +1906,8 @@
   },
   "Azure - Phi 3 Medium 128K Instruct Finetuned":{
      "fixCost":576,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1801,6 +1941,8 @@
   },
   "Azure - Mistral Large":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1825,6 +1967,8 @@
   },
   "Azure - Mistral Nemo":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1849,6 +1993,8 @@
   },
   "Azure - Mistral Small":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1873,6 +2019,8 @@
   },
   "Azure - Mistral Large 2407":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "LLM",
      "currency":"$",
      "variableCosts":[
         {
@@ -1897,6 +2045,8 @@
   },
   "AWS - Kendra":{
      "fixCost":1008,
+     "provider": "AWS",
+     "type": "Retriever",
      "currency":"$",
      "variableCosts":[
         {
@@ -1904,8 +2054,8 @@
            "price":504,
            "referenceAmount":8000,
            "onlyFullUnits":true,
-           "inclusiveAmount":1,
-           "minAmount":1,
+           "inclusiveAmount":8000,
+           "minAmount":0,
            "defaultFormular":""
         },
         {
@@ -1913,14 +2063,16 @@
            "price":504,
            "referenceAmount":100000,
            "onlyFullUnits":true,
-           "inclusiveAmount":1,
-           "minAmount":1,
+           "inclusiveAmount":100000,
+           "minAmount":0,
            "defaultFormular":""
         }
      ]
   },
   "AWS - OpenSearch Vector Search [t3.small.search]":{
      "fixCost":30,
+     "provider": "AWS",
+     "type": "Retriever",
      "currency":"$",
      "variableCosts":[
         {
@@ -1954,6 +2106,8 @@
   },
   "AWS - OpenSearch Vector Search":{
      "fixCost":0,
+     "provider": "AWS",
+     "type": "Retriever",
      "currency":"$",
      "variableCosts":[
         {
@@ -1987,13 +2141,15 @@
   },
   "Azure KI Search (Standard S1)":{
      "fixCost":0,
+     "provider": "Azure",
+     "type": "Retriever",
      "currency":"$",
      "variableCosts":[
         {
            "name":"Scale Unit",
            "price":220,
            "referenceAmount":1,
-           "onlyFullUnits":false,
+           "onlyFullUnits":true,
            "inclusiveAmount":0,
            "minAmount":0,
            "defaultFormular":""
@@ -2011,6 +2167,8 @@
   },
   "Google Cloud Vertex AI Ranking":{
      "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "Reranker",
      "currency":"$",
      "variableCosts":[
         {
@@ -2024,8 +2182,10 @@
         }
      ]
   },
-  "AWS - Krendra Intelligent Ranking":{
+  "AWS - Kendra Intelligent Ranking":{
      "fixCost":100,
+     "provider": "AWS",
+     "type": "Reranker",
      "currency":"$",
      "variableCosts":[
         {

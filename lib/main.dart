@@ -6,6 +6,7 @@ import 'package:rag_tco/navigation/split_view.dart';
 import 'package:rag_tco/pages/home.dart';
 import 'package:rag_tco/pages/report.dart';
 import 'package:rag_tco/pages/services.dart';
+import 'package:dcdg/dcdg.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

@@ -15,23 +15,95 @@ class ArchitectureEditDialog extends ConsumerWidget {
         TextEditingController(text: component.componentName);
     TextEditingController fixCostController =
         TextEditingController(text: component.fixCost.toString());
+    TextEditingController providerController =
+        TextEditingController(text: component.provider.toString());
+    TextEditingController typeController =
+        TextEditingController(text: component.type.toString());
 
     return AlertDialog(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text("Edit Architecture Component"),
-            IconButton(
+            Button(
+              text: "Save",
               onPressed: () {
-                Navigator.pop(context);
+                if (nameController.text.isNotEmpty) {
+                  ref
+                      .read(architectureComponentProvider.notifier)
+                      .updateArchitectureComponent(
+                          component,
+                          nameController.text,
+                          fixCostController.text.isNotEmpty
+                              ? double.parse(fixCostController.text)
+                              : 0);
+                  Navigator.pop(context);
+                }
               },
-              icon: const Icon(Icons.clear),
-            ),
+            )
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //   },
+            //   icon: const Icon(Icons.clear),
+            // ),
           ],
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3),
+                    child: SizedBox(
+                      width: 75,
+                      child: Text("Name"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: SizedBox(
+                      width: 250,
+                      child: TextField(
+                        controller: nameController,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(), hintText: "Name"),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 3),
+                    child: SizedBox(
+                      width: 75,
+                      child: Text("Fix Cost"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: SizedBox(
+                      width: 250,
+                      child: TextField(
+                        controller: fixCostController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^(\d+)?\.?\d{0,10}'))
+                        ],
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(), hintText: "Fix Cost"),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -40,8 +112,8 @@ class ArchitectureEditDialog extends ConsumerWidget {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 3),
                       child: SizedBox(
-                        width: 50,
-                        child: Text("Name"),
+                        width: 75,
+                        child: Text("Provider"),
                       ),
                     ),
                     Padding(
@@ -49,9 +121,10 @@ class ArchitectureEditDialog extends ConsumerWidget {
                       child: SizedBox(
                         width: 250,
                         child: TextField(
-                          controller: nameController,
+                          controller: providerController,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(), hintText: "Name"),
+                              border: OutlineInputBorder(),
+                              hintText: "Provider"),
                         ),
                       ),
                     ),
@@ -62,8 +135,8 @@ class ArchitectureEditDialog extends ConsumerWidget {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 3),
                       child: SizedBox(
-                        width: 50,
-                        child: Text("Fix Cost"),
+                        width: 75,
+                        child: Text("Type"),
                       ),
                     ),
                     Padding(
@@ -71,37 +144,14 @@ class ArchitectureEditDialog extends ConsumerWidget {
                       child: SizedBox(
                         width: 250,
                         child: TextField(
-                          controller: fixCostController,
-                          keyboardType: const TextInputType.numberWithOptions(
-                              decimal: true),
-                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r'^(\d+)?\.?\d{0,10}'))
-                          ],
+                          controller: typeController,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "Fix Cost"),
+                              border: OutlineInputBorder(), hintText: "Type"),
                         ),
                       ),
                     ),
                   ],
                 ),
-                Button(
-                  text: "Save",
-                  onPressed: () {
-                    if (nameController.text.isNotEmpty) {
-                      ref
-                          .read(architectureComponentProvider.notifier)
-                          .updateArchitectureComponent(
-                              component,
-                              nameController.text,
-                              fixCostController.text.isNotEmpty
-                                  ? double.parse(fixCostController.text)
-                                  : 0);
-                      Navigator.pop(context);
-                    }
-                  },
-                )
               ],
             ),
             const SizedBox(

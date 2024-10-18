@@ -32,6 +32,7 @@ class VariablePriceComponent {
       double amount = result["value"];
       dev.log(amount.toString());
       amount = max(minAmount, amount);
+      dev.log("Calculated Amount: ${amount.toString()}");
       double paidAmount = max(0, amount - inclusiveAmount);
       double paidUnits = paidAmount / referenceAmount;
       paidUnits = onlyFullUnits ? paidUnits.ceilToDouble() : paidUnits;

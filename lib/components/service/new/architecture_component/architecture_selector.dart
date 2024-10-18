@@ -1,37 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rag_tco/data_model/new/architecture_component.dart';
-import 'package:rag_tco/data_model/new/architecture_components_storage.dart';
-import 'package:rag_tco/misc/provider.dart';
+import 'dart:developer';
 
-class ArchitectureSelector extends ConsumerWidget {
+import 'package:flutter/material.dart';
+import 'package:rag_tco/data_model/new/architecture_component.dart';
+
+class ArchitectureSelector extends StatelessWidget {
   const ArchitectureSelector(
       {super.key,
       required this.onSelected,
       required this.width,
-      required this.initialSelection});
+      required this.initialSelection,
+      required this.components,
+      required this.filterProvider,
+      required this.filterType});
   final Function(ArchitectureComponent?) onSelected;
   final double width;
   final ArchitectureComponent? initialSelection;
+  final String? filterProvider;
+  final String? filterType;
+  final List<ArchitectureComponent> components;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<ArchitectureComponentsStorage> asyncStorage =
-        ref.watch(architectureComponentProvider);
+  Widget build(BuildContext context) {
+    log("Rerendered $initialSelection");
 
-    switch (asyncStorage) {
-      case AsyncData(:final value):
-        return DropdownMenu<ArchitectureComponent?>(
-          dropdownMenuEntries: getEntries(value.componentList),
-          initialSelection: initialSelection,
-          width: width,
-          onSelected: (val) => onSelected(val),
-        );
-      case AsyncError(:final error):
-        return Text("$error");
-      default:
-        return const Text("Loading");
-    }
+    return DropdownMenu<ArchitectureComponent?>(
+      dropdownMenuEntries: getEntries(components),
+      initialSelection: initialSelection,
+      width: width,
+      onSelected: (val) => onSelected(val),
+    );
   }
 
   List<DropdownMenuEntry<ArchitectureComponent?>> getEntries(
@@ -41,8 +38,17 @@ class ArchitectureSelector extends ConsumerWidget {
             .map((element) => DropdownMenuEntry<ArchitectureComponent?>(
                 value: element, label: element.componentName))
             .toList();
-    // returnList.add(const DropdownMenuEntry<ArchitectureComponent?>(
-    //     value: null, label: "Chose Component"));
+    if (filterProvider != null) {
+      returnList
+          .removeWhere((element) => element.value!.provider != filterProvider);
+    }
+    if (filterType != null) {
+      returnList.removeWhere((element) => element.value!.type != filterType);
+    }
+    returnList.insert(
+        0,
+        const DropdownMenuEntry<ArchitectureComponent?>(
+            value: null, label: "Chose Component"));
     return returnList;
   }
 }

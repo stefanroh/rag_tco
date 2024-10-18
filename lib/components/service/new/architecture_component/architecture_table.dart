@@ -101,7 +101,7 @@ class ArchitectureTable extends ConsumerWidget {
                       ref
                           .read(architectureComponentProvider.notifier)
                           .addArchitectureComponent(ArchitectureComponent(
-                              nameController.text, 0, "€"));
+                              nameController.text, 0, "€", "N/A", "N/A"));
                     }
                   },
                 ),

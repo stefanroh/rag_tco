@@ -1,0 +1,1394 @@
+@startuml
+set namespaceSeparator ::
+
+class "rag_tco::misc::provider_selector.dart::ProviderSelector" {
+  +double width
+  +String? initialSelection
+  +dynamic Function(String) onSelect
+  +List<ArchitectureComponent> components
+  +Widget build()
+  +List<DropdownMenuEntry<String?>> getEntires()
+}
+
+"rag_tco::misc::provider_selector.dart::ProviderSelector" o-- "null::dynamic Function(String)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::misc::provider_selector.dart::ProviderSelector"
+
+class "rag_tco::misc::type_selector.dart::TypeSelector" {
+  +double width
+  +String? initialSelection
+  +dynamic Function(String) onSelect
+  +List<ArchitectureComponent> components
+  +Widget build()
+  +List<DropdownMenuEntry<String?>> getEntires()
+}
+
+"rag_tco::misc::type_selector.dart::TypeSelector" o-- "null::dynamic Function(String)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::misc::type_selector.dart::TypeSelector"
+
+class "rag_tco::misc::language_model_price_component_selector.dart::LanguageModelPriceComponentSelector" {
+  +double width
+  +LanguageModelPriceComponentTypes initialSelection
+  +dynamic Function(LanguageModelPriceComponentTypes?) onSelect
+  +List<DropdownMenuEntry<LanguageModelPriceComponentTypes>> entries
+  +Widget build()
+}
+
+"rag_tco::misc::language_model_price_component_selector.dart::LanguageModelPriceComponentSelector" o-- "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes"
+"rag_tco::misc::language_model_price_component_selector.dart::LanguageModelPriceComponentSelector" o-- "null::dynamic Function(LanguageModelPriceComponentTypes)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::misc::language_model_price_component_selector.dart::LanguageModelPriceComponentSelector"
+
+class "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes" {
+  +int index
+  {static} +List<LanguageModelPriceComponentTypes> values
+  {static} +LanguageModelPriceComponentTypes text
+  {static} +LanguageModelPriceComponentTypes picture
+  {static} +LanguageModelPriceComponentTypes video
+  {static} +LanguageModelPriceComponentTypes audio
+  {static} +LanguageModelPriceComponentTypes unknown
+}
+
+"rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes" o-- "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes"
+"dart::core::Enum" <|-- "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes"
+
+class "rag_tco::misc::full_unit_selector.dart::FullUnitSelector" {
+  +double width
+  +bool initialSelection
+  +dynamic Function(bool) onSelect
+  +Widget build()
+}
+
+"rag_tco::misc::full_unit_selector.dart::FullUnitSelector" o-- "null::dynamic Function(bool)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::misc::full_unit_selector.dart::FullUnitSelector"
+
+class "rag_tco::misc::input_output_selector.dart::InputOutputSelector" {
+  +double width
+  +bool initialSelection
+  +dynamic Function(bool) onSelect
+  +List<DropdownMenuEntry<bool>> entries
+  +Widget build()
+}
+
+"rag_tco::misc::input_output_selector.dart::InputOutputSelector" o-- "null::dynamic Function(bool)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::misc::input_output_selector.dart::InputOutputSelector"
+
+class "rag_tco::navigation::split_view.dart::SplitView" {
+  +Widget menu
+  +Widget content
+  +double breakpoint
+  +double menuWidth
+  +Widget build()
+}
+
+"rag_tco::navigation::split_view.dart::SplitView" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::navigation::split_view.dart::SplitView"
+
+class "rag_tco::navigation::menu_entry.dart::MenuEntry" {
+  +int? selectedPageIndex
+  +int pageIndex
+  +void Function()? onPressed
+  +Widget build()
+}
+
+"rag_tco::navigation::menu_entry.dart::MenuEntry" o-- "dart::ui::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::navigation::menu_entry.dart::MenuEntry"
+
+class "rag_tco::navigation::menu_title.dart::MenuTitle" {
+  +String textString
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::navigation::menu_title.dart::MenuTitle"
+
+class "rag_tco::navigation::app_menu.dart::AppMenu" {
+  -void _selectPage()
+  +bool showTitle()
+  +Widget build()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::navigation::app_menu.dart::AppMenu"
+
+class "rag_tco::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::main.dart::MyApp"
+
+class "rag_tco::components::button.dart::Button" {
+  +String text
+  +Function onPressed
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::button.dart::Button"
+
+class "rag_tco::components::toggle_item.dart::ToggleItem" {
+  +String itemText
+  +void Function(bool) onPress
+  +State<ToggleItem> createState()
+}
+
+"rag_tco::components::toggle_item.dart::ToggleItem" o-- "null::void Function(bool)"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::components::toggle_item.dart::ToggleItem"
+
+class "rag_tco::components::toggle_item.dart::_ToggleItemState" {
+  +bool isPressed
+  +void buttonPressed()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::components::toggle_item.dart::_ToggleItemState"
+
+class "rag_tco::components::report::old::service_cost_bar_chart.dart::ServiceCostBarChart" {
+  +TimeframeType timeframe
+  +ConsumerState<ServiceCostBarChart> createState()
+}
+
+"rag_tco::components::report::old::service_cost_bar_chart.dart::ServiceCostBarChart" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::report::old::service_cost_bar_chart.dart::ServiceCostBarChart"
+
+class "rag_tco::components::report::old::service_cost_bar_chart.dart::_ServiceCostBarChartState" {
+  +int touchedIndex
+  +Widget build()
+  +List<BarChartGroupData> getData()
+  +String getTooltipString()
+  +List<BarChartRodStackItem> getRodStackItems()
+  +Widget bottomTitles()
+  +Widget leftTitles()
+  +dynamic serviceCostCalculationDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::report::old::service_cost_bar_chart.dart::_ServiceCostBarChartState"
+
+class "rag_tco::components::report::old::report_configuration_list_entry.dart::ReportConfigurationListEntry" {
+  +String displayText
+  +int configurationIndex
+  +Widget build()
+  +dynamic configurationEditDialog()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::report::old::report_configuration_list_entry.dart::ReportConfigurationListEntry"
+
+class "rag_tco::components::report::old::service_cost_calculation_table.dart::ServiceCostCalculationTable" {
+  +int configIndex
+  +TimeframeType timeframe
+  +Widget build()
+  +List<TableRow> getTableRowByConfig()
+  +List<TableRow> getTableRowsByEntry()
+}
+
+"rag_tco::components::report::old::service_cost_calculation_table.dart::ServiceCostCalculationTable" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::report::old::service_cost_calculation_table.dart::ServiceCostCalculationTable"
+
+class "rag_tco::components::report::old::report_configuration_list.dart::ReportConfigurationList" {
+  +double width
+  +double height
+  +Widget build()
+  +List<Widget> getListEntries()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::report::old::report_configuration_list.dart::ReportConfigurationList"
+
+class "rag_tco::components::report::old::cost_entry_multiple_selector.dart::CostEntryMultipleSelector" {
+  +dynamic Function(List<ValueItem<int>>) onSelect
+  +List<CostEntry> costEntryList
+  +List<int> selectedOptions
+  +Widget build()
+  +List<ValueItem<int>> getMenuEntries()
+  +List<ValueItem<int>> getSelectedentries()
+}
+
+"rag_tco::components::report::old::cost_entry_multiple_selector.dart::CostEntryMultipleSelector" o-- "null::dynamic Function(List<ValueItem<int>>)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::report::old::cost_entry_multiple_selector.dart::CostEntryMultipleSelector"
+
+class "rag_tco::components::report::old::service_cost_calculation_dialog.dart::ServiceCostCalculationDialog" {
+  +TimeframeType timeframe
+  +int configIndex
+  +Widget build()
+}
+
+"rag_tco::components::report::old::service_cost_calculation_dialog.dart::ServiceCostCalculationDialog" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::report::old::service_cost_calculation_dialog.dart::ServiceCostCalculationDialog"
+
+class "rag_tco::components::report::old::cost_entry_selector.dart::CostEntrySelector" {
+  +List<CostEntry> costEntryList
+  +dynamic Function(int) onSelect
+  +int initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<dynamic>> getMenuEntries()
+}
+
+"rag_tco::components::report::old::cost_entry_selector.dart::CostEntrySelector" o-- "null::dynamic Function(int)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::report::old::cost_entry_selector.dart::CostEntrySelector"
+
+class "rag_tco::components::report::old::report_configuration_table.dart::ReportConfigurationTable" {
+  +Widget build()
+  +String configurationStringBuilder()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::report::old::report_configuration_table.dart::ReportConfigurationTable"
+
+class "rag_tco::components::report::old::report_utils.dart::ReportUtils" {
+  {static} +double getServiceElementCost()
+  {static} +double getConversionFactor()
+}
+
+class "rag_tco::components::report::old::report_configuration_element.dart::ReportConfigurationElement" {
+  +String text
+  +List<CostEntry> costEntryList
+  +CostEntryTypes type
+  +dynamic Function(CostEntryTypes, List<ValueItem<int>>) onPress
+  +List<int> selectedOptions
+  +Widget build()
+}
+
+"rag_tco::components::report::old::report_configuration_element.dart::ReportConfigurationElement" o-- "rag_tco::data_model::old::cost_entry_types.dart::CostEntryTypes"
+"rag_tco::components::report::old::report_configuration_element.dart::ReportConfigurationElement" o-- "null::dynamic Function(CostEntryTypes, List<ValueItem<int>>)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::report::old::report_configuration_element.dart::ReportConfigurationElement"
+
+class "rag_tco::components::report::old::report_configuration_edit.dart::ReportConfigurationEdit" {
+  +int selectedReportIndex
+  +ConsumerState<ReportConfigurationEdit> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::report::old::report_configuration_edit.dart::ReportConfigurationEdit"
+
+class "rag_tco::components::report::old::report_configuration_edit.dart::_ReportConfigurationEditState" {
+  +List<int> selectedStrategic
+  +List<int> selectedEvaluation
+  +List<int> selectedEmployee
+  +List<int> selectedImplementation
+  +List<int> selectedReversal
+  +List<int> selectedService
+  +List<int> selectedTraining
+  +List<int> selectedMaintainance
+  +List<int> selectedFailure
+  +List<int> selectedSupport
+  +Widget build()
+  -void _setChoice()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::report::old::report_configuration_edit.dart::_ReportConfigurationEditState"
+
+class "rag_tco::components::report::old::report_configuration_add.dart::ReportConfigurationAdd" {
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::report::old::report_configuration_add.dart::ReportConfigurationAdd"
+
+class "rag_tco::components::report::old::report_configuration_add.dart::_ReportConfigurationAddState" {
+  +List<int> selectedStrategic
+  +List<int> selectedEvaluation
+  +List<int> selectedEmployee
+  +List<int> selectedImplementation
+  +List<int> selectedReversal
+  +List<int> selectedService
+  +List<int> selectedTraining
+  +List<int> selectedMaintainance
+  +List<int> selectedFailure
+  +List<int> selectedSupport
+  +Widget build()
+  -void _setChoice()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::report::old::report_configuration_add.dart::_ReportConfigurationAddState"
+
+class "rag_tco::components::report::old::report_sidebar.dart::ReportSidebar" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::report::old::report_sidebar.dart::ReportSidebar"
+
+class "rag_tco::components::service::old::timeframe_selector.dart::TimeframeSelector" {
+  +dynamic Function(TimeframeType) onSelect
+  +double width
+  +TimeframeType initialTimeframe
+  +Widget build()
+}
+
+"rag_tco::components::service::old::timeframe_selector.dart::TimeframeSelector" o-- "null::dynamic Function(TimeframeType)"
+"rag_tco::components::service::old::timeframe_selector.dart::TimeframeSelector" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::timeframe_selector.dart::TimeframeSelector"
+
+class "rag_tco::components::service::old::reranker::reranker_dialog.dart::RerankerDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::reranker::reranker_dialog.dart::RerankerDialog"
+
+class "rag_tco::components::service::old::reranker::reranker_edit.dart::RerankerEdit" {
+  +RagComponentReranker model
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"rag_tco::components::service::old::reranker::reranker_edit.dart::RerankerEdit" o-- "rag_tco::data_model::old::rag_component_reranker.dart::RagComponentReranker"
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::reranker::reranker_edit.dart::RerankerEdit"
+
+class "rag_tco::components::service::old::reranker::reranker_edit.dart::_RerankerEditState" {
+  +TextEditingController nameController
+  +TextEditingController compressionController
+  +TextEditingController rerankedDocumentsController
+  +bool iscompressionModel
+  +void initState()
+  +Widget build()
+}
+
+"rag_tco::components::service::old::reranker::reranker_edit.dart::_RerankerEditState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::reranker::reranker_edit.dart::_RerankerEditState"
+
+class "rag_tco::components::service::old::reranker::reranker_table.dart::RerankerTable" {
+  +Widget build()
+  -dynamic _rerankerEditDialog()
+  +String getConfigurationString()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::reranker::reranker_table.dart::RerankerTable"
+
+class "rag_tco::components::service::old::reranker::reranker_selector.dart::RerankerSelector" {
+  +dynamic Function(RagComponentReranker?) onSelected
+  +double width
+  +RagComponentReranker? initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<RagComponentReranker?>> getEntries()
+}
+
+"rag_tco::components::service::old::reranker::reranker_selector.dart::RerankerSelector" o-- "null::dynamic Function(RagComponentReranker)"
+"rag_tco::components::service::old::reranker::reranker_selector.dart::RerankerSelector" o-- "rag_tco::data_model::old::rag_component_reranker.dart::RagComponentReranker"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::reranker::reranker_selector.dart::RerankerSelector"
+
+class "rag_tco::components::service::old::provider_edit_dialog.dart::ProviderEditDialog" {
+  +int providerIndex
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::provider_edit_dialog.dart::ProviderEditDialog"
+
+class "rag_tco::components::service::old::provider_edit_dialog.dart::_ProviderEditDialogState" {
+  +UnitTypesLegacy selectedUnitType
+  +TextEditingController componentNameController
+  +TextEditingController componentPriceController
+  +TextEditingController componentAmountController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::provider_edit_dialog.dart::_ProviderEditDialogState" o-- "rag_tco::data_model::old::unit_types_legacy.dart::UnitTypesLegacy"
+"rag_tco::components::service::old::provider_edit_dialog.dart::_ProviderEditDialogState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::provider_edit_dialog.dart::_ProviderEditDialogState"
+
+class "rag_tco::components::service::old::provider_selector.dart::ProviderSelector" {
+  +void Function(int) onSelect
+  +Widget build()
+}
+
+"rag_tco::components::service::old::provider_selector.dart::ProviderSelector" o-- "null::void Function(int)"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::provider_selector.dart::ProviderSelector"
+
+class "rag_tco::components::service::old::service_entry_edit.dart::ServiceEntryEdit" {
+  +int serviceEntriesIndex
+  +List<TextEditingController> controllerList
+  +Widget build()
+  +TextEditingController addController()
+  +List<double> generateAmounts()
+  +bool hasControllerListEmptyValues()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::service_entry_edit.dart::ServiceEntryEdit"
+
+class "rag_tco::components::service::old::unit_selector.dart::UnitTypesLegacyelector" {
+  +dynamic Function(UnitTypesLegacy) onSelect
+  +double width
+  +Widget build()
+}
+
+"rag_tco::components::service::old::unit_selector.dart::UnitTypesLegacyelector" o-- "null::dynamic Function(UnitTypesLegacy)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::unit_selector.dart::UnitTypesLegacyelector"
+
+class "rag_tco::components::service::old::vectorDB::vectordb_dialog.dart::VectordbDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::vectorDB::vectordb_dialog.dart::VectordbDialog"
+
+class "rag_tco::components::service::old::vectorDB::vectordb_edit.dart::VectordbEdit" {
+  +RagComponentVectordb model
+  +TextEditingController nameController
+  +TextEditingController costPerUpdateController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::vectorDB::vectordb_edit.dart::VectordbEdit" o-- "rag_tco::data_model::old::rag_component_vectordb.dart::RagComponentVectordb"
+"rag_tco::components::service::old::vectorDB::vectordb_edit.dart::VectordbEdit" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::vectorDB::vectordb_edit.dart::VectordbEdit"
+
+class "rag_tco::components::service::old::vectorDB::vectordb_table.dart::VectordbTable" {
+  +Widget build()
+  -dynamic _vectordbEditDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::vectorDB::vectordb_table.dart::VectordbTable"
+
+class "rag_tco::components::service::old::vectorDB::vectordb_selector.dart::VectordbSelector" {
+  +dynamic Function(RagComponentVectordb?) onSelected
+  +double width
+  +RagComponentVectordb? initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<RagComponentVectordb?>> getEntries()
+}
+
+"rag_tco::components::service::old::vectorDB::vectordb_selector.dart::VectordbSelector" o-- "null::dynamic Function(RagComponentVectordb)"
+"rag_tco::components::service::old::vectorDB::vectordb_selector.dart::VectordbSelector" o-- "rag_tco::data_model::old::rag_component_vectordb.dart::RagComponentVectordb"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::vectorDB::vectordb_selector.dart::VectordbSelector"
+
+class "rag_tco::components::service::old::use_case::use_case_dialog.dart::UseCaseDialog" {
+  +UseCaseStorage storage
+  +State<UseCaseDialog> createState()
+}
+
+"rag_tco::components::service::old::use_case::use_case_dialog.dart::UseCaseDialog" o-- "rag_tco::components::service::old::use_case::use_case_storage.dart::UseCaseStorage"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::components::service::old::use_case::use_case_dialog.dart::UseCaseDialog"
+
+class "rag_tco::components::service::old::use_case::use_case_dialog.dart::_IODialogState" {
+  +List<TextEditingController> inputController
+  +List<TextEditingController> outputController
+  +TextEditingController storageController
+  +TextEditingController vectorDBController
+  +TextEditingController preprocessorController
+  +TextEditingController frequencyController
+  +Widget build()
+  +Row getIOElement()
+  +void generateController()
+  +void loadOtherSettings()
+  +TextEditingController getController()
+  +void saveData()
+}
+
+"rag_tco::components::service::old::use_case::use_case_dialog.dart::_IODialogState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::components::service::old::use_case::use_case_dialog.dart::_IODialogState"
+
+class "rag_tco::components::service::old::use_case::use_case_storage.dart::UseCaseStorage" {
+  +List<IOComponent> inputComponents
+  +List<IOComponent> outputComponents
+  +int frequency
+  +int storageAmount
+  +int vectorDBUpdate
+  +int preprocessorOperation
+  +void setComponent()
+  +void removeComponent()
+  +int getAmountByType()
+}
+
+class "rag_tco::components::service::old::use_case::i_o_component.dart::IOComponent" {
+  +LanguageModelPriceComponentTypes type
+  +int amount
+}
+
+"rag_tco::components::service::old::use_case::i_o_component.dart::IOComponent" o-- "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes"
+
+class "rag_tco::components::service::old::retriever::retriever_table.dart::RetrieverTable" {
+  +Widget build()
+  -dynamic _retrieverEditDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::retriever::retriever_table.dart::RetrieverTable"
+
+class "rag_tco::components::service::old::retriever::retriever_add.dart::RetrieverAdd" {
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::retriever::retriever_add.dart::RetrieverAdd"
+
+class "rag_tco::components::service::old::retriever::retriever_add.dart::_RetrieverAddState" {
+  +TextEditingController nameController
+  +TextEditingController retrievedDocumentsController
+  +TextEditingController chunkSizeController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::retriever::retriever_add.dart::_RetrieverAddState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::retriever::retriever_add.dart::_RetrieverAddState"
+
+class "rag_tco::components::service::old::retriever::retriever_edit.dart::RetrieverEdit" {
+  +RagComponentRetriever model
+  +TextEditingController nameController
+  +TextEditingController retrievedDocumentsController
+  +TextEditingController chunkSizeController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::retriever::retriever_edit.dart::RetrieverEdit" o-- "rag_tco::data_model::old::rag_component_retriever.dart::RagComponentRetriever"
+"rag_tco::components::service::old::retriever::retriever_edit.dart::RetrieverEdit" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::retriever::retriever_edit.dart::RetrieverEdit"
+
+class "rag_tco::components::service::old::retriever::retriever_selector.dart::RetrieverSelector" {
+  +dynamic Function(RagComponentRetriever?) onSelected
+  +double width
+  +RagComponentRetriever? initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<RagComponentRetriever?>> getEntires()
+}
+
+"rag_tco::components::service::old::retriever::retriever_selector.dart::RetrieverSelector" o-- "null::dynamic Function(RagComponentRetriever)"
+"rag_tco::components::service::old::retriever::retriever_selector.dart::RetrieverSelector" o-- "rag_tco::data_model::old::rag_component_retriever.dart::RagComponentRetriever"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::retriever::retriever_selector.dart::RetrieverSelector"
+
+class "rag_tco::components::service::old::retriever::retriever_dialog.dart::RetrieverDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::retriever::retriever_dialog.dart::RetrieverDialog"
+
+class "rag_tco::components::service::old::storage::storage_dialog.dart::StorageDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::storage::storage_dialog.dart::StorageDialog"
+
+class "rag_tco::components::service::old::storage::storage_selector.dart::StorageSelector" {
+  +dynamic Function(RagComponentStorage?) onSelected
+  +double width
+  +RagComponentStorage? initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<RagComponentStorage?>> getEntries()
+}
+
+"rag_tco::components::service::old::storage::storage_selector.dart::StorageSelector" o-- "null::dynamic Function(RagComponentStorage)"
+"rag_tco::components::service::old::storage::storage_selector.dart::StorageSelector" o-- "rag_tco::data_model::old::rag_component_storage.dart::RagComponentStorage"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::storage::storage_selector.dart::StorageSelector"
+
+class "rag_tco::components::service::old::storage::storage_table.dart::StorageTable" {
+  +Widget build()
+  -dynamic _storageEditDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::storage::storage_table.dart::StorageTable"
+
+class "rag_tco::components::service::old::storage::storage_edit.dart::StorageEdit" {
+  +RagComponentStorage model
+  +TextEditingController nameController
+  +TextEditingController costPerGBController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::storage::storage_edit.dart::StorageEdit" o-- "rag_tco::data_model::old::rag_component_storage.dart::RagComponentStorage"
+"rag_tco::components::service::old::storage::storage_edit.dart::StorageEdit" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::storage::storage_edit.dart::StorageEdit"
+
+class "rag_tco::components::service::old::service_template_dialog.dart::ServiceTemplateDialog" {
+  +ConsumerState<ServiceTemplateDialog> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::service_template_dialog.dart::ServiceTemplateDialog"
+
+class "rag_tco::components::service::old::service_template_dialog.dart::_ServiceTemplateDialogState" {
+  +List<ServiceTemplate> templateList
+  +List<bool> selectedEntries
+  +dynamic selectedProvider
+  +Widget build()
+  +dynamic getTemplateData()
+  +String stringBuilder()
+  +void addCostEntires()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::service_template_dialog.dart::_ServiceTemplateDialogState"
+
+class "rag_tco::components::service::old::language_model::language_model_table.dart::LanguageModelTable" {
+  +ConsumerState<LanguageModelTable> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::language_model::language_model_table.dart::LanguageModelTable"
+
+class "rag_tco::components::service::old::language_model::language_model_table.dart::_LanguageModelTableState" {
+  +Widget build()
+  -dynamic _showComponentDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::language_model::language_model_table.dart::_LanguageModelTableState"
+
+class "rag_tco::components::service::old::language_model::language_model_selector.dart::LanguageModelSelector" {
+  +dynamic Function(RagComponentLanguageModel?) onSelected
+  +double width
+  +RagComponentLanguageModel? initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<RagComponentLanguageModel?>> getEntries()
+}
+
+"rag_tco::components::service::old::language_model::language_model_selector.dart::LanguageModelSelector" o-- "null::dynamic Function(RagComponentLanguageModel)"
+"rag_tco::components::service::old::language_model::language_model_selector.dart::LanguageModelSelector" o-- "rag_tco::data_model::old::rag_component_language_model.dart::RagComponentLanguageModel"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::language_model::language_model_selector.dart::LanguageModelSelector"
+
+class "rag_tco::components::service::old::language_model::language_model_dialog.dart::LanguageModelDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::language_model::language_model_dialog.dart::LanguageModelDialog"
+
+class "rag_tco::components::service::old::language_model::language_model_component_dialog.dart::LanguageModelComponentDialog" {
+  +RagComponentLanguageModel model
+  +Widget build()
+}
+
+"rag_tco::components::service::old::language_model::language_model_component_dialog.dart::LanguageModelComponentDialog" o-- "rag_tco::data_model::old::rag_component_language_model.dart::RagComponentLanguageModel"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::language_model::language_model_component_dialog.dart::LanguageModelComponentDialog"
+
+class "rag_tco::components::service::old::language_model::language_model_component_table.dart::LanguageModelComponentTable" {
+  +RagComponentLanguageModel model
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"rag_tco::components::service::old::language_model::language_model_component_table.dart::LanguageModelComponentTable" o-- "rag_tco::data_model::old::rag_component_language_model.dart::RagComponentLanguageModel"
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::language_model::language_model_component_table.dart::LanguageModelComponentTable"
+
+class "rag_tco::components::service::old::language_model::language_model_component_table.dart::_LanguageModelComponentTableState" {
+  +TextEditingController priceController
+  +TextEditingController refAmountController
+  +bool selectedInput
+  +LanguageModelPriceComponentTypes selectedComponentType
+  +Widget build()
+  +List<DropdownMenuEntry<bool>> getInputOutputMenuEntries()
+  +List<DropdownMenuEntry<LanguageModelPriceComponentTypes>> getComponenTypeEntries()
+}
+
+"rag_tco::components::service::old::language_model::language_model_component_table.dart::_LanguageModelComponentTableState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"rag_tco::components::service::old::language_model::language_model_component_table.dart::_LanguageModelComponentTableState" o-- "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::language_model::language_model_component_table.dart::_LanguageModelComponentTableState"
+
+class "rag_tco::components::service::old::language_model::language_model_add.dart::LanguageModelAdd" {
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::language_model::language_model_add.dart::LanguageModelAdd"
+
+class "rag_tco::components::service::old::language_model::language_model_add.dart::_LanguageModelAddState" {
+  +List<TextEditingController> controllerList
+  +int selectedProviderIndex
+  +TimeframeType selectedTimeframe
+  +TextEditingController entryNameController
+  +TextEditingController frequencyController
+  +TextEditingController nameController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::language_model::language_model_add.dart::_LanguageModelAddState" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"rag_tco::components::service::old::language_model::language_model_add.dart::_LanguageModelAddState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::language_model::language_model_add.dart::_LanguageModelAddState"
+
+class "rag_tco::components::service::old::service_entry_table.dart::ServiceEntryTable" {
+  +Widget build()
+  +String calculateComponentString()
+  +String calculateFrequencyString()
+  -dynamic _serviceEntryEditDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::service_entry_table.dart::ServiceEntryTable"
+
+class "rag_tco::components::service::old::provider_dialog.dart::ProviderDialog" {
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::provider_dialog.dart::ProviderDialog"
+
+class "rag_tco::components::service::old::provider_dialog.dart::ProviderDialogState" {
+  +Widget build()
+  +String componentStringBuilder()
+  -dynamic _providerEditDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::provider_dialog.dart::ProviderDialogState"
+
+class "rag_tco::components::service::old::service_entry_add.dart::ServiceEntryAdd" {
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::old::service_entry_add.dart::ServiceEntryAdd"
+
+class "rag_tco::components::service::old::service_entry_add.dart::ServiceEntryAddState" {
+  +List<TextEditingController> controllerList
+  +int selectedProviderIndex
+  +TimeframeType selectedTimeframe
+  +TextEditingController entryNameController
+  +TextEditingController frequencyController
+  +TextEditingController addController()
+  +Widget build()
+  +List<double> getAddedAmounts()
+  +bool hasControllerListEmptyValues()
+}
+
+"rag_tco::components::service::old::service_entry_add.dart::ServiceEntryAddState" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"rag_tco::components::service::old::service_entry_add.dart::ServiceEntryAddState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::old::service_entry_add.dart::ServiceEntryAddState"
+
+class "rag_tco::components::service::old::preprocessor::preprocessor_selector.dart::PreprocessorSelector" {
+  +dynamic Function(RagComponentPreprocessor?) onSelected
+  +double width
+  +RagComponentPreprocessor? initialSelection
+  +Widget build()
+  +List<DropdownMenuEntry<RagComponentPreprocessor?>> getEntries()
+}
+
+"rag_tco::components::service::old::preprocessor::preprocessor_selector.dart::PreprocessorSelector" o-- "null::dynamic Function(RagComponentPreprocessor)"
+"rag_tco::components::service::old::preprocessor::preprocessor_selector.dart::PreprocessorSelector" o-- "rag_tco::data_model::old::rag_component_preprocessor.dart::RagComponentPreprocessor"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::preprocessor::preprocessor_selector.dart::PreprocessorSelector"
+
+class "rag_tco::components::service::old::preprocessor::preprocessor_edit.dart::PreprocessorEdit" {
+  +RagComponentPreprocessor model
+  +TextEditingController nameController
+  +TextEditingController costPerOperationController
+  +Widget build()
+}
+
+"rag_tco::components::service::old::preprocessor::preprocessor_edit.dart::PreprocessorEdit" o-- "rag_tco::data_model::old::rag_component_preprocessor.dart::RagComponentPreprocessor"
+"rag_tco::components::service::old::preprocessor::preprocessor_edit.dart::PreprocessorEdit" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::preprocessor::preprocessor_edit.dart::PreprocessorEdit"
+
+class "rag_tco::components::service::old::preprocessor::preprocessor_table.dart::PreprocessorTable" {
+  +Widget build()
+  -dynamic _preprocessorEditDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::old::preprocessor::preprocessor_table.dart::PreprocessorTable"
+
+class "rag_tco::components::service::old::preprocessor::preprocessor_dialog.dart::PreprocessorDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::old::preprocessor::preprocessor_dialog.dart::PreprocessorDialog"
+
+class "rag_tco::components::service::new::architecture_component::architecture_edit_dialog.dart::ArchitectureEditDialog" {
+  +ArchitectureComponent component
+  +Widget build()
+}
+
+"rag_tco::components::service::new::architecture_component::architecture_edit_dialog.dart::ArchitectureEditDialog" o-- "rag_tco::data_model::new::architecture_component.dart::ArchitectureComponent"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::new::architecture_component::architecture_edit_dialog.dart::ArchitectureEditDialog"
+
+class "rag_tco::components::service::new::architecture_component::architecture_dialog.dart::ArchitectureDialog" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::new::architecture_component::architecture_dialog.dart::ArchitectureDialog"
+
+class "rag_tco::components::service::new::architecture_component::architecture_table.dart::ArchitectureTable" {
+  +Widget build()
+  -dynamic _architectureEditDialog()
+  +String getConfigurationString()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::new::architecture_component::architecture_table.dart::ArchitectureTable"
+
+class "rag_tco::components::service::new::architecture_component::architecture_selector.dart::ArchitectureSelector" {
+  +dynamic Function(ArchitectureComponent?) onSelected
+  +double width
+  +ArchitectureComponent? initialSelection
+  +String? filterProvider
+  +String? filterType
+  +List<ArchitectureComponent> components
+  +Widget build()
+  +List<DropdownMenuEntry<ArchitectureComponent?>> getEntries()
+}
+
+"rag_tco::components::service::new::architecture_component::architecture_selector.dart::ArchitectureSelector" o-- "null::dynamic Function(ArchitectureComponent)"
+"rag_tco::components::service::new::architecture_component::architecture_selector.dart::ArchitectureSelector" o-- "rag_tco::data_model::new::architecture_component.dart::ArchitectureComponent"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::new::architecture_component::architecture_selector.dart::ArchitectureSelector"
+
+class "rag_tco::components::service::new::architecture_component::architecture_price_edit_dialog.dart::ArchitecturePriceEditDialog" {
+  +VariablePriceComponent priceComponent
+  +ConsumerState<ConsumerStatefulWidget> createState()
+}
+
+"rag_tco::components::service::new::architecture_component::architecture_price_edit_dialog.dart::ArchitecturePriceEditDialog" o-- "rag_tco::data_model::new::variable_price_component.dart::VariablePriceComponent"
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::components::service::new::architecture_component::architecture_price_edit_dialog.dart::ArchitecturePriceEditDialog"
+
+class "rag_tco::components::service::new::architecture_component::architecture_price_edit_dialog.dart::_ArchitecturePriceEditDialogState" {
+  +bool onlyFullUnits
+  +void initState()
+  +Widget build()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::components::service::new::architecture_component::architecture_price_edit_dialog.dart::_ArchitecturePriceEditDialogState"
+
+class "rag_tco::components::service::new::architecture_component::architecture_price_table.dart::ArchitecturePriceTable" {
+  +ArchitectureComponent component
+  +Widget build()
+}
+
+"rag_tco::components::service::new::architecture_component::architecture_price_table.dart::ArchitecturePriceTable" o-- "rag_tco::data_model::new::architecture_component.dart::ArchitectureComponent"
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::components::service::new::architecture_component::architecture_price_table.dart::ArchitecturePriceTable"
+
+class "rag_tco::components::service::new::use_case::use_case_dialog.dart::UseCaseDialog" {
+  +UseCaseStorage storage
+  +Widget build()
+}
+
+"rag_tco::components::service::new::use_case::use_case_dialog.dart::UseCaseDialog" o-- "rag_tco::components::service::old::use_case::use_case_storage.dart::UseCaseStorage"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::components::service::new::use_case::use_case_dialog.dart::UseCaseDialog"
+
+class "rag_tco::components::service::new::use_case::use_case_components.dart::UseCaseComponents" {
+  +UseCaseStorage storage
+  +List<ArchitectureComponent> components
+  +List<TextEditingController> controllerList
+  +State<UseCaseComponents> createState()
+}
+
+"rag_tco::components::service::new::use_case::use_case_components.dart::UseCaseComponents" o-- "rag_tco::data_model::new::use_case_storage.dart::UseCaseStorage"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::components::service::new::use_case::use_case_components.dart::UseCaseComponents"
+
+class "rag_tco::components::service::new::use_case::use_case_components.dart::_UseCaseComponentsState" {
+  +ArchitectureComponent? selectedComponent
+  +String? selectedProvider
+  +String? selectedType
+  +Widget build()
+  +Widget getRow()
+  -dynamic _formularEditDialog()
+}
+
+"rag_tco::components::service::new::use_case::use_case_components.dart::_UseCaseComponentsState" o-- "rag_tco::data_model::new::architecture_component.dart::ArchitectureComponent"
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::components::service::new::use_case::use_case_components.dart::_UseCaseComponentsState"
+
+class "rag_tco::components::service::new::use_case::use_case_formular_dialog.dart::UseCaseFormularDialog" {
+  +UseCaseStorage storage
+  +int useCaseComponentIndex
+  +State<StatefulWidget> createState()
+}
+
+"rag_tco::components::service::new::use_case::use_case_formular_dialog.dart::UseCaseFormularDialog" o-- "rag_tco::data_model::new::use_case_storage.dart::UseCaseStorage"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::components::service::new::use_case::use_case_formular_dialog.dart::UseCaseFormularDialog"
+
+class "rag_tco::components::service::new::use_case::use_case_formular_dialog.dart::_VariableDialogState" {
+  +List<TextEditingController> controllerList
+  +TextEditingController newDescriptionController
+  +TextEditingController newValueController
+  +Widget build()
+  +Widget getRow()
+}
+
+"rag_tco::components::service::new::use_case::use_case_formular_dialog.dart::_VariableDialogState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::components::service::new::use_case::use_case_formular_dialog.dart::_VariableDialogState"
+
+class "rag_tco::components::service::new::variable_dialog.dart::VariableDialog" {
+  +Map<String, dynamic> variableStorage
+  +List<TextEditingController> controllerList
+  +Map<String, TextEditingController> controller
+  +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::components::service::new::variable_dialog.dart::VariableDialog"
+
+class "rag_tco::components::service::new::variable_dialog.dart::_VariableDialogState" {
+  +TextEditingController newDescriptionController
+  +TextEditingController newValueController
+  +Map<String, dynamic> variables
+  +void initState()
+  +Widget build()
+  +void generateController()
+  +Widget getRow()
+}
+
+"rag_tco::components::service::new::variable_dialog.dart::_VariableDialogState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::components::service::new::variable_dialog.dart::_VariableDialogState"
+
+class "rag_tco::calculation::calculate_service.dart::CalculateService" {
+  +UseCaseStorage storage
+  +Map<String, dynamic> variables
+  +List<CalculatedComponent> calculatedComponents
+  +void calculateCost()
+  +Widget getCostTable()
+  +Widget getCostChart()
+  -List<TableRow> _getTableRow()
+}
+
+"rag_tco::calculation::calculate_service.dart::CalculateService" o-- "rag_tco::data_model::new::use_case_storage.dart::UseCaseStorage"
+
+class "rag_tco::calculation::cost_chart.dart::CostChart" {
+  +List<CalculatedComponent> components
+  +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::calculation::cost_chart.dart::CostChart"
+
+class "rag_tco::calculation::cost_chart.dart::_CostChartState" {
+  +int touchedIndex
+  +Widget build()
+  -List<BarChartGroupData> _getData()
+  -List<BarChartRodStackItem> _getRodStackItems()
+  -Widget _bottomTitles()
+  -Widget _leftTitles()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::calculation::cost_chart.dart::_CostChartState"
+
+class "rag_tco::calculation::calculated_component.dart::CalculatedComponent" {
+  +String name
+  +double fixCosts
+  +Map<String, double> varCosts
+  +void addVarCost()
+  +double getVarCosts()
+  +double getFixCost()
+  +double getTotalCost()
+}
+
+class "rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" {
+  +RagComponentLanguageModel? languageModel
+  +RagComponentReranker? reranker
+  +RagComponentRetriever? retriever
+  +RagComponentStorage? storage
+  +RagComponentVectordb? vectorDB
+  +RagComponentPreprocessor? preprocessor
+  +UseCaseStorage? useCaseStorage
+  +double inputSingleCost
+  +double outputSingleCost
+  +double contextSingleCost
+  +double storageCost
+  +double vectorDBCost
+  +double preprocessorCost
+  +double singleVariableCost
+  +double totalVariableCost
+  +double totalFixCost
+  +double useCaseCost
+  +double calculateCost()
+  +String getInputCostString()
+  +String getOutputCostString()
+  +String getContextCostString()
+  +String getStorageCostString()
+  +String getVectorDBCostString()
+  +String getPreprocessorCostString()
+  +String getSingleVariableCostString()
+  +String getTotalVariableCostString()
+  +String getTotalFixCostString()
+  +String getUseCaseCostString()
+}
+
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::data_model::old::rag_component_language_model.dart::RagComponentLanguageModel"
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::data_model::old::rag_component_reranker.dart::RagComponentReranker"
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::data_model::old::rag_component_retriever.dart::RagComponentRetriever"
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::data_model::old::rag_component_storage.dart::RagComponentStorage"
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::data_model::old::rag_component_vectordb.dart::RagComponentVectordb"
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::data_model::old::rag_component_preprocessor.dart::RagComponentPreprocessor"
+"rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld" o-- "rag_tco::components::service::old::use_case::use_case_storage.dart::UseCaseStorage"
+
+class "rag_tco::data_model::old::rag_components.dart::RagComponents" {
+  +List<RagComponentLanguageModel> lanugageModels
+  +List<RagComponentReranker> reranker
+  +List<RagComponentRetriever> retriever
+  +List<RagComponentStorage> storages
+  +List<RagComponentVectordb> vectorDBs
+  +List<RagComponentPreprocessor> preprocessors
+  {static} +dynamic fromExcel()
+  +RagComponents copyWith()
+  {static} -LanguageModelPriceComponentTypes _getPriceComponentType()
+  {static} -String _formatDataType()
+}
+
+class "rag_tco::data_model::old::report_storage_notifier.dart::ReportStorageNotifier" {
+  +void addReportConfiguration()
+  +void updateReportConfiguration()
+  +void removeServiceProvider()
+  -ReportConfiguration _removeServiceProviderFromEntry()
+  +List<int> removeAndAdaptIndex()
+  +ReportStorage build()
+}
+
+"riverpod::src::notifier.dart::Notifier" <|-- "rag_tco::data_model::old::report_storage_notifier.dart::ReportStorageNotifier"
+
+class "rag_tco::data_model::old::data_storage_notifier.dart::DataStorageNotifier" {
+  +void addServiceEntry()
+  +void removeServiceEntry()
+  +void removeServiceEntryByProvider()
+  +void addServiceComponent()
+  +void removeServiceComponent()
+  +void updateServiceEntry()
+  +DataStorage build()
+}
+
+"riverpod::src::notifier.dart::Notifier" <|-- "rag_tco::data_model::old::data_storage_notifier.dart::DataStorageNotifier"
+
+class "rag_tco::data_model::old::provider_information.dart::ProviderInformation" {
+  +List<String> serviceName
+  +List<List<String>> serviceComponentNames
+  +List<List<double>> serviceComponentPrices
+  +List<List<UnitTypesLegacy>> serviceComponentUnits
+  +List<List<dynamic>> serviceComponentAmounts
+  {static} +dynamic fromExcel()
+  +ProviderInformation copyWith()
+  {static} +UnitTypesLegacy getUnitTypeEnum()
+  {static} +String formatDataType()
+  {static} +String getUnitTypesLegacytring()
+}
+
+class "rag_tco::data_model::old::provider_information_notifier.dart::ProviderInformationNotifier" {
+  +void addServiceProvider()
+  +void removeServiceProvider()
+  +void addServiceComponent()
+  +void removeServiceComponent()
+  +FutureOr<ProviderInformation> build()
+}
+
+"riverpod::src::async_notifier.dart::AsyncNotifier" <|-- "rag_tco::data_model::old::provider_information_notifier.dart::ProviderInformationNotifier"
+
+class "rag_tco::data_model::old::rag_component_vectordb.dart::RagComponentVectordb" {
+  +String name
+  +double costPerUpdate
+  +double getCost()
+}
+
+class "rag_tco::data_model::old::report_storage.dart::ReportStorage" {
+  +List<ReportConfiguration> reportConfigurations
+  +ReportStorage copyWith()
+}
+
+class "rag_tco::data_model::old::cost_entry.dart::CostEntry" {
+  +String entryName
+}
+
+class "rag_tco::data_model::old::rag_component_reranker.dart::RagComponentReranker" {
+  +String name
+  +bool usecompressionModel
+  +double compressionRate
+  +int rerankedDocuments
+  +int getRerankedTokens()
+}
+
+class "rag_tco::data_model::old::timeframe_type.dart::TimeframeType" {
+  +int index
+  {static} +List<TimeframeType> values
+  {static} +TimeframeType second
+  {static} +TimeframeType minute
+  {static} +TimeframeType hour
+  {static} +TimeframeType day
+  {static} +TimeframeType week
+  {static} +TimeframeType month
+  {static} +TimeframeType year
+}
+
+"rag_tco::data_model::old::timeframe_type.dart::TimeframeType" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"dart::core::Enum" <|-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+
+class "rag_tco::data_model::old::rag_components_notifier.dart::RagComponentsNotifier" {
+  +FutureOr<RagComponents> build()
+  +List<RagComponentLanguageModel> getLanguageModels()
+  +void addLanguageModel()
+  +void removeLanguageModel()
+  +void removeLanguageModelComponent()
+  +void addLanguageModelComponent()
+  +void addReranker()
+  +void updateReranker()
+  +void removeReranker()
+  +void addRetriever()
+  +void updateRetriever()
+  +void removeRetriever()
+  +void addStorage()
+  +void updateStorage()
+  +void removeStorage()
+  +void addVectorDB()
+  +void updateVectorDB()
+  +void removeVectorDB()
+  +void addPreprocessor()
+  +void updatePreprocessor()
+  +void removePreprocessor()
+}
+
+"riverpod::src::async_notifier.dart::AsyncNotifier" <|-- "rag_tco::data_model::old::rag_components_notifier.dart::RagComponentsNotifier"
+
+class "rag_tco::data_model::old::cost_entry_service.dart::CostEntryService" {
+  -int _providerReference
+  -List<double> _amounts
+  +TimeframeType referenceTimeframe
+  +int frequency
+  +void removeComponent()
+  +void editComponent()
+  +void addComponent()
+  +double getAmount()
+  +int getProviderReference()
+  +void setProviderReference()
+  +List<double> getAmounts()
+  +void setAmounts()
+}
+
+"rag_tco::data_model::old::cost_entry_service.dart::CostEntryService" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"rag_tco::data_model::old::cost_entry.dart::CostEntry" <|-- "rag_tco::data_model::old::cost_entry_service.dart::CostEntryService"
+
+class "rag_tco::data_model::old::data_storage.dart::DataStorage" {
+  +List<String> strategicEntries
+  +List<String> evaluationEntries
+  +List<String> employeeEntries
+  +List<String> implementationEntries
+  +List<String> reversalEntries
+  +List<CostEntryService> serviceEntries
+  +List<String> trainingEntries
+  +List<String> maintainanceEntries
+  +List<String> failureEntries
+  +List<String> supportEntries
+  +DataStorage copyWith()
+}
+
+class "rag_tco::data_model::old::cost_entry_types.dart::CostEntryTypes" {
+  +int index
+  {static} +List<CostEntryTypes> values
+  {static} +CostEntryTypes strategic
+  {static} +CostEntryTypes evaluation
+  {static} +CostEntryTypes employee
+  {static} +CostEntryTypes implementation
+  {static} +CostEntryTypes revearsal
+  {static} +CostEntryTypes service
+  {static} +CostEntryTypes training
+  {static} +CostEntryTypes maintainance
+  {static} +CostEntryTypes failure
+  {static} +CostEntryTypes support
+}
+
+"rag_tco::data_model::old::cost_entry_types.dart::CostEntryTypes" o-- "rag_tco::data_model::old::cost_entry_types.dart::CostEntryTypes"
+"dart::core::Enum" <|-- "rag_tco::data_model::old::cost_entry_types.dart::CostEntryTypes"
+
+class "rag_tco::data_model::old::service_template.dart::ServiceTemplate" {
+  +String templateName
+  +List<String> componentNames
+  +List<UnitTypesLegacy> componentUnits
+  +List<double> componentAmounts
+}
+
+class "rag_tco::data_model::old::rag_component_retriever.dart::RagComponentRetriever" {
+  +String name
+  +int retrievedDocuments
+  +int chunkSize
+  +int getRetrievedTokens()
+  +int getTopK()
+  +int getChunkSize()
+}
+
+class "rag_tco::data_model::old::unit_types_legacy.dart::UnitTypesLegacy" {
+  +int index
+  {static} +List<UnitTypesLegacy> values
+  {static} +UnitTypesLegacy token
+  {static} +UnitTypesLegacy character
+  {static} +UnitTypesLegacy picture
+  {static} +UnitTypesLegacy second
+  {static} +UnitTypesLegacy unknown
+}
+
+"rag_tco::data_model::old::unit_types_legacy.dart::UnitTypesLegacy" o-- "rag_tco::data_model::old::unit_types_legacy.dart::UnitTypesLegacy"
+"dart::core::Enum" <|-- "rag_tco::data_model::old::unit_types_legacy.dart::UnitTypesLegacy"
+
+class "rag_tco::data_model::old::rag_component_language_model.dart::RagComponentLanguageModel" {
+  +List<PriceComponent> priceComponents
+  +String name
+  +void addPriceComponentByValue()
+  +void addPriceComponentByObject()
+  +double calculateCost()
+  +void removeComponent()
+  +String getPriceComponentString()
+}
+
+class "rag_tco::data_model::old::price_component.dart::PriceComponent" {
+  +bool isInput
+  +LanguageModelPriceComponentTypes type
+  +double price
+  +double referenceAmount
+  +int compareTo()
+  +String toString()
+}
+
+"rag_tco::data_model::old::price_component.dart::PriceComponent" o-- "rag_tco::misc::language_model_price_component_types.dart::LanguageModelPriceComponentTypes"
+"dart::core::Comparable" <|-- "rag_tco::data_model::old::price_component.dart::PriceComponent"
+
+class "rag_tco::data_model::old::rag_component_storage.dart::RagComponentStorage" {
+  +String name
+  +double costPerGB
+  +double getCost()
+}
+
+class "rag_tco::data_model::old::report_configuration.dart::ReportConfiguration" {
+  +String configurationName
+  +List<int> selectedStrategic
+  +List<int> selectedEvaluation
+  +List<int> selectedEmployee
+  +List<int> selectedImplementation
+  +List<int> selectedReversal
+  +List<int> selectedService
+  +List<int> selectedTraining
+  +List<int> selectedMaintainance
+  +List<int> selectedFailure
+  +List<int> selectedSupport
+}
+
+class "rag_tco::data_model::old::rag_component_preprocessor.dart::RagComponentPreprocessor" {
+  +String name
+  +double costPerOperation
+  +double getCost()
+}
+
+class "rag_tco::data_model::new::architecture_component.dart::ArchitectureComponent" {
+  +String componentName
+  +List<VariablePriceComponent> variablePriceComponents
+  +double fixCost
+  +String currency
+  +String provider
+  +String type
+  +CalculatedComponent calculateVariableCost()
+}
+
+class "rag_tco::data_model::new::architecture_components_storage.dart::ArchitectureComponentsStorage" {
+  +List<ArchitectureComponent> componentList
+  {static} +dynamic loadData()
+  +ArchitectureComponentsStorage copyWith()
+}
+
+class "rag_tco::data_model::new::use_case_storage.dart::UseCaseStorage" {
+  +List<ArchitectureComponent> components
+  +List<List<String>> quantityFormulars
+  +void addComponent()
+  +void updateFormulars()
+  +int getComponentCount()
+  +void removeComponent()
+}
+
+class "rag_tco::data_model::new::variable_price_component.dart::VariablePriceComponent" {
+  +String name
+  +double price
+  +double referenceAmount
+  +bool onlyFullUnits
+  +double inclusiveAmount
+  +double minAmount
+  +String quantityFormular
+  +double calculateCost()
+}
+
+class "rag_tco::data_model::new::architecture_components_notifier.dart::ArchitectureComponentsNotifier" {
+  +FutureOr<ArchitectureComponentsStorage> build()
+  +void addArchitectureComponent()
+  +void removeArchitectureComponent()
+  +void updateArchitectureComponent()
+  +void addVariablePriceComponent()
+  +void removeVariablePriceComponent()
+  +void updateVariablePriceComponent()
+}
+
+"riverpod::src::async_notifier.dart::AsyncNotifier" <|-- "rag_tco::data_model::new::architecture_components_notifier.dart::ArchitectureComponentsNotifier"
+
+class "rag_tco::pages::home.dart::Home" {
+  -void _changeHiddenPage()
+  +Widget build()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerWidget" <|-- "rag_tco::pages::home.dart::Home"
+
+class "rag_tco::pages::maintainance.dart::Maintainance" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::maintainance.dart::Maintainance"
+
+class "rag_tco::pages::reversal.dart::Reversal" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::reversal.dart::Reversal"
+
+class "rag_tco::pages::evaluation.dart::Evaluation" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::evaluation.dart::Evaluation"
+
+class "rag_tco::pages::strategic.dart::Strategic" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::strategic.dart::Strategic"
+
+class "rag_tco::pages::support.dart::Support" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::support.dart::Support"
+
+class "rag_tco::pages::services_old.dart::ServicesOld" {
+  +ServicesState createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::pages::services_old.dart::ServicesOld"
+
+class "rag_tco::pages::services_old.dart::ServicesState" {
+  +Widget build()
+  -dynamic _providerDialogBuilder()
+  -dynamic _serviceEntryAddDialog()
+  -dynamic _serviceTemplateDialog()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::pages::services_old.dart::ServicesState"
+
+class "rag_tco::pages::implementation.dart::Implementation" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::implementation.dart::Implementation"
+
+class "rag_tco::pages::failures.dart::Failures" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::failures.dart::Failures"
+
+class "rag_tco::pages::employee.dart::Employee" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::employee.dart::Employee"
+
+class "rag_tco::pages::services.dart::Services" {
+  +ServicesState createState()
+}
+
+"flutter_riverpod::src::consumer.dart::ConsumerStatefulWidget" <|-- "rag_tco::pages::services.dart::Services"
+
+class "rag_tco::pages::services.dart::ServicesState" {
+  +UseCaseStorage useCaseStorage
+  +CalculateServiceOld serviceCostCalculation
+  +RagComponentLanguageModel? selectedLanguageModel
+  +RagComponentReranker? selectedReranker
+  +RagComponentRetriever? selectedRetriever
+  +RagComponentStorage? selectedStorage
+  +RagComponentVectordb? selectedVectorDB
+  +RagComponentPreprocessor? selectedPreprocessor
+  +TextEditingController frequencyController
+  +Map<String, dynamic> variables
+  +CalculateService calculation
+  +void initState()
+  +Widget build()
+  -dynamic _architectureComponentDialog()
+  -dynamic _variableDialog()
+  +void fillVariables()
+}
+
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::new::use_case_storage.dart::UseCaseStorage"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::calculation::calculate_service_old.dart::CalculateServiceOld"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::old::rag_component_language_model.dart::RagComponentLanguageModel"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::old::rag_component_reranker.dart::RagComponentReranker"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::old::rag_component_retriever.dart::RagComponentRetriever"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::old::rag_component_storage.dart::RagComponentStorage"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::old::rag_component_vectordb.dart::RagComponentVectordb"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::data_model::old::rag_component_preprocessor.dart::RagComponentPreprocessor"
+"rag_tco::pages::services.dart::ServicesState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"rag_tco::pages::services.dart::ServicesState" o-- "rag_tco::calculation::calculate_service.dart::CalculateService"
+"flutter_riverpod::src::consumer.dart::ConsumerState" <|-- "rag_tco::pages::services.dart::ServicesState"
+
+class "rag_tco::pages::training.dart::Training" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "rag_tco::pages::training.dart::Training"
+
+class "rag_tco::pages::report.dart::Report" {
+  +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "rag_tco::pages::report.dart::Report"
+
+class "rag_tco::pages::report.dart::_ReportState" {
+  +TimeframeType timeframe
+  +Widget build()
+  +dynamic costEntryAddDialog()
+}
+
+"rag_tco::pages::report.dart::_ReportState" o-- "rag_tco::data_model::old::timeframe_type.dart::TimeframeType"
+"flutter::src::widgets::framework.dart::State" <|-- "rag_tco::pages::report.dart::_ReportState"
+
+
+@enduml

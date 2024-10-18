@@ -1,14 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service/new/architecture_component/architecture_selector.dart';
 import 'package:rag_tco/components/service/new/use_case/use_case_formular_dialog.dart';
 import 'package:rag_tco/data_model/new/architecture_component.dart';
 import 'package:rag_tco/data_model/new/use_case_storage.dart';
+import 'package:rag_tco/misc/provider_selector.dart';
+import 'package:rag_tco/misc/type_selector.dart';
 
 class UseCaseComponents extends StatefulWidget {
-  UseCaseComponents({super.key, required this.storage});
+  UseCaseComponents(
+      {super.key, required this.storage, required this.components});
 
   final UseCaseStorage storage;
+  final List<ArchitectureComponent> components;
   final List<TextEditingController> controllerList = [];
 
   @override
@@ -16,11 +22,33 @@ class UseCaseComponents extends StatefulWidget {
 }
 
 class _UseCaseComponentsState extends State<UseCaseComponents> {
-  TextEditingController newFormularController = TextEditingController();
   ArchitectureComponent? selectedComponent;
+  String? selectedProvider;
+  String? selectedType;
 
   @override
   Widget build(BuildContext context) {
+    log("Provider $selectedProvider");
+    log("Type $selectedType");
+    log("Component $selectedComponent");
+
+    if (selectedComponent != null) {
+      if (selectedProvider != null &&
+          selectedComponent!.provider != selectedProvider) {
+        selectedComponent = null;
+        log("Reset Component");
+      } else if (selectedType != null &&
+          selectedComponent!.type != selectedType) {
+        selectedComponent = null;
+        log("Reset Component");
+      }
+    }
+
+    log("Provider $selectedProvider");
+    log("Type $selectedType");
+    log("Component $selectedComponent");
+    log("");
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,12 +56,29 @@ class _UseCaseComponentsState extends State<UseCaseComponents> {
           padding: const EdgeInsets.symmetric(vertical: 3),
           child: Row(
             children: [
+              ProviderSelector(
+                  250,
+                  selectedProvider,
+                  (val) => setState(() {
+                        selectedProvider = val;
+                      }),
+                  widget.components),
+              TypeSelector(
+                  250,
+                  selectedType,
+                  (val) => setState(() {
+                        selectedType = val;
+                      }),
+                  widget.components),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3),
                 child: ArchitectureSelector(
                     onSelected: (val) => selectedComponent = val,
                     width: 250,
-                    initialSelection: selectedComponent),
+                    initialSelection: selectedComponent,
+                    components: widget.components,
+                    filterProvider: selectedProvider,
+                    filterType: selectedType),
               ),
               Button(
                   text: 'Add',
