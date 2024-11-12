@@ -36,7 +36,9 @@ class ArchitectureEditDialog extends ConsumerWidget {
                           nameController.text,
                           fixCostController.text.isNotEmpty
                               ? double.parse(fixCostController.text)
-                              : 0);
+                              : 0,
+                          providerController.text,
+                          typeController.text);
                   Navigator.pop(context);
                 }
               },

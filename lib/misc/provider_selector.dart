@@ -8,16 +8,20 @@ class ProviderSelector extends StatelessWidget {
 
   final double width;
   final String? initialSelection;
-  final Function(String) onSelect;
+  final Function(String?) onSelect;
   final List<ArchitectureComponent> components;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownMenu<String?>(
-        width: width,
-        initialSelection: initialSelection,
-        onSelected: (value) => onSelect(value ?? ""),
-        dropdownMenuEntries: getEntires());
+    return SizedBox(
+      height: 50,
+      width: width,
+      child: DropdownMenu<String?>(
+          width: width,
+          initialSelection: initialSelection,
+          onSelected: (value) => onSelect(value),
+          dropdownMenuEntries: getEntires()),
+    );
   }
 
   List<DropdownMenuEntry<String?>> getEntires() {

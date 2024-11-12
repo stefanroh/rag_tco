@@ -199,12 +199,13 @@ class ServicesState extends ConsumerState<Services> {
     variables["queriesPerCase"] = "2.5";
     variables["queriesPerEmployee"] = "5";
 
-    variables["#employees"] = "20";
-    variables["#customers"] = "500";
-    variables["#internalDoc"] = "1000";
-    variables["#productDoc"] = "50";
+    variables["#employees"] = "5000";
+    variables["#customers"] = "100000";
+    variables["#internalDoc"] = "300000";
+    variables["#productDoc"] = "1250";
     variables["promptLength"] = "100";
     variables["outputLength"] = "500";
-    variables["retrievedDocs"] = "10";
+    variables["retrievedChunks"] = "10";
+    variables["chunkSize"] = "1600";
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:rag_tco/data_model/new/architecture_component.dart';
 
@@ -21,13 +19,15 @@ class ArchitectureSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("Rerendered $initialSelection");
-
-    return DropdownMenu<ArchitectureComponent?>(
-      dropdownMenuEntries: getEntries(components),
-      initialSelection: initialSelection,
+    return SizedBox(
+      height: 50,
       width: width,
-      onSelected: (val) => onSelected(val),
+      child: DropdownMenu<ArchitectureComponent?>(
+        dropdownMenuEntries: getEntries(components),
+        initialSelection: initialSelection,
+        width: width,
+        onSelected: (val) => onSelected(val),
+      ),
     );
   }
 

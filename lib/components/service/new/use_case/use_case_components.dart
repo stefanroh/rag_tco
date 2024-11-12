@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:rag_tco/components/button.dart';
 import 'package:rag_tco/components/service/new/architecture_component/architecture_selector.dart';
@@ -28,26 +26,15 @@ class _UseCaseComponentsState extends State<UseCaseComponents> {
 
   @override
   Widget build(BuildContext context) {
-    log("Provider $selectedProvider");
-    log("Type $selectedType");
-    log("Component $selectedComponent");
-
     if (selectedComponent != null) {
       if (selectedProvider != null &&
           selectedComponent!.provider != selectedProvider) {
         selectedComponent = null;
-        log("Reset Component");
       } else if (selectedType != null &&
           selectedComponent!.type != selectedType) {
         selectedComponent = null;
-        log("Reset Component");
       }
     }
-
-    log("Provider $selectedProvider");
-    log("Type $selectedType");
-    log("Component $selectedComponent");
-    log("");
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,22 +43,28 @@ class _UseCaseComponentsState extends State<UseCaseComponents> {
           padding: const EdgeInsets.symmetric(vertical: 3),
           child: Row(
             children: [
-              ProviderSelector(
-                  250,
-                  selectedProvider,
-                  (val) => setState(() {
-                        selectedProvider = val;
-                      }),
-                  widget.components),
-              TypeSelector(
-                  250,
-                  selectedType,
-                  (val) => setState(() {
-                        selectedType = val;
-                      }),
-                  widget.components),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
+                padding: const EdgeInsets.symmetric(horizontal: 1),
+                child: ProviderSelector(
+                    250,
+                    selectedProvider,
+                    (val) => setState(() {
+                          selectedProvider = val;
+                        }),
+                    widget.components),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 1),
+                child: TypeSelector(
+                    250,
+                    selectedType,
+                    (val) => setState(() {
+                          selectedType = val;
+                        }),
+                    widget.components),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 1),
                 child: ArchitectureSelector(
                     onSelected: (val) => selectedComponent = val,
                     width: 250,

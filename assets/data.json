@@ -224,7 +224,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"#pic"
+           "defaultFormular":"0"
         },
         {
            "name":"Input Video [seconds]",
@@ -233,7 +233,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"#vid*vidLength"
+           "defaultFormular":"0"
         },
         {
            "name":"Input Text [character]",
@@ -242,7 +242,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"#doc*docLength"
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*retrievedChunks*chunkSize+#customers*casesPerCustomer*queriesPerCase*promptLength"
         },
         {
            "name":"Output Text [character]",
@@ -251,7 +251,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"#outputDoc*outputLength"
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*outputLength"
         }
      ]
   },
@@ -641,7 +641,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*retrievedChunks*chunkSize*tokenPerCharacter+#customers*casesPerCustomer*queriesPerCase*promptLength*tokenPerCharacter"
         },
         {
            "name":"Ouput Text [token]",
@@ -650,7 +650,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*outputLength*tokenPerCharacter"
         }
      ]
   },
@@ -1143,7 +1143,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"DIVI(MUL(#doc,docLength),characterPerToken)"
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*retrievedChunks*chunkSize*tokenPerCharacter+#customers*casesPerCustomer*queriesPerCase*promptLength*tokenPerCharacter"
         },
         {
            "name":"Ouput Text [token]",
@@ -1152,7 +1152,7 @@
            "onlyFullUnits":false,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":"DIVI(MUL(#outputDoc,outputLength),characterPerToken)"
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*outputLength*tokenPerCharacter"
         }
      ]
   },
@@ -2043,6 +2043,32 @@
         }
      ]
   },
+  "Google Cloud - Vertex AI Search (Standard, Without Website Search)":{
+     "fixCost":0,
+     "provider": "Google Cloud",
+     "type": "Retriever",
+     "currency":"$",
+     "variableCosts":[
+      {
+         "name":"Queries",
+         "price":2,
+         "referenceAmount":1000,
+         "onlyFullUnits":false,
+         "inclusiveAmount":0,
+         "minAmount":0,
+         "defaultFormular":"#customers*casesPerCustomer*queriesPerCase"
+      },
+      {
+         "name":"Storage [GB]",
+         "price":5,
+         "referenceAmount":1,
+         "onlyFullUnits":false,
+         "inclusiveAmount":10,
+         "minAmount":0,
+         "defaultFormular":"#productDoc*docSize"
+      }
+     ]
+  },
   "AWS - Kendra":{
      "fixCost":1008,
      "provider": "AWS",
@@ -2056,7 +2082,7 @@
            "onlyFullUnits":true,
            "inclusiveAmount":8000,
            "minAmount":0,
-           "defaultFormular":""
+           "defaultFormular":"#customers*casesPerCustomer*queriesPerCase*0.033"
         },
         {
            "name":"Document Storage [documents]",
@@ -2065,7 +2091,7 @@
            "onlyFullUnits":true,
            "inclusiveAmount":100000,
            "minAmount":0,
-           "defaultFormular":""
+           "defaultFormular":"#productDoc"
         }
      ]
   },
@@ -2152,7 +2178,7 @@
            "onlyFullUnits":true,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":""
+           "defaultFormular":"CEIL(DIVI(MUL(#productDoc,docSize),15))"
         },
         {
          "name":"Semantic Ranker [Request]",
@@ -2161,7 +2187,7 @@
          "onlyFullUnits":false,
          "inclusiveAmount":1000,
          "minAmount":0,
-         "defaultFormular":""
+         "defaultFormular":"#customers*casesPerCustomer*queriesPerCase"
       }
      ]
   },
@@ -2178,7 +2204,7 @@
            "onlyFullUnits":true,
            "inclusiveAmount":0,
            "minAmount":0,
-           "defaultFormular":""
+           "defaultFormular":"CEIL(retrievedChunks/100)*#customers*casesPerCustomer*queriesPerCase"
         }
      ]
   },

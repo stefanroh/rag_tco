@@ -78,8 +78,12 @@ class _VariableDialogState extends State<UseCaseFormularDialog> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: SizedBox(
-              width: 250,
+              width: 400,
+              height: 150,
               child: TextField(
+                textAlignVertical: TextAlignVertical.top,
+                expands: true,
+                maxLines: null,
                 controller: controller,
                 // keyboardType:
                 //     const TextInputType.numberWithOptions(decimal: true),

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:rag_tco/data_model/new/architecture_component.dart';
 import 'package:rag_tco/data_model/new/variable_price_component.dart';
@@ -16,7 +15,6 @@ class ArchitectureComponentsStorage {
     List<ArchitectureComponent> componentList = [];
 
     for (String compKey in data.keys) {
-      log(compKey);
       double fixCost = data[compKey]["fixCost"];
       String currency = data[compKey]["currency"];
       String provider = data[compKey]["provider"];

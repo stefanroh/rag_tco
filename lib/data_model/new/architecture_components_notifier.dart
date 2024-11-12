@@ -30,12 +30,18 @@ class ArchitectureComponentsNotifier
   }
 
   void updateArchitectureComponent(
-      ArchitectureComponent component, String? newName, double? newFixCost) {
+      ArchitectureComponent component,
+      String? newName,
+      double? newFixCost,
+      String? newProvider,
+      String? newType) {
     List<ArchitectureComponent> componentList =
         List<ArchitectureComponent>.from(state.value!.componentList);
 
     component.componentName = newName ?? component.componentName;
     component.fixCost = newFixCost ?? component.fixCost;
+    component.provider = newProvider ?? component.provider;
+    component.type = newType ?? component.type;
     state = AsyncValue.data(state.value!.copyWith(componentList));
   }
 

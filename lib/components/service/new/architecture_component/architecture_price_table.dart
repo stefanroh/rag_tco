@@ -118,7 +118,7 @@ class ArchitecturePriceTable extends ConsumerWidget {
 }
 
 String getConfigurationString(VariablePriceComponent priceComponent) {
-  return "${priceComponent.name}: ${priceComponent.price.toString()}€ / ${priceComponent.referenceAmount.toString()} \n(min ${priceComponent.minAmount}, inclusive ${priceComponent.inclusiveAmount})\n";
+  return "${priceComponent.name}: ${priceComponent.price.toString()} / ${priceComponent.referenceAmount.toString()} \n(min ${priceComponent.minAmount}, inclusive ${priceComponent.inclusiveAmount})\n";
 }
 
 Future<void> _architecturePriceEditDialog(

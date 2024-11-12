@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:rag_tco/calculation/calculated_component.dart';
@@ -137,7 +135,6 @@ class _CostChartState extends State<CostChart> {
   Widget _bottomTitles(double value, TitleMeta meta) {
     const style = TextStyle(fontSize: 10);
     String text = "N/A";
-    log(value.toString());
     if (widget.components.length > value && value >= 0) {
       text = widget.components[value.floor()].name;
     }
