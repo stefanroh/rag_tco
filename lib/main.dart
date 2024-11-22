@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rag_tco/misc/provider.dart';
-import 'package:rag_tco/pages/services.dart';
+import 'package:rag_tco/services.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -13,8 +12,6 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedPageIndex = ref.watch(selectedPageIndexProvider);
-
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -23,19 +20,6 @@ class MyApp extends ConsumerWidget {
         ),
         home: const Material(
           child: Services(),
-          // child: SplitView(
-          //     // menu: const AppMenu(), content: selectedPageBuilder(context))));
-          //     menu: const AppMenu(),
-          //     content: IndexedStack(
-          //       index: selectedPageIndex,
-          //       children: [
-          //         const Home(),
-          //         for (var page in prePages.values) page(context),
-          //         for (var page in midPages.values) page(context),
-          //         for (var page in postPages.values) page(context),
-          //         const Report()
-          //       ],
-          //     )),
         ));
   }
 }

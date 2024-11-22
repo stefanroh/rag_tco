@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rag_tco/data_model/new/architecture_component.dart';
+import 'package:rag_tco/data_model/architecture_component.dart';
 
 class ProviderSelector extends StatelessWidget {
   const ProviderSelector(

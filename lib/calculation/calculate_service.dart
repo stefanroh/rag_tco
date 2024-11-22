@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rag_tco/calculation/calculated_component.dart';
 import 'package:rag_tco/calculation/cost_chart.dart';
-import 'package:rag_tco/data_model/new/use_case_storage.dart';
+import 'package:rag_tco/data_model/use_case_storage.dart';
 
 class CalculateService {
   CalculateService(this.storage, this.variables);
@@ -21,23 +21,6 @@ class CalculateService {
 
   Widget getCostTable() {
     List<TableRow> rows = [];
-    // rows.add(const TableRow(children: [
-    //   TableCell(
-    //       child: Padding(
-    //     padding: EdgeInsets.all(8),
-    //     child: Text("Architecture Component"),
-    //   )),
-    //   TableCell(
-    //       child: Padding(
-    //     padding: EdgeInsets.all(8),
-    //     child: Text("Price Component"),
-    //   )),
-    //   TableCell(
-    //       child: Padding(
-    //     padding: EdgeInsets.all(8),
-    //     child: Text("Price"),
-    //   ))
-    // ]));
     for (CalculatedComponent comp in calculatedComponents) {
       rows.addAll(_getTableRow(comp));
     }
