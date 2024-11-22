@@ -14,6 +14,7 @@ import 'package:rag_tco/data_model/old/rag_component_reranker.dart';
 import 'package:rag_tco/data_model/old/rag_component_retriever.dart';
 import 'package:rag_tco/data_model/old/rag_component_storage.dart';
 import 'package:rag_tco/data_model/old/rag_component_vectordb.dart';
+import 'package:rag_tco/misc/copyright_dialog.dart';
 import 'package:rag_tco/misc/provider.dart';
 
 class Services extends ConsumerStatefulWidget {
@@ -55,6 +56,15 @@ class ServicesState extends ConsumerState<Services> {
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () => _copyrightDialog(context),
+                  icon: const Icon(Icons.info),
+                )
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,6 +175,14 @@ class ServicesState extends ConsumerState<Services> {
         context: context,
         builder: (BuildContext context) {
           return const ArchitectureDialog();
+        });
+  }
+
+  Future<void> _copyrightDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const CopyrightDialog();
         });
   }
 
